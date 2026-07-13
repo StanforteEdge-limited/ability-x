@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ImageGallery } from "@/components/event/image-gallery";
 import { VideoCarousel } from "@/components/event/video-carousel";
-import type { GalleryImage, SessionItem } from "@/content/types";
+import { Carousel } from "@/components/ui/carousel";
+import type { GalleryImage, SessionItem, SpeakerItem } from "@/content/types";
 
 type EventMediaTabsProps = {
   galleryImages: GalleryImage[];
   sessions: SessionItem[];
+  speakers: SpeakerItem[];
   pressRelease: {
     title: string;
     body: string;
@@ -16,6 +19,7 @@ type EventMediaTabsProps = {
 
 const tabs = [
   { id: "watch", label: "Watch All Sessions" },
+  { id: "speakers", label: "Speakers" },
   { id: "gallery", label: "Gallery" },
   { id: "press", label: "Press Release" },
 ] as const;
@@ -25,6 +29,7 @@ type TabId = (typeof tabs)[number]["id"];
 export function EventMediaTabs({
   galleryImages,
   sessions,
+  speakers,
   pressRelease,
 }: EventMediaTabsProps) {
   const [activeTab, setActiveTab] = useState<TabId>("watch");
@@ -52,6 +57,29 @@ export function EventMediaTabs({
 
       <div className="mt-8">
         {activeTab === "watch" ? <VideoCarousel sessions={sessions} /> : null}
+        {activeTab === "speakers" ? (
+          <Carousel
+            ariaLabel="AbilityX 1.0 speakers carousel"
+            slidesPerView={{ base: 1, lg: 4 }}
+            slides={speakers.map((speaker) => (
+              <article key={speaker.id} className="text-center">
+                <div className="relative aspect-square overflow-hidden rounded-[8px] border border-brand-border bg-brand-subtle">
+                  <Image
+                    src={speaker.image.src}
+                    alt={speaker.image.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mt-4 text-[14px] font-semibold text-brand-black">
+                  {speaker.name}
+                </h3>
+                <p className="mt-1 text-[12px] text-[#8f8f8f]">{speaker.role}</p>
+              </article>
+            ))}
+          />
+        ) : null}
         {activeTab === "gallery" ? <ImageGallery images={galleryImages} /> : null}
         {activeTab === "press" ? (
           <article className="rounded-[16px] border border-brand-border bg-white p-8 shadow-card">

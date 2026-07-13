@@ -35,6 +35,10 @@ export type SpeakerItem = {
   id: string;
   name: string;
   role: string;
+  image: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type RecapVideoItem = {
