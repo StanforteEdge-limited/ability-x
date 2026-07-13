@@ -13,6 +13,7 @@ export type GalleryPlaceholder = {
   id: string;
   label: string;
   alt: string;
+  src: string;
 };
 
 export type PillarItem = {

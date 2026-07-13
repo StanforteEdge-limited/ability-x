@@ -29,12 +29,12 @@ export const homeContent = {
     ],
   },
   gallery: [
-    { id: "gallery-1", label: "1.0 Crowd", alt: "Placeholder for AbilityX 1.0 crowd photography." },
-    { id: "gallery-2", label: "Stage", alt: "Placeholder for AbilityX 1.0 stage photography." },
-    { id: "gallery-3", label: "Panel", alt: "Placeholder for AbilityX 1.0 panel photography." },
-    { id: "gallery-4", label: "Networking", alt: "Placeholder for AbilityX 1.0 networking photography." },
-    { id: "gallery-5", label: "Exhibition Floor", alt: "Placeholder for AbilityX 1.0 exhibition floor photography." },
-    { id: "gallery-6", label: "Speaker Moment", alt: "Placeholder for AbilityX 1.0 speaker photography." },
+    { id: "gallery-1", label: "1.0 Crowd", alt: "Placeholder for AbilityX 1.0 crowd photography.", src: "/gallery/Crowd.jpg"},
+    { id: "gallery-2", label: "Stage", alt: "Placeholder for AbilityX 1.0 stage photography.", src:"/gallery/stage.jpg" },
+    { id: "gallery-3", label: "Panel", alt: "Placeholder for AbilityX 1.0 panel photography.", src:"/gallery/Panel.jpg"},
+    { id: "gallery-4", label: "Networking", alt: "Placeholder for AbilityX 1.0 networking photography.", src:"/gallery/Networking.jpg" },
+    { id: "gallery-5", label: "Exhibition Floor", alt: "Placeholder for AbilityX 1.0 exhibition floor photography.", src:"/gallery/Exhibition-floor.jpg"},
+    { id: "gallery-6", label: "Speaker Moment", alt: "Placeholder for AbilityX 1.0 speaker photography.", src:"/gallery/Speaker-moment.jpg" },
   ] satisfies GalleryPlaceholder[],
   recap: {
     kicker: "Watch",
