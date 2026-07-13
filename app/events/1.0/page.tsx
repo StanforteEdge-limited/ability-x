@@ -5,6 +5,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { Container } from "@/components/layout/container";
 import { eventOneContent } from "@/content/event-1-0";
 import { allSessions } from "@/content/sessions";
+import { speakers } from "@/content/speakers";
 import { galleryImages } from "@/content/gallery";
 import { stats } from "@/content/stats";
 
@@ -97,6 +98,7 @@ export default function EventOnePage() {
           </div>
           <EventMediaTabs
             sessions={allSessions}
+            speakers={speakers}
             galleryImages={galleryImages}
             pressRelease={eventOneContent.pressRelease}
           />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Carousel } from "@/components/ui/carousel";
@@ -18,11 +19,15 @@ export function SpeakersSection() {
             slidesPerView={{ base: 1, lg: 4 }}
             slides={speakers.map((speaker) => (
               <article key={speaker.id} className="text-center">
-                <div
-                  role="img"
-                  aria-label={`Placeholder image for ${speaker.name}.`}
-                  className="aspect-square rounded-[8px] border-2 border-dashed border-black/15 bg-brand-subtle"
-                />
+                <div className="relative aspect-square overflow-hidden rounded-[8px] border border-brand-border bg-brand-subtle">
+                  <Image
+                    src={speaker.image.src}
+                    alt={speaker.image.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="mt-4 text-[14px] font-semibold text-brand-black">
                   {speaker.name}
                 </h3>
