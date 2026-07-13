@@ -36,7 +36,7 @@ export function SiteNav({ active }: SiteNavProps) {
               href="/events/1.0"
               variant={eventActive ? "nav-active" : "nav-idle"}
             >
-              Watch 1.0
+              AbilityX 1.0
             </PillButton>
             <PillButton href="/about" variant={aboutActive ? "nav-active" : "nav-idle"}>
               About
@@ -67,7 +67,7 @@ export function SiteNav({ active }: SiteNavProps) {
             href="/events/1.0"
             className={eventActive ? "font-semibold text-brand-red" : "text-brand-muted"}
           >
-            Watch 1.0
+            AbilityX 1.0
           </Link>
           <Link href="/about" className={aboutActive ? "font-semibold text-brand-red" : "text-brand-muted"}>
             About

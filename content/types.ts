@@ -40,6 +40,7 @@ export type RecapVideoItem = {
   id: string;
   label: string;
   description: string;
+  youtubeId?: string;
 };
 
 export type SessionItem = {

@@ -19,7 +19,7 @@ export default function HomePage() {
       <PillarsSection />
       <AskSection />
       <SpeakersSection />
-      <SiteFooter links={[{ href: "/events/1.0", label: "Watch 1.0" }, { href: "#ask", label: "Partner With Us" }]} />
+      <SiteFooter links={[{ href: "/events/1.0", label: "AbilityX 1.0" }, { href: "#ask", label: "Partner With Us" }]} />
     </main>
   );
 }
