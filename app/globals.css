@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0d0d0d;
+  --brand-red-900: #7a0000;
+  --brand-red-800: #990000;
+  --brand-red-700: #b30000;
+  --brand-red-600: #cc0000;
+  --brand-red-100: #fde8e8;
+  --brand-red-50: #fff5f5;
+  --gray-900: #1f1f1f;
+  --gray-700: #404040;
+  --gray-500: #6b6b6b;
+  --gray-300: #b5b5b5;
+  --gray-200: #d4d4d4;
+  --gray-100: #e8e8e8;
+  --gray-50: #f5f5f5;
+  --success-fg: #1a7a4a;
+  --success-bg: #eefaf3;
+  --success-border: #cfeee0;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-raised: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-red: var(--brand-red-600);
+  --color-brand-red-dark: var(--brand-red-700);
+  --color-brand-red-darker: var(--brand-red-800);
+  --color-brand-red-soft: var(--brand-red-100);
+  --color-brand-red-faint: var(--brand-red-50);
+  --color-brand-black: #0d0d0d;
+  --color-brand-surface: #1f1f1f;
+  --color-brand-muted: #6b6b6b;
+  --color-brand-muted-light: #b5b5b5;
+  --color-brand-border: #e8e8e8;
+  --color-brand-border-strong: #d4d4d4;
+  --color-brand-subtle: #f5f5f5;
+  --color-success-fg: var(--success-fg);
+  --color-success-bg: var(--success-bg);
+  --color-success-border: var(--success-border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --radius-card: 8px;
+  --radius-panel: 16px;
+  --radius-pill: 999px;
+  --shadow-card: var(--shadow-card);
+  --shadow-raised: var(--shadow-raised);
+}
+
+@layer base {
+  * {
+    @apply border-brand-border;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-red-600);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply px-5 py-14 md:px-8 lg:px-20 lg:py-24;
+  }
+
+  .kicker {
+    @apply text-[12px] font-bold uppercase tracking-[0.14em] text-brand-red;
+  }
+
+  .display-heading {
+    font-family: var(--font-display);
+    @apply font-black tracking-[-0.03em];
+  }
+
+  .placeholder-dashed {
+    @apply rounded-[16px] border border-dashed border-brand-border-strong bg-white/70;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

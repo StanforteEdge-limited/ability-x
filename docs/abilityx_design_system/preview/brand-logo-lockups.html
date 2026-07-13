@@ -1,0 +1,36 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo Lockups" subtitle="Logo on white, black, gray, red backgrounds" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Logo Lockups" subtitle="Logo on white, black, gray, red backgrounds" viewport="700x200" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; font-family: 'DM Sans', system-ui, sans-serif; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; height: 200px; }
+  .panel { display: flex; align-items: center; justify-content: center; padding: 32px; }
+  .panel-white { background: #fff; }
+  .panel-black { background: #0d0d0d; }
+  .panel-red { background: #CC0000; }
+  .panel-gray { background: #f5f5f5; }
+  img { max-width: 100%; max-height: 80px; object-fit: contain; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="panel panel-white">
+      <img src="../assets/logo-primary.png" alt="AbilityX logo on white">
+    </div>
+    <div class="panel panel-black">
+      <img src="../assets/logo-white.png" alt="AbilityX white logo on black">
+    </div>
+    <div class="panel panel-gray">
+      <img src="../assets/logo-primary.png" alt="AbilityX logo on gray">
+    </div>
+    <div class="panel panel-red">
+      <img src="../assets/logo-white.png" alt="AbilityX white logo on red">
+    </div>
+  </div>
+</body>
+</html>

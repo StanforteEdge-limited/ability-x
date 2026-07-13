@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+  <link rel="stylesheet" href="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/colors_and_type.css">
+  <script src="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/_ds_bundle.js"></script>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#0d0d0d"/><circle cx="100" cy="70" r="16" fill="#cc0000"/><path d="M60 150 Q100 100 140 150" stroke="#cc0000" stroke-width="14" fill="none" stroke-linecap="round"/></svg></template>
+  <style>
+    body{margin:0;background:#d4d4d4;font-family:'DM Sans',system-ui,sans-serif;display:flex;justify-content:center;}
+    a{color:#CC0000;}
+    a:hover{color:#990000;}
+    input{font-family:'DM Sans',sans-serif;}
+  </style>
+</helmet>
+
+<div style="width:390px;min-width:390px;max-width:390px;background:#fff;box-shadow:0 0 40px rgba(0,0,0,0.15);">
+
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:64px;background:#fff;border-bottom:1px solid #e8e8e8;">
+  <img src="assets/logo-primary.png" alt="AbilityX" style="height:26px;object-fit:contain;">
+  <a href="#ask" style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;background:#CC0000;color:#fff;padding:9px 18px;border-radius:999px;text-decoration:none;">Partner</a>
+</nav>
+<div style="display:flex;gap:18px;padding:12px 20px;border-bottom:1px solid #e8e8e8;">
+  <span style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#CC0000;">Home</span>
+  <a href="Watch Mobile.dc.html" style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#404040;text-decoration:none;">Watch 1.0</a>
+</div>
+
+<header style="position:relative;min-height:520px;background:#1F1F1F;display:flex;align-items:flex-end;overflow:hidden;">
+  <div style="position:absolute;top:16px;left:16px;right:16px;bottom:16px;border:2px dashed rgba(255,255,255,0.3);border-radius:8px;display:flex;align-items:flex-start;justify-content:flex-end;padding:14px;pointer-events:none;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-align:right;">Hero Visual — 1.0 photography</span>
+  </div>
+  <div style="position:relative;background:rgba(13,13,13,0.55);width:100%;padding:36px 20px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <div style="width:26px;height:2px;background:#CC0000;border-radius:2px;"></div>
+      <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#CC0000;">AbilityX 2.0</span>
+    </div>
+    <h1 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:38px;line-height:1.02;letter-spacing:-0.02em;color:#fff;margin:0 0 14px;">The Movement Returns This November</h1>
+    <p style="font-family:'DM Sans',sans-serif;font-size:16px;color:rgba(255,255,255,0.7);line-height:1.55;margin:0 0 20px;">Lagos, this November — details to follow.</p>
+    <span style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:18px;">This November · Lagos</span>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="#ask" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;background:#CC0000;color:#fff;padding:15px 24px;border-radius:999px;text-decoration:none;">Partner With Us</a>
+      <a href="Watch Mobile.dc.html" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;background:transparent;color:#fff;padding:13px 24px;border-radius:999px;border:1.5px solid rgba(255,255,255,0.3);text-decoration:none;">Watch the 1.0 Recap</a>
+    </div>
+  </div>
+</header>
+
+<section style="padding:56px 20px;text-align:center;">
+  <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">The Movement</span>
+  <p style="font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;color:#1F1F1F;margin:14px 0 0;text-align:left;">AbilityX is not just an event. It's a movement. It's Nigeria's leading annual convening focused on the future of disability inclusion — bringing together innovators, policymakers, startups, technologists, donors, civil society, and persons with disabilities to reimagine what inclusive development looks like in Africa.</p>
+  <p style="font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;color:#1F1F1F;margin:14px 0 0;text-align:left;">AbilityX 1.0 brought that vision to life for the first time in December 2025. This November, we're back — bigger, and building on everything 1.0 proved was possible.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:36px 0 0;">
+    <sc-for list="{{ galleryTiles }}" as="tile" hint-placeholder-count="6">
+      <div style="background:#f5f5f5;border:2px dashed rgba(13,13,13,0.15);border-radius:8px;height:110px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#8f8f8f;">{{ tile.label }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section style="background:#0d0d0d;padding:56px 20px;">
+  <div style="text-align:center;margin-bottom:36px;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">1.0 By The Numbers</span>
+    <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:30px;color:#fff;margin:12px 0 0;letter-spacing:-0.01em;">The proof is already in.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+    <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
+      <div style="background:#1F1F1F;border-radius:14px;padding:24px 16px;text-align:center;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:#CC0000;line-height:1;">{{ stat.value }}</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">{{ stat.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:40px 0 0;background:#1F1F1F;border-radius:14px;padding:28px 22px;text-align:center;border:2px dashed rgba(255,255,255,0.15);">
+    <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Testimonial — pending client selection</span>
+    <p style="font-family:'Nunito',sans-serif;font-weight:700;font-size:19px;color:#fff;line-height:1.4;margin:16px 0 0;">"[Quote from a 1.0 speaker, partner, or attendee]"</p>
+    <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);margin:14px 0 0;">— Name, Title / Organization</p>
+  </div>
+</section>
+
+<section style="padding:56px 20px;background:#f5f5f5;">
+  <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">Watch</span>
+  <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#0D0D0D;margin:12px 0 12px;letter-spacing:-0.01em;">See AbilityX 1.0 for Yourself</h2>
+  <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#6B6B6B;line-height:1.6;margin:0 0 24px;">Highlights from the day — the conversations, the energy, the moment the movement became real.</p>
+  <div style="height:220px;background:#fff;border:2px dashed rgba(13,13,13,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;margin-bottom:24px;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;">Recap Reel</span>
+    <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#6B6B6B;text-align:center;padding:0 20px;">Instagram reel — needs re-hosting to embed</span>
+  </div>
+  <a href="Watch Mobile.dc.html" style="display:block;text-align:center;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;background:#CC0000;color:#fff;padding:15px 24px;border-radius:999px;text-decoration:none;">Watch Full Sessions</a>
+</section>
+
+<section style="padding:56px 20px;">
+  <div style="text-align:center;margin-bottom:8px;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">What To Expect</span>
+    <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#0D0D0D;margin:12px 0 10px;letter-spacing:-0.01em;">Built on four pillars that work.</h2>
+    <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#6B6B6B;line-height:1.6;margin:0;">AbilityX 2.0 builds on the four pillars that made 1.0 work — now with a full year of momentum behind them.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px;margin:32px 0 0;">
+    <sc-for list="{{ pillars }}" as="pillar" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:24px 20px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:#CC0000;margin-bottom:12px;">{{ pillar.num }}</div>
+        <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;color:#0D0D0D;margin:0 0 8px;">{{ pillar.name }}</h3>
+        <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#6B6B6B;line-height:1.55;margin:0;">{{ pillar.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="ask" style="padding:56px 20px;background:#f5f5f5;">
+  <div style="text-align:center;margin-bottom:32px;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">Join Us</span>
+    <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#0D0D0D;margin:12px 0 0;letter-spacing:-0.01em;">Three ways to be part of 2.0.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;">
+
+    <div style="background:#0d0d0d;border-radius:16px;padding:28px 22px;">
+      <h3 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#fff;margin:0 0 10px;">Partner With Us</h3>
+      <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0 0 22px;">Sponsor, co-convene, or support AbilityX 2.0. Reach 450+ decision-makers, innovators, and changemakers across Africa's disability inclusion ecosystem.</p>
+        <sc-if value="{{ notFlags.partner }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <input placeholder="Work email" style="padding:13px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;font-size:14px;outline:none;">
+            <span onClick="{{ submit.partner }}" style="text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;background:#CC0000;color:#fff;padding:14px 20px;border-radius:999px;">Start a Conversation</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ flags.partner }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;background:rgba(204,0,0,0.25);border:1px solid rgba(204,0,0,0.5);border-radius:12px;padding:14px 16px;">Thanks — our partnerships team will follow up shortly.</div>
+        </sc-if>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:16px;padding:28px 22px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;color:#0D0D0D;margin:0 0 10px;">Join the Waitlist</h3>
+      <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#6B6B6B;line-height:1.6;margin:0 0 22px;">Registration for AbilityX 2.0 opens once dates are confirmed. Be first to know.</p>
+        <sc-if value="{{ notFlags.waitlist }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <input placeholder="Email address" style="padding:13px 16px;border-radius:999px;border:1px solid #d4d4d4;font-size:14px;outline:none;">
+            <span onClick="{{ submit.waitlist }}" style="text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;background:#0D0D0D;color:#fff;padding:13px 20px;border-radius:999px;">Join the Waitlist</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ flags.waitlist }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#1a7a4a;background:#eefaf3;border:1px solid #cfeee0;border-radius:12px;padding:14px 16px;">You're on the list — we'll email you the moment registration opens.</div>
+        </sc-if>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:16px;padding:28px 22px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;color:#0D0D0D;margin:0 0 10px;">Exhibit Your Innovation</h3>
+      <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#6B6B6B;line-height:1.6;margin:0 0 22px;">Showcase your solution to Africa's top disability inclusion stakeholders. Applications open closer to the event.</p>
+        <sc-if value="{{ notFlags.exhibit }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <input placeholder="Email address" style="padding:13px 16px;border-radius:999px;border:1px solid #d4d4d4;font-size:14px;outline:none;">
+            <span onClick="{{ submit.exhibit }}" style="text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;background:#0D0D0D;color:#fff;padding:13px 20px;border-radius:999px;">Register Interest</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ flags.exhibit }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#1a7a4a;background:#eefaf3;border:1px solid #cfeee0;border-radius:12px;padding:14px 16px;">Noted — we'll notify you when exhibitor applications open.</div>
+        </sc-if>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding:56px 20px;">
+  <div style="text-align:center;margin-bottom:8px;">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;">1.0 Speakers</span>
+    <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:#0D0D0D;margin:12px 0 8px;letter-spacing:-0.01em;">AbilityX 2.0 speaker lineup coming soon.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:32px 0 0;">
+    <sc-for list="{{ speakerSlots }}" as="s" hint-placeholder-count="6">
+      <div style="text-align:center;">
+        <div style="aspect-ratio:1;background:#f5f5f5;border:2px dashed rgba(13,13,13,0.15);border-radius:8px;margin-bottom:10px;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#0D0D0D;">Speaker Name</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:#8f8f8f;">Title, Organization</div>
+      </div>
+    </sc-for>
+  </div>
+  <p style="text-align:center;font-family:'DM Sans',sans-serif;font-size:13px;color:#8f8f8f;margin:28px 0 0;">24 speakers from AbilityX 1.0 — full roster available on request.</p>
+</section>
+
+<footer style="background:#0d0d0d;color:#fff;padding:40px 20px 28px;">
+  <img src="assets/logo-white.png" alt="AbilityX" style="height:26px;object-fit:contain;margin-bottom:12px;">
+  <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:24px;">It's not just an event. It's a movement. — By ProjectEnable Africa</div>
+  <div style="display:flex;gap:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:16px;">
+    <a href="Watch Mobile.dc.html" style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.65);text-decoration:none;">Watch 1.0</a>
+    <a href="#ask" style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.65);text-decoration:none;">Partner With Us</a>
+  </div>
+  <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);">© 2026 ProjectEnable Africa. All rights reserved.</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 390, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  state = { submitted: {} };
+
+  renderVals() {
+    const keys = ['partner', 'waitlist', 'exhibit'];
+    const flags = {};
+    const notFlags = {};
+    const submit = {};
+    keys.forEach((k) => {
+      flags[k] = !!this.state.submitted[k];
+      notFlags[k] = !this.state.submitted[k];
+      submit[k] = () => this.setState((s) => ({ submitted: { ...s.submitted, [k]: true } }));
+    });
+
+    const galleryTiles = [
+      { label: '1.0 Crowd' },
+      { label: 'Stage' },
+      { label: 'Panel' },
+      { label: 'Networking' },
+      { label: 'Exhibition Floor' },
+      { label: 'Speaker Moment' },
+    ];
+
+    const stats = [
+      { value: '450+', label: 'Attendees' },
+      { value: '6', label: 'Partner Organizations' },
+      { value: '5', label: 'Media Partners' },
+      { value: '24', label: 'Speakers' },
+    ];
+
+    const pillars = [
+      { num: '01', name: 'Inclusive Future Dialogue', desc: 'High-level plenary convening Africa\u2019s most influential leaders to explore AI, data-driven policy, and inclusive digital economies.' },
+      { num: '02', name: 'Innovation Labs', desc: 'Interactive breakout sessions exploring the future of work, assistive technology, the data revolution, and policy innovation.' },
+      { num: '03', name: 'Research & Evidence Showcase', desc: 'Groundbreaking research on disability inclusion across health, finance, and key sectors in Africa.' },
+      { num: '04', name: 'AbilityX Impact Awards', desc: 'Celebrating excellence in technology, innovation, and leadership advancing next-generation disability inclusion.' },
+    ];
+
+    const speakerSlots = new Array(6).fill(0);
+
+    return { flags, notFlags, submit, galleryTiles, stats, pillars, speakerSlots };
+  }
+}
+
+</script>
+</body>
+</html>

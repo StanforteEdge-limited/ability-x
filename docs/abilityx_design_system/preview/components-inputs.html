@@ -1,0 +1,54 @@
+<!-- @dsCard group="Components" viewport="700x180" name="Form Inputs" subtitle="Text inputs — default, focused, error states" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Form Inputs" subtitle="Text inputs — default, focused, error states" viewport="700x180" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; padding: 20px; font-family: 'DM Sans', system-ui, sans-serif; }
+  .section-title { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8f8f8f; margin-bottom: 12px; }
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .input-wrap { display: flex; flex-direction: column; gap: 5px; }
+  .input-label { font-size: 11px; font-weight: 600; color: #1f1f1f; }
+  .input { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 10px 14px; border: 1.5px solid #d4d4d4; border-radius: 8px; color: #0d0d0d; outline: none; background: #fff; width: 100%; }
+  .input::placeholder { color: #b5b5b5; }
+  .input-focused { border-color: #CC0000; box-shadow: 0 0 0 3px rgba(204,0,0,0.1); }
+  .input-error { border-color: #CC0000; }
+  .input-hint { font-size: 11px; color: #8f8f8f; }
+  .input-error-msg { font-size: 11px; color: #CC0000; font-weight: 500; }
+  .row { display: flex; gap: 12px; }
+</style>
+</head>
+<body>
+  <div class="section-title">Form Inputs</div>
+  <div class="row">
+    <div class="stack" style="flex:1;">
+      <div class="input-wrap">
+        <div class="input-label">Full Name</div>
+        <input class="input" type="text" placeholder="Enter your full name" readonly>
+        <div class="input-hint">As it will appear on your badge</div>
+      </div>
+      <div class="input-wrap">
+        <div class="input-label">Email Address</div>
+        <input class="input input-focused" type="email" value="amara@projectenable.africa" readonly>
+      </div>
+    </div>
+    <div class="stack" style="flex:1;">
+      <div class="input-wrap">
+        <div class="input-label">Organization</div>
+        <input class="input input-error" type="text" value="Project Enable" readonly>
+        <div class="input-error-msg">Please enter your full organization name</div>
+      </div>
+      <div class="input-wrap">
+        <div class="input-label">Select Track</div>
+        <select class="input" style="appearance:none;cursor:pointer;">
+          <option>Technology & Innovation</option>
+          <option>Policy & Advocacy</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Semantic Colors" subtitle="Foreground, background, status color tokens" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Colors" name="Semantic Colors" subtitle="Foreground, background, status color tokens" viewport="700x200" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: #fff; padding: 20px; }
+  .section-title { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8f8f8f; margin-bottom: 10px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .token { border-radius: 8px; overflow: hidden; border: 1px solid #e8e8e8; }
+  .token-swatch { height: 36px; }
+  .token-info { padding: 6px 8px; background: #fff; }
+  .token-name { font-size: 9px; font-weight: 600; color: #1f1f1f; }
+  .token-var  { font-size: 8px; color: #8f8f8f; font-family: monospace; }
+</style>
+</head>
+<body>
+  <div class="section-title">Semantic Color Tokens</div>
+  <div class="grid">
+    <div class="token">
+      <div class="token-swatch" style="background:#0d0d0d;"></div>
+      <div class="token-info"><div class="token-name">fg-primary</div><div class="token-var">--fg-primary</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#6b6b6b;"></div>
+      <div class="token-info"><div class="token-name">fg-secondary</div><div class="token-var">--fg-secondary</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#CC0000;"></div>
+      <div class="token-info"><div class="token-name">fg-accent</div><div class="token-var">--fg-accent</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#fff;border-bottom:1px solid #e8e8e8;"></div>
+      <div class="token-info"><div class="token-name">fg-inverse</div><div class="token-var">--fg-inverse</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#fff;border-bottom:1px solid #e8e8e8;"></div>
+      <div class="token-info"><div class="token-name">bg-base</div><div class="token-var">--bg-base</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#f5f5f5;"></div>
+      <div class="token-info"><div class="token-name">bg-subtle</div><div class="token-var">--bg-subtle</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#0d0d0d;"></div>
+      <div class="token-info"><div class="token-name">bg-inverse</div><div class="token-var">--bg-inverse</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#CC0000;"></div>
+      <div class="token-info"><div class="token-name">bg-accent</div><div class="token-var">--bg-accent</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#1a7a4a;"></div>
+      <div class="token-info"><div class="token-name">status-success</div><div class="token-var">--status-success</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#b56a00;"></div>
+      <div class="token-info"><div class="token-name">status-warning</div><div class="token-var">--status-warning</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#CC0000;"></div>
+      <div class="token-info"><div class="token-name">status-error</div><div class="token-var">--status-error</div></div>
+    </div>
+    <div class="token">
+      <div class="token-swatch" style="background:#0060b0;"></div>
+      <div class="token-info"><div class="token-name">status-info</div><div class="token-var">--status-info</div></div>
+    </div>
+  </div>
+</body>
+</html>

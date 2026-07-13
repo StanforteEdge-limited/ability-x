@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+  <link rel="stylesheet" href="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/colors_and_type.css">
+  <script src="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/_ds_bundle.js"></script>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#0d0d0d"/><circle cx="100" cy="70" r="16" fill="#cc0000"/><path d="M60 150 Q100 100 140 150" stroke="#cc0000" stroke-width="14" fill="none" stroke-linecap="round"/></svg></template>
+  <style>
+    body{margin:0;background:#fff;font-family:'DM Sans',system-ui,sans-serif;}
+    a{color:#CC0000;}
+    a:hover{color:#990000;}
+    input,select{font-family:'DM Sans',sans-serif;}
+  </style>
+</helmet>
+
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:80px;background:#fff;border-bottom:1px solid #e8e8e8;">
+  <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;">
+    <img src="assets/logo-primary.png" alt="AbilityX" style="height:32px;object-fit:contain;">
+  </a>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <a href="Home.dc.html" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:#404040;padding:8px 16px;border-radius:999px;text-decoration:none;">Home</a>
+    <a href="Watch.dc.html" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:#404040;padding:8px 16px;border-radius:999px;text-decoration:none;">Watch 1.0</a>
+    <a href="About.dc.html" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:#404040;padding:8px 16px;border-radius:999px;text-decoration:none;">About</a>
+  </div>
+  <span style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;background:#CC0000;color:#fff;padding:10px 24px;border-radius:999px;">Partner With Us</span>
+</nav>
+
+<header style="position:relative;background:#0d0d0d;padding:88px 80px 72px;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+    <div style="width:32px;height:2px;background:#CC0000;border-radius:2px;"></div>
+    <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;">Partnership</span>
+  </div>
+  <h1 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:64px;line-height:1.02;letter-spacing:-0.03em;color:#fff;margin:0 0 20px;max-width:820px;">Back AbilityX 2.0</h1>
+  <p style="font-family:'DM Sans',sans-serif;font-size:18px;color:rgba(255,255,255,0.65);max-width:640px;line-height:1.65;margin:0;">450+ attendees. 6 partner organizations. 5 media partners. One movement — and it's growing. Join us as a partner for AbilityX 2.0.</p>
+</header>
+
+<section style="padding:96px 80px;">
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:64px;max-width:1280px;margin:0 auto;align-items:start;">
+
+    <div>
+      <span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#CC0000;">Why Partner</span>
+      <h2 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:#0D0D0D;margin:14px 0 32px;letter-spacing:-0.02em;">A proven platform, not a first-time bet.</h2>
+
+      <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="4">
+        <div style="display:flex;gap:18px;padding:22px 0;border-bottom:1px solid #e8e8e8;">
+          <div style="width:36px;height:36px;border-radius:999px;background:#fde8e8;color:#CC0000;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{{ b.num }}</div>
+          <p style="font-family:'DM Sans',sans-serif;font-size:16px;color:#1F1F1F;line-height:1.6;margin:6px 0 0;">{{ b.text }}</p>
+        </div>
+      </sc-for>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;">
+        <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
+          <div style="background:#f5f5f5;border-radius:12px;padding:20px 16px;text-align:center;">
+            <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#0D0D0D;">{{ stat.value }}</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:#6B6B6B;margin-top:6px;">{{ stat.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#f5f5f5;border-radius:16px;padding:44px;border:1px solid #e8e8e8;">
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:22px;color:#0D0D0D;margin:0 0 6px;">Start a Conversation</h3>
+          <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#6B6B6B;margin:0 0 28px;">Tell us a bit about you — our partnerships team will follow up shortly.</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <input placeholder="Full name" style="padding:14px 16px;border-radius:10px;border:1px solid #d4d4d4;font-size:14px;outline:none;background:#fff;">
+            <input placeholder="Organization" style="padding:14px 16px;border-radius:10px;border:1px solid #d4d4d4;font-size:14px;outline:none;background:#fff;">
+            <input placeholder="Work email" style="padding:14px 16px;border-radius:10px;border:1px solid #d4d4d4;font-size:14px;outline:none;background:#fff;">
+            <select style="padding:14px 16px;border-radius:10px;border:1px solid #d4d4d4;font-size:14px;outline:none;background:#fff;color:#6B6B6B;">
+              <option>Interest area</option>
+              <option>Sponsorship</option>
+              <option>Co-convening</option>
+              <option>Media partnership</option>
+              <option>Speaking opportunity</option>
+              <option>Other</option>
+            </select>
+            <span onClick="{{ submit }}" style="cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;background:#CC0000;color:#fff;padding:15px 26px;border-radius:999px;margin-top:8px;">Send Inquiry</span>
+          </div>
+          <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#8f8f8f;margin:16px 0 0;text-align:center;">Partnership tiers to follow — this starts the conversation.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:40px 0;">
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:22px;color:#0D0D0D;margin:0 0 10px;">Thanks — inquiry sent.</div>
+          <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#6B6B6B;line-height:1.6;margin:0;">Our partnerships team will follow up shortly to discuss how you can be part of AbilityX 2.0.</p>
+        </div>
+      </sc-if>
+    </div>
+
+  </div>
+</section>
+
+<footer style="background:#0d0d0d;color:#fff;padding:48px 80px;display:flex;align-items:center;justify-content:space-between;">
+  <div>
+    <img src="assets/logo-white.png" alt="AbilityX" style="height:28px;object-fit:contain;margin-bottom:10px;">
+    <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.4);">It's not just an event. It's a movement. — By ProjectEnable Africa</div>
+  </div>
+  <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.25);">© 2026 ProjectEnable Africa. All rights reserved.</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false };
+
+  renderVals() {
+    const benefits = [
+      { num: '01', text: 'Direct visibility with Africa\u2019s disability inclusion decision-makers.' },
+      { num: '02', text: 'Association with a proven, credible platform \u2014 not a first-time bet.' },
+      { num: '03', text: 'Flexible partnership tiers (pending \u2014 detail to follow).' },
+      { num: '04', text: 'Early access to speaking, exhibition, and branding opportunities.' },
+    ];
+    const stats = [
+      { value: '450+', label: 'Attendees' },
+      { value: '6', label: 'Partners' },
+      { value: '5', label: 'Media Partners' },
+      { value: '24', label: 'Speakers' },
+    ];
+    return {
+      benefits,
+      stats,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      submit: () => this.setState({ submitted: true }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

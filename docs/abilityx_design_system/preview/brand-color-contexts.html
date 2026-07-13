@@ -1,0 +1,43 @@
+<!-- @dsCard group="Brand" viewport="700x130" name="Color Contexts" subtitle="Typography on light / dark / red backgrounds" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Color Contexts" subtitle="Typography on light / dark / red backgrounds" viewport="700x130" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; font-family: 'DM Sans', system-ui, sans-serif; padding: 20px; }
+  .section-title { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8f8f8f; margin-bottom: 14px; }
+  .row { display: flex; gap: 10px; align-items: stretch; }
+  .panel { border-radius: 8px; padding: 16px 20px; flex: 1; }
+  .panel-light { background: #f5f5f5; }
+  .panel-dark  { background: #0d0d0d; }
+  .panel-red   { background: #CC0000; }
+
+  .overline { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .headline { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 22px; line-height: 1.1; margin-bottom: 4px; }
+  .sub { font-size: 11px; opacity: 0.7; }
+</style>
+</head>
+<body>
+  <div class="section-title">Color Contexts</div>
+  <div class="row">
+    <div class="panel panel-light">
+      <div class="overline" style="color:#CC0000;">On Light</div>
+      <div class="headline" style="color:#0d0d0d;">Inclusive Africa</div>
+      <div class="sub" style="color:#6b6b6b;">Black on white/gray</div>
+    </div>
+    <div class="panel panel-dark">
+      <div class="overline" style="color:#CC0000;">On Dark</div>
+      <div class="headline" style="color:#fff;">Inclusive Africa</div>
+      <div class="sub" style="color:#8f8f8f;">White on black</div>
+    </div>
+    <div class="panel panel-red">
+      <div class="overline" style="color:rgba(255,255,255,0.7);">On Red</div>
+      <div class="headline" style="color:#fff;">Inclusive Africa</div>
+      <div class="sub" style="color:rgba(255,255,255,0.75);">White on brand red</div>
+    </div>
+  </div>
+</body>
+</html>

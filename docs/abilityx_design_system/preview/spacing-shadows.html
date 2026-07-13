@@ -1,0 +1,44 @@
+<!-- @dsCard group="Spacing" viewport="700x130" name="Shadow System" subtitle="XS–LG elevation levels" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Shadow System" subtitle="XS–LG elevation levels" viewport="700x130" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f5f5; padding: 24px; font-family: 'DM Sans', system-ui, sans-serif; }
+  .section-title { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8f8f8f; margin-bottom: 16px; }
+  .row { display: flex; gap: 16px; }
+  .card { flex: 1; background: #fff; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .card-label { font-size: 9px; font-weight: 600; color: #8f8f8f; letter-spacing: 0.08em; text-transform: uppercase; }
+  .card-name  { font-size: 13px; font-weight: 600; color: #0d0d0d; }
+  .card-value { font-size: 10px; color: #8f8f8f; font-family: monospace; }
+</style>
+</head>
+<body>
+  <div class="section-title">Shadow / Elevation System</div>
+  <div class="row">
+    <div class="card" style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+      <div class="card-label">XS</div>
+      <div class="card-name">Resting</div>
+      <div class="card-value">0 1px 4px rgba(0,0,0,0.06)</div>
+    </div>
+    <div class="card" style="box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+      <div class="card-label">SM</div>
+      <div class="card-name">Default Card</div>
+      <div class="card-value">0 2px 12px rgba(0,0,0,0.08)</div>
+    </div>
+    <div class="card" style="box-shadow: 0 6px 24px rgba(0,0,0,0.12);">
+      <div class="card-label">MD</div>
+      <div class="card-name">Hover / Raised</div>
+      <div class="card-value">0 6px 24px rgba(0,0,0,0.12)</div>
+    </div>
+    <div class="card" style="box-shadow: 0 12px 40px rgba(0,0,0,0.16);">
+      <div class="card-label">LG</div>
+      <div class="card-name">Dropdown / Modal</div>
+      <div class="card-value">0 12px 40px rgba(0,0,0,0.16)</div>
+    </div>
+  </div>
+</body>
+</html>

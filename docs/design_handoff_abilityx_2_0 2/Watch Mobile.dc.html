@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+  <link rel="stylesheet" href="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/colors_and_type.css">
+  <script src="_ds/abilityx-8c67ca42-46f9-4802-91f9-bd117af1c61e/_ds_bundle.js"></script>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#0d0d0d"/><circle cx="100" cy="70" r="16" fill="#cc0000"/><path d="M60 150 Q100 100 140 150" stroke="#cc0000" stroke-width="14" fill="none" stroke-linecap="round"/></svg></template>
+  <style>
+    body{margin:0;background:#d4d4d4;font-family:'DM Sans',system-ui,sans-serif;display:flex;justify-content:center;}
+    a{color:#CC0000;}
+    a:hover{color:#990000;}
+  </style>
+</helmet>
+
+<div style="width:390px;min-width:390px;max-width:390px;background:#fff;box-shadow:0 0 40px rgba(0,0,0,0.15);">
+
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:64px;background:#fff;border-bottom:1px solid #e8e8e8;">
+  <a href="Home Mobile.dc.html" style="display:flex;align-items:center;text-decoration:none;">
+    <img src="assets/logo-primary.png" alt="AbilityX" style="height:26px;object-fit:contain;">
+  </a>
+  <a href="Home Mobile.dc.html#ask" style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;background:#CC0000;color:#fff;padding:9px 18px;border-radius:999px;text-decoration:none;">Partner</a>
+</nav>
+<div style="display:flex;gap:18px;padding:12px 20px;border-bottom:1px solid #e8e8e8;">
+  <a href="Home Mobile.dc.html" style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#404040;text-decoration:none;">Home</a>
+  <span style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#CC0000;">Watch 1.0</span>
+</div>
+
+<header style="background:#0d0d0d;padding:40px 20px 32px;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+    <div style="width:26px;height:2px;background:#CC0000;border-radius:2px;"></div>
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#CC0000;">AbilityX 1.0</span>
+  </div>
+  <h1 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:34px;line-height:1.1;letter-spacing:-0.02em;color:#fff;margin:0 0 12px;">Full Sessions</h1>
+  <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6;margin:0;">Relive the conversations that shaped the movement.</p>
+</header>
+
+<section style="padding:32px 20px;border-bottom:1px solid #e8e8e8;">
+  <div style="display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:8px;height:220px;border-radius:14px;background:#f5f5f5;border:2px dashed rgba(13,13,13,0.2);">
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;">Recap Reel</span>
+    <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#6B6B6B;max-width:260px;">1.0 highlight reel — currently on Instagram, to be re-hosted for embedding</span>
+  </div>
+</section>
+
+<section style="padding:40px 20px 64px;">
+  <sc-for list="{{ tracks }}" as="track" hint-placeholder-count="3">
+    <div style="margin-bottom:48px;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #0d0d0d;">
+        <h2 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:21px;color:#0D0D0D;margin:0;">{{ track.name }}</h2>
+        <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#6B6B6B;">{{ track.count }} sessions</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <sc-for list="{{ track.sessions }}" as="session" hint-placeholder-count="3">
+          <div style="background:#fff;border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <div style="height:120px;background:#f5f5f5;border-bottom:2px dashed rgba(13,13,13,0.15);display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8f8f8f;">Session Video</span>
+            </div>
+            <div style="padding:16px;">
+              <h3 style="font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;color:#0D0D0D;margin:0 0 6px;">{{ session.title }}</h3>
+              <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#6B6B6B;line-height:1.5;margin:0;">{{ session.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:#8f8f8f;margin:16px 0 0;">Sourced from the AbilityX 1.0 live stream — full {{ track.name }} library to be published here.</p>
+    </div>
+  </sc-for>
+</section>
+
+<footer style="background:#0d0d0d;color:#fff;padding:32px 20px;">
+  <img src="assets/logo-white.png" alt="AbilityX" style="height:24px;object-fit:contain;margin-bottom:10px;">
+  <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px;">It's not just an event. It's a movement. — By ProjectEnable Africa</div>
+  <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);">© 2026 ProjectEnable Africa. All rights reserved.</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 390, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const tracks = [
+      {
+        name: 'Main Stage',
+        count: 4,
+        sessions: [
+          { title: 'Opening Keynote', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'Plenary: Inclusive Future Dialogue', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'Closing Remarks', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+        ],
+      },
+      {
+        name: 'Breakout A',
+        count: 3,
+        sessions: [
+          { title: 'Innovation Labs Session', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'Assistive Technology Showcase', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'The Future of Work', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+        ],
+      },
+      {
+        name: 'Breakout B',
+        count: 3,
+        sessions: [
+          { title: 'Research & Evidence Showcase', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'Policy Innovation Roundtable', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+          { title: 'AbilityX Impact Awards', desc: 'Placeholder — title and description pending final session list from the 1.0 live stream.' },
+        ],
+      },
+    ];
+    return { tracks };
+  }
+}
+
+</script>
+</body>
+</html>

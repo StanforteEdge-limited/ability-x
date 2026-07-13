@@ -1,0 +1,147 @@
+<!-- @dsCard group="UI Kit — Website" name="Website UI Kit" subtitle="Full event website — Home, Speakers, Agenda, Register" viewport="1440x800" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AbilityX — Event Website UI Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; padding: 0; background: #fff; -webkit-font-smoothing: antialiased; }
+    #root { min-height: 100vh; }
+    /* Footer */
+    .site-footer {
+      background: #0d0d0d; color: #fff;
+      padding: 64px 80px 40px;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+    .footer-logo { height: 36px; margin-bottom: 16px; }
+    .footer-tagline { font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); }
+    .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .footer-col-title { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .footer-link { display: block; font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 10px; cursor: pointer; transition: color 150ms; }
+    .footer-link:hover { color: #CC0000; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge { background: #CC0000; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="navbar.jsx"></script>
+<script type="text/babel" src="hero-section.jsx"></script>
+<script type="text/babel" src="speakers-section.jsx"></script>
+<script type="text/babel" src="agenda-section.jsx"></script>
+<script type="text/babel" src="register-section.jsx"></script>
+
+<script type="text/babel">
+const Footer = ({ onNavigate }) => (
+  <footer className="site-footer">
+    <div className="footer-top">
+      <div>
+        <img src="../../assets/logo-white.png" alt="AbilityX" className="footer-logo" />
+        <div className="footer-tagline">It's not just an event. It's a movement.</div>
+        <div className="footer-tagline" style={{marginTop: '4px'}}>By ProjectEnable Africa</div>
+      </div>
+      <div className="footer-links">
+        <div>
+          <div className="footer-col-title">Event</div>
+          <a className="footer-link" onClick={() => onNavigate('Home')}>Home</a>
+          <a className="footer-link" onClick={() => onNavigate('Speakers')}>Speakers</a>
+          <a className="footer-link" onClick={() => onNavigate('Agenda')}>Agenda</a>
+        </div>
+        <div>
+          <div className="footer-col-title">Attend</div>
+          <a className="footer-link" onClick={() => onNavigate('Register')}>Register</a>
+          <a className="footer-link">Volunteer</a>
+          <a className="footer-link">Sponsorship</a>
+        </div>
+        <div>
+          <div className="footer-col-title">Organization</div>
+          <a className="footer-link">ProjectEnable Africa</a>
+          <a className="footer-link">Contact Us</a>
+          <a className="footer-link">Press & Media</a>
+        </div>
+      </div>
+    </div>
+    <div className="footer-bottom">
+      <div className="footer-copy">© 2025 ProjectEnable Africa. All rights reserved.</div>
+      <div className="footer-badge">AbilityX 2025</div>
+    </div>
+  </footer>
+);
+
+const App = () => {
+  const [page, setPage] = React.useState('Home');
+
+  const navigate = (p) => {
+    setPage(p);
+    window.scrollTo({ top: 0 });
+  };
+
+  const renderPage = () => {
+    switch (page) {
+      case 'Home':
+        return (
+          <>
+            <HeroSection onRegister={() => navigate('Register')} />
+            <SpeakersSection />
+            <AgendaSection />
+          </>
+        );
+      case 'Speakers':
+        return (
+          <div style={{paddingTop: '72px'}}>
+            <div style={{background:'#0d0d0d', padding:'80px 80px 60px'}}>
+              <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:'11px', fontWeight:'700', letterSpacing:'0.14em', textTransform:'uppercase', color:'#CC0000', marginBottom:'12px'}}>AbilityX 2025</div>
+              <h1 style={{fontFamily:"'Nunito',sans-serif", fontWeight:'900', fontSize:'56px', color:'#fff', letterSpacing:'-0.03em', lineHeight:'1.0'}}>Our Speakers</h1>
+              <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:'17px', color:'rgba(255,255,255,0.55)', marginTop:'16px', maxWidth:'480px', lineHeight:'1.6'}}>Voices from across the disability inclusion ecosystem — activists, technologists, policymakers, and leaders with lived experience.</p>
+            </div>
+            <SpeakersSection />
+          </div>
+        );
+      case 'Agenda':
+        return (
+          <div style={{paddingTop:'72px'}}>
+            <div style={{background:'#CC0000', padding:'80px 80px 60px'}}>
+              <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:'11px', fontWeight:'700', letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)', marginBottom:'12px'}}>October 14–16, 2025</div>
+              <h1 style={{fontFamily:"'Nunito',sans-serif", fontWeight:'900', fontSize:'56px', color:'#fff', letterSpacing:'-0.03em', lineHeight:'1.0'}}>Programme</h1>
+              <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:'17px', color:'rgba(255,255,255,0.75)', marginTop:'16px', maxWidth:'480px', lineHeight:'1.6'}}>Two days of sessions, workshops, demos, and conversations that move the needle on disability inclusion.</p>
+            </div>
+            <AgendaSection />
+          </div>
+        );
+      case 'Register':
+        return <RegisterSection onBack={() => navigate('Home')} />;
+      default:
+        return null;
+    }
+  };
+
+  const showFooter = page !== 'Register';
+
+  return (
+    <div>
+      <NavBar currentPage={page} onNavigate={navigate} />
+      {renderPage()}
+      {showFooter && <Footer onNavigate={navigate} />}
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>

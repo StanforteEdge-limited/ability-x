@@ -1,0 +1,81 @@
+export type HeroAction = {
+  href: string;
+  label: string;
+  variant: "primary" | "outline" | "ghost";
+};
+
+export type StatItem = {
+  value: string;
+  label: string;
+};
+
+export type GalleryPlaceholder = {
+  id: string;
+  label: string;
+  alt: string;
+};
+
+export type PillarItem = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type LeadCaptureCard = {
+  id: "partner" | "waitlist" | "exhibit";
+  title: string;
+  description: string;
+  buttonLabel: string;
+  inputLabel: string;
+  inputPlaceholder: string;
+  successMessage: string;
+  featured?: boolean;
+};
+
+export type SpeakerItem = {
+  id: string;
+  name: string;
+  role: string;
+};
+
+export type RecapVideoItem = {
+  id: string;
+  label: string;
+  description: string;
+};
+
+export type SessionItem = {
+  id: string;
+  title: string;
+  description: string;
+  youtubeId: string;
+  thumbnailLabel: string;
+};
+
+export type SessionTrack = {
+  id: string;
+  title: string;
+  sessionCountLabel: string;
+  sessions: SessionItem[];
+};
+
+export type AboutStatItem = {
+  value: string;
+  label: string;
+};
+
+export type PartnerBenefit = {
+  number: string;
+  text: string;
+};
+
+export type PartnerInterestOption = {
+  label: string;
+  value: string;
+};
+
+export type GalleryImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};

@@ -1,0 +1,59 @@
+<!-- @dsCard group="Components" viewport="700x200" name="Cards" subtitle="Session cards + speaker card" -->
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Cards" subtitle="Session cards + speaker card" viewport="700x200" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f5f5; padding: 20px; font-family: 'DM Sans', system-ui, sans-serif; }
+  .section-title { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8f8f8f; margin-bottom: 12px; }
+  .row { display: flex; gap: 14px; align-items: flex-start; }
+
+  .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); flex: 1; }
+  .card-img { height: 90px; background: #0d0d0d; display: flex; align-items: center; justify-content: center; }
+  .card-img-placeholder { width: 48px; height: 48px; border-radius: 50%; background: #CC0000; opacity: 0.3; }
+  .card-body { padding: 14px; }
+  .card-tag { display: inline-flex; padding: 2px 8px; background: #fde8e8; color: #CC0000; border-radius: 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .card-title { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px; color: #0d0d0d; line-height: 1.3; margin-bottom: 6px; }
+  .card-meta { font-size: 11px; color: #8f8f8f; }
+
+  .card-speaker { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 16px; flex: 0.8; display: flex; gap: 12px; align-items: center; }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0d0d0d 0%, #404040 100%); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .avatar-initials { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
+  .speaker-name { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px; color: #0d0d0d; }
+  .speaker-role { font-size: 11px; color: #8f8f8f; }
+  .speaker-org  { font-size: 11px; color: #CC0000; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="section-title">Cards</div>
+  <div class="row">
+    <div class="card">
+      <div class="card-img"></div>
+      <div class="card-body">
+        <div class="card-tag">Keynote</div>
+        <div class="card-title">The Future of Assistive Technology in Africa</div>
+        <div class="card-meta">10:00 AM · Main Stage</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:#CC0000;"></div>
+      <div class="card-body">
+        <div class="card-tag">Workshop</div>
+        <div class="card-title">Building Accessible Digital Products</div>
+        <div class="card-meta">2:00 PM · Room B</div>
+      </div>
+    </div>
+    <div class="card-speaker">
+      <div class="avatar"><div class="avatar-initials">AO</div></div>
+      <div>
+        <div class="speaker-name">Amara Okafor</div>
+        <div class="speaker-role">CEO & Co-founder</div>
+        <div class="speaker-org">ProjectEnable Africa</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

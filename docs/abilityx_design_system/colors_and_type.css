@@ -1,0 +1,314 @@
+/* ============================================================
+   AbilityX Design System — Colors & Typography Tokens
+   By ProjectEnable Africa
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+/* DM Mono — self-hosted */
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('fonts/DMMono-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================================
+   COLOR PALETTE — Base Tokens
+   ============================================================ */
+:root {
+  /* Brand Red */
+  --color-red-900: #7a0000;
+  --color-red-800: #990000;
+  --color-red-700: #b30000;
+  --color-red-600: #cc0000;   /* Primary brand red */
+  --color-red-500: #e00000;
+  --color-red-400: #f03030;
+  --color-red-300: #f87070;
+  --color-red-200: #fbb0b0;
+  --color-red-100: #fde8e8;
+  --color-red-50:  #fff5f5;
+
+  /* Neutrals */
+  --color-black:     #0d0d0d;
+  --color-gray-900:  #1f1f1f;
+  --color-gray-800:  #2e2e2e;
+  --color-gray-700:  #404040;
+  --color-gray-600:  #555555;
+  --color-gray-500:  #6b6b6b;
+  --color-gray-400:  #8f8f8f;
+  --color-gray-300:  #b5b5b5;
+  --color-gray-200:  #d4d4d4;
+  --color-gray-100:  #e8e8e8;
+  --color-gray-50:   #f5f5f5;
+  --color-white:     #ffffff;
+}
+
+/* ============================================================
+   SEMANTIC COLOR TOKENS
+   ============================================================ */
+:root {
+  /* Foreground */
+  --fg-primary:     var(--color-black);        /* Main text */
+  --fg-secondary:   var(--color-gray-500);     /* Supporting text */
+  --fg-tertiary:    var(--color-gray-400);     /* Placeholder, muted */
+  --fg-inverse:     var(--color-white);        /* Text on dark/red bg */
+  --fg-accent:      var(--color-red-600);      /* Red accent text */
+
+  /* Background */
+  --bg-base:        var(--color-white);        /* Default page bg */
+  --bg-subtle:      var(--color-gray-50);      /* Section backgrounds */
+  --bg-muted:       var(--color-gray-100);     /* Dividers, tags */
+  --bg-inverse:     var(--color-black);        /* Dark hero sections */
+  --bg-accent:      var(--color-red-600);      /* Red CTA sections */
+  --bg-accent-subtle: var(--color-red-50);     /* Light red tint */
+
+  /* Brand */
+  --brand-primary:  var(--color-red-600);      /* #CC0000 */
+  --brand-black:    var(--color-black);        /* #0D0D0D */
+  --brand-white:    var(--color-white);        /* #FFFFFF */
+
+  /* Border */
+  --border-default: var(--color-gray-200);
+  --border-subtle:  var(--color-gray-100);
+  --border-accent:  var(--color-red-600);
+
+  /* Interactive */
+  --interactive-primary:        var(--color-red-600);
+  --interactive-primary-hover:  var(--color-red-700);
+  --interactive-primary-active: var(--color-red-800);
+
+  /* Status */
+  --status-success: #1a7a4a;
+  --status-warning: #b56a00;
+  --status-error:   var(--color-red-600);
+  --status-info:    #0060b0;
+}
+
+/* ============================================================
+   TYPOGRAPHY — Scale Tokens
+   ============================================================ */
+:root {
+  /* Font Families */
+  --font-display: 'Nunito', system-ui, sans-serif;   /* Headings, display text */
+  --font-body:    'DM Sans', system-ui, sans-serif;  /* Body, UI, labels */
+  --font-mono:    'DM Mono', 'Fira Code', monospace; /* Code, data */
+
+  /* Font Weights */
+  --weight-regular:    400;
+  --weight-medium:     500;
+  --weight-semibold:   600;
+  --weight-bold:       700;
+  --weight-extrabold:  800;
+  --weight-black:      900;
+
+  /* Font Size Scale (Major Third — 1.25) */
+  --text-xs:   0.64rem;   /* 10.2px */
+  --text-sm:   0.8rem;    /* 12.8px */
+  --text-base: 1rem;      /* 16px */
+  --text-md:   1.25rem;   /* 20px */
+  --text-lg:   1.563rem;  /* 25px */
+  --text-xl:   1.953rem;  /* 31px */
+  --text-2xl:  2.441rem;  /* 39px */
+  --text-3xl:  3.052rem;  /* 49px */
+  --text-4xl:  3.815rem;  /* 61px */
+  --text-5xl:  4.768rem;  /* 76px */
+
+  /* Line Heights */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.75;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.03em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.06em;
+  --tracking-wider:   0.12em;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   ============================================================ */
+
+/* Display — hero headlines */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-black);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-black);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+/* Headings */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+/* Body text */
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--fg-secondary);
+}
+
+/* Labels */
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+}
+
+.label-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+}
+
+/* ============================================================
+   SPACING SCALE (4px base grid)
+   ============================================================ */
+:root {
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+}
+
+/* ============================================================
+   BORDER RADIUS
+   ============================================================ */
+:root {
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+}
+
+/* ============================================================
+   SHADOW / ELEVATION
+   ============================================================ */
+:root {
+  --shadow-xs:  0 1px 4px rgba(0,0,0,0.06);
+  --shadow-sm:  0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md:  0 6px 24px rgba(0,0,0,0.12);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.16);
+  --shadow-xl:  0 20px 60px rgba(0,0,0,0.20);
+}
+
+/* ============================================================
+   TRANSITIONS
+   ============================================================ */
+:root {
+  --transition-fast:   150ms ease-in-out; /* @kind other */
+  --transition-base:   300ms ease-in-out; /* @kind other */
+  --transition-slow:   500ms ease-in-out; /* @kind other */
+}
