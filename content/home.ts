@@ -4,6 +4,7 @@ import type {
   LeadCaptureCard,
   PillarItem,
 } from "@/content/types";
+import { googleFormLinks } from "@/content/form-links";
 
 export const homeContent = {
   hero: {
@@ -87,11 +88,8 @@ export const homeContent = {
       title: "Partner With Us",
       description:
         "Sponsor, co-convene, or support AbilityX 2.0. Reach 450+ decision-makers, innovators, and changemakers across Africa's disability inclusion ecosystem.",
+      href: googleFormLinks.partner,
       buttonLabel: "Start a Conversation",
-      inputLabel: "Work email",
-      inputPlaceholder: "Work email",
-      successMessage:
-        "Thanks - our partnerships team will follow up shortly.",
       featured: true,
     },
     {
@@ -99,22 +97,16 @@ export const homeContent = {
       title: "Join the Waitlist",
       description:
         "Registration for AbilityX 2.0 opens once dates are confirmed. Be first to know.",
+      href: googleFormLinks.waitlist,
       buttonLabel: "Join Waitlist",
-      inputLabel: "Email address",
-      inputPlaceholder: "you@example.com",
-      successMessage:
-        "You're on the list - we'll email you the moment registration opens.",
     },
     {
       id: "exhibit",
       title: "Exhibit Your Innovation",
       description:
         "Showcase your solution to Africa's top disability inclusion stakeholders. Applications open closer to the event.",
+      href: googleFormLinks.exhibit,
       buttonLabel: "Register Interest",
-      inputLabel: "Email address",
-      inputPlaceholder: "you@example.com",
-      successMessage:
-        "Noted - we'll notify you when exhibitor applications open.",
     },
   ] satisfies LeadCaptureCard[],
   speakers: {
