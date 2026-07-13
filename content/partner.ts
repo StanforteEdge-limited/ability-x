@@ -1,4 +1,5 @@
-import type { PartnerBenefit, PartnerInterestOption } from "@/content/types";
+import { googleFormLinks } from "@/content/form-links";
+import type { PartnerBenefit } from "@/content/types";
 
 export const partnerContent = {
   header: {
@@ -30,24 +31,11 @@ export const partnerContent = {
   },
   form: {
     title: "Start a Conversation",
-    intro: "Tell us a bit about you - our partnerships team will follow up shortly.",
-    caption: "Partnership tiers to follow - this starts the conversation.",
-    successTitle: "Thanks - inquiry sent.",
-    successBody:
-      "Our partnerships team will follow up shortly to discuss how you can be part of AbilityX 2.0.",
-    fields: {
-      fullName: "Full name",
-      organization: "Organization",
-      workEmail: "Work email",
-      interestArea: "Interest area",
-    },
-    submitLabel: "Send Inquiry",
-    interestOptions: [
-      { label: "Sponsorship", value: "sponsorship" },
-      { label: "Co-convening", value: "co-convening" },
-      { label: "Media partnership", value: "media-partnership" },
-      { label: "Speaking opportunity", value: "speaking-opportunity" },
-      { label: "Other", value: "other" },
-    ] satisfies PartnerInterestOption[],
+    intro:
+      "Open the partnership form to share your organization details and interest area with the AbilityX team.",
+    caption:
+      "The form opens in a new tab and uses a placeholder Google Forms link for now.",
+    href: googleFormLinks.partner,
+    submitLabel: "Open Partner Form",
   },
 } as const;

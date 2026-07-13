@@ -25,10 +25,8 @@ export type LeadCaptureCard = {
   id: "partner" | "waitlist" | "exhibit";
   title: string;
   description: string;
+  href: string;
   buttonLabel: string;
-  inputLabel: string;
-  inputPlaceholder: string;
-  successMessage: string;
   featured?: boolean;
 };
 
@@ -67,11 +65,6 @@ export type AboutStatItem = {
 export type PartnerBenefit = {
   number: string;
   text: string;
-};
-
-export type PartnerInterestOption = {
-  label: string;
-  value: string;
 };
 
 export type GalleryImage = {
