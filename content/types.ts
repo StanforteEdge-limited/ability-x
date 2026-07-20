@@ -13,6 +13,7 @@ export type GalleryPlaceholder = {
   id: string;
   label: string;
   alt: string;
+  src: string;
 };
 
 export type PillarItem = {
@@ -34,6 +35,21 @@ export type SpeakerItem = {
   id: string;
   name: string;
   role: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+export type SpeakerQuoteItem = {
+  id: string;
+  name: string;
+  title: string;
+  quote: string;
+  image: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type RecapVideoItem = {

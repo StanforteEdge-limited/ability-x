@@ -33,8 +33,6 @@ export const partnerContent = {
     title: "Start a Conversation",
     intro:
       "Open the partnership form to share your organization details and interest area with the AbilityX team.",
-    caption:
-      "The form opens in a new tab and uses a placeholder Google Forms link for now.",
     href: googleFormLinks.partner,
     submitLabel: "Open Partner Form",
   },

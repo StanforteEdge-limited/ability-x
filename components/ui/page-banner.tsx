@@ -20,7 +20,7 @@ export function PageBanner({
       {imageSrc ? (
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${imageSrc})` }}
+          style={{ backgroundImage: `url("${imageSrc}")` }}
           role="img"
           aria-label={imageAlt}
         />

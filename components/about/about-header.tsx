@@ -4,6 +4,7 @@ import { aboutContent } from "@/content/about";
 export function AboutHeader() {
   return (
     <PageBanner
+      imageSrc={aboutContent.header.imageSrc}
       imageAlt="AbilityX team and community"
       kicker={aboutContent.header.kicker}
       title={aboutContent.header.title}
