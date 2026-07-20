@@ -1,15 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/container";
 import { PillButton } from "@/components/ui/pill-button";
 import { homeContent } from "@/content/home";
 
 export function HeroSection() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) =>
+        (current + 1) % homeContent.hero.imageSlides.length,
+      );
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-brand-black pt-[96px] text-white md:pt-[112px]">
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.14),transparent_28%),linear-gradient(180deg,rgba(31,31,31,0.78),rgba(13,13,13,0.92))]"
-        role="img"
-        aria-label="Hero visual placeholder for full-bleed AbilityX 1.0 crowd or stage photography."
-      />
+      {homeContent.hero.imageSlides.map((imageSrc, index) => (
+        <div
+          key={imageSrc}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1800ms] ease-in-out motion-reduce:transition-none"
+          style={{
+            backgroundImage: `url("${imageSrc}")`,
+            opacity: activeSlide === index ? 1 : 0,
+            animation:
+              activeSlide === index
+                ? "ken-burns 8s ease-in-out forwards"
+                : undefined,
+          }}
+          role={index === 0 ? "img" : undefined}
+          aria-label={index === 0 ? "AbilityX hero banner photography." : undefined}
+        />
+      ))}
       <div
         className="absolute inset-0"
         style={{
@@ -35,9 +61,6 @@ export function HeroSection() {
               </p>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-5">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-white/60">
-                {homeContent.hero.tag}
-              </p>
               {homeContent.hero.actions.map((action) => (
                 <PillButton
                   key={action.label}

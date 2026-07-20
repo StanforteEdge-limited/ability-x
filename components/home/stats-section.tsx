@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/container";
+import { AnimatedStatValue } from "@/components/ui/animated-stat-value";
 import { stats, testimonialPlaceholder } from "@/content/stats";
 
 export function StatsSection() {
@@ -12,11 +13,11 @@ export function StatsSection() {
           </h2>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
           {stats.map((item) => (
-            <article key={item.label} className="rounded-[16px] bg-brand-surface p-6 md:p-7">
+            <article key={item.label} className="min-w-[160px] flex-1 rounded-[16px] bg-brand-surface p-6 text-center md:p-7 xl:max-w-[220px]">
               <p className="font-display text-4xl font-black tracking-[-0.03em] text-brand-red md:text-[52px]">
-                {item.value}
+                <AnimatedStatValue value={item.value} />
               </p>
               <p className="mt-3 text-sm text-white/65 md:text-base">{item.label}</p>
             </article>

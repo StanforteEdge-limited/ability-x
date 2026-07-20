@@ -27,6 +27,7 @@ export function RecapSection() {
           <Carousel
             ariaLabel="Recap videos carousel"
             slidesPerView={{ base: 1 }}
+            slideClassName="h-full"
             slides={recapVideos.map((video) => (
               video.youtubeId ? (
                 <a
@@ -34,7 +35,7 @@ export function RecapSection() {
                   href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="block overflow-hidden rounded-[16px] border border-brand-border bg-white shadow-card"
+                  className="block h-full overflow-hidden rounded-[16px] border border-brand-border bg-white shadow-card"
                 >
                   <div className="relative min-h-[280px] md:min-h-[360px]">
                     <Image

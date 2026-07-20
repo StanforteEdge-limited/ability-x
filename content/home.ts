@@ -10,8 +10,15 @@ export const homeContent = {
   hero: {
     kicker: "AbilityX 2.0",
     title: "The Movement Returns This November",
-    subhead: "Lagos, this November - details to follow.",
-    tag: "This November · Lagos",
+    subhead: "November 2026. Lagos",
+    tag: "",
+    imageSrc: "/Stage.jpg",
+    imageSlides: [
+      "/gallery/Crowd.jpg",
+      "/gallery/Networking.jpg",
+      "/gallery/Speaker-moment.jpg",
+      "/Team Photo.jpg",
+    ],
     actions: [
       { href: "#ask", label: "Partner With Us", variant: "primary" },
       {
@@ -29,17 +36,47 @@ export const homeContent = {
     ],
   },
   gallery: [
-    { id: "gallery-1", label: "1.0 Crowd", alt: "Placeholder for AbilityX 1.0 crowd photography.", src: "/gallery/Crowd.jpg"},
-    { id: "gallery-2", label: "Stage", alt: "Placeholder for AbilityX 1.0 stage photography.", src:"/gallery/stage.jpg" },
-    { id: "gallery-3", label: "Panel", alt: "Placeholder for AbilityX 1.0 panel photography.", src:"/gallery/Panel.jpg"},
-    { id: "gallery-4", label: "Networking", alt: "Placeholder for AbilityX 1.0 networking photography.", src:"/gallery/Networking.jpg" },
-    { id: "gallery-5", label: "Exhibition Floor", alt: "Placeholder for AbilityX 1.0 exhibition floor photography.", src:"/gallery/Exhibition-floor.jpg"},
-    { id: "gallery-6", label: "Speaker Moment", alt: "Placeholder for AbilityX 1.0 speaker photography.", src:"/gallery/Speaker-moment.jpg" },
+    {
+      id: "gallery-1",
+      label: "1.0 Crowd",
+      alt: "AbilityX 1.0 crowd gathered during a conference session.",
+      src: "/gallery/Crowd.jpg",
+    },
+    {
+      id: "gallery-2",
+      label: "Stage",
+      alt: "AbilityX 1.0 stage setup and audience view.",
+      src: "/gallery/stage.jpg",
+    },
+    {
+      id: "gallery-3",
+      label: "Panel",
+      alt: "Panel conversation during AbilityX 1.0.",
+      src: "/gallery/Panel.jpg",
+    },
+    {
+      id: "gallery-4",
+      label: "Networking",
+      alt: "Attendees networking at AbilityX 1.0.",
+      src: "/gallery/Networking.jpg",
+    },
+    {
+      id: "gallery-5",
+      label: "Exhibition Floor",
+      alt: "Attendees and exhibits on the AbilityX 1.0 exhibition floor.",
+      src: "/gallery/Exhibition-floor.jpg",
+    },
+    {
+      id: "gallery-6",
+      label: "Speaker Moment",
+      alt: "Speaker moment from AbilityX 1.0.",
+      src: "/gallery/Speaker-moment.jpg",
+    },
   ] satisfies GalleryPlaceholder[],
   recap: {
     kicker: "Watch",
     title: "See AbilityX 1.0 for Yourself",
-    body: "Highlights from the day - the conversations, the energy, the moment the movement became real.",
+    body: "Watch the main stage and breakout recordings that captured the day Nigeria's disability inclusion movement became a shared, cross-sector call to action.",
     cta: {
       href: "/events/1.0",
       label: "Watch Full Sessions",
@@ -111,8 +148,8 @@ export const homeContent = {
   ] satisfies LeadCaptureCard[],
   speakers: {
     kicker: "1.0 Speakers",
-    title: "AbilityX 2.0 speaker lineup coming soon.",
+    title: "Voices that shaped the first edition.",
     caption:
-      "24 speakers from AbilityX 1.0 - full roster available on request.",
+      "Verified quotes from AbilityX 1.0 speakers, pulled directly from the conference report.",
   },
 } as const;

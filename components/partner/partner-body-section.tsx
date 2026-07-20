@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/container";
+import { AnimatedStatValue } from "@/components/ui/animated-stat-value";
 import { stats } from "@/content/stats";
 import { partnerContent } from "@/content/partner";
 import { PartnerInquiryForm } from "./partner-inquiry-form";
@@ -24,11 +25,11 @@ export function PartnerBodySection() {
               ))}
             </div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               {stats.map((stat) => (
-                <article key={stat.label} className="rounded-[12px] bg-brand-subtle p-4 text-center">
+                <article key={stat.label} className="min-w-[140px] flex-1 rounded-[12px] bg-brand-subtle p-4 text-center xl:max-w-[180px]">
                   <p className="font-display text-[28px] font-black tracking-[-0.03em] text-brand-black">
-                    {stat.value}
+                    <AnimatedStatValue value={stat.value} />
                   </p>
                   <p className="mt-1.5 text-[12px] text-brand-muted">
                     {stat.label}

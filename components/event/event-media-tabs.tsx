@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { ImageGallery } from "@/components/event/image-gallery";
 import { VideoCarousel } from "@/components/event/video-carousel";
-import { Carousel } from "@/components/ui/carousel";
 import type { GalleryImage, SessionItem, SpeakerItem } from "@/content/types";
 
 type EventMediaTabsProps = {
@@ -14,6 +13,12 @@ type EventMediaTabsProps = {
   pressRelease: {
     title: string;
     body: string;
+    items: ReadonlyArray<{
+      title: string;
+      description: string;
+      href?: string;
+      label?: string;
+    }>;
   };
 };
 
@@ -58,11 +63,9 @@ export function EventMediaTabs({
       <div className="mt-8">
         {activeTab === "watch" ? <VideoCarousel sessions={sessions} /> : null}
         {activeTab === "speakers" ? (
-          <Carousel
-            ariaLabel="AbilityX 1.0 speakers carousel"
-            slidesPerView={{ base: 1, lg: 4 }}
-            slides={speakers.map((speaker) => (
-              <article key={speaker.id} className="text-center">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {speakers.map((speaker) => (
+              <article key={speaker.id} className="flex h-full flex-col text-center">
                 <div className="relative aspect-square overflow-hidden rounded-[8px] border border-brand-border bg-brand-subtle">
                   <Image
                     src={speaker.image.src}
@@ -78,7 +81,7 @@ export function EventMediaTabs({
                 <p className="mt-1 text-[12px] text-[#8f8f8f]">{speaker.role}</p>
               </article>
             ))}
-          />
+          </div>
         ) : null}
         {activeTab === "gallery" ? <ImageGallery images={galleryImages} /> : null}
         {activeTab === "press" ? (
@@ -89,6 +92,24 @@ export function EventMediaTabs({
             <p className="mt-4 max-w-3xl text-[16px] leading-8 text-brand-muted">
               {pressRelease.body}
             </p>
+            <div className="mt-8 grid gap-4">
+              {pressRelease.items.map((item) => (
+                <article key={item.title} className="rounded-[12px] bg-brand-subtle p-5">
+                  <h4 className="text-[16px] font-semibold text-brand-black">{item.title}</h4>
+                  <p className="mt-2 whitespace-pre-line text-[15px] leading-7 text-brand-muted">{item.description}</p>
+                  {item.href && item.label ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-3 inline-flex text-sm font-semibold text-brand-red"
+                    >
+                      {item.label}
+                    </a>
+                  ) : null}
+                </article>
+              ))}
+            </div>
           </article>
         ) : null}
       </div>

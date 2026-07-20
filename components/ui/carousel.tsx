@@ -29,12 +29,16 @@ export function Carousel({
   slidesPerView,
   pageClassName,
   slideClassName,
+  autoAdvance = true,
+  intervalMs = 4500,
 }: {
   slides: ReactNode[];
   ariaLabel: string;
   slidesPerView: CarouselSlidesPerView;
   pageClassName?: string;
   slideClassName?: string;
+  autoAdvance?: boolean;
+  intervalMs?: number;
 }) {
   const [viewportWidth, setViewportWidth] = useState(0);
   const [page, setPage] = useState(0);
@@ -61,8 +65,22 @@ export function Carousel({
     });
   }, [pageCount]);
 
-  const canGoPrev = page > 0;
-  const canGoNext = page < pageCount - 1;
+  useEffect(() => {
+    if (!autoAdvance || pageCount <= 1) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      startTransition(() => {
+        setPage((currentPage) => (currentPage + 1) % pageCount);
+      });
+    }, intervalMs);
+
+    return () => window.clearInterval(interval);
+  }, [autoAdvance, intervalMs, pageCount]);
+
+  const canGoPrev = pageCount > 1;
+  const canGoNext = pageCount > 1;
   const gridClass =
     gridColumnsByCount[
       Math.min(visibleSlides, 4) as keyof typeof gridColumnsByCount
@@ -74,11 +92,17 @@ export function Carousel({
       tabIndex={0}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft" && canGoPrev) {
-          startTransition(() => setPage((currentPage) => currentPage - 1));
+          startTransition(() =>
+            setPage((currentPage) =>
+              currentPage === 0 ? pageCount - 1 : currentPage - 1,
+            ),
+          );
         }
 
         if (event.key === "ArrowRight" && canGoNext) {
-          startTransition(() => setPage((currentPage) => currentPage + 1));
+          startTransition(() =>
+            setPage((currentPage) => (currentPage + 1) % pageCount),
+          );
         }
       }}
       aria-label={ariaLabel}
@@ -92,7 +116,7 @@ export function Carousel({
             <div
               key={`${ariaLabel}-page-${pageIndex}`}
               className={cn(
-                "grid w-full shrink-0 gap-6",
+                "grid w-full shrink-0 items-stretch gap-6",
                 gridClass,
                 pageClassName,
               )}
@@ -115,10 +139,13 @@ export function Carousel({
           <button
             type="button"
             onClick={() =>
-              startTransition(() => setPage((currentPage) => currentPage - 1))
+              startTransition(() =>
+                setPage((currentPage) =>
+                  currentPage === 0 ? pageCount - 1 : currentPage - 1,
+                ),
+              )
             }
-            disabled={!canGoPrev}
-            className="inline-flex rounded-full border border-brand-border-strong px-4 py-2 text-sm font-semibold text-brand-black transition-colors disabled:cursor-not-allowed disabled:opacity-35"
+            className="inline-flex rounded-full border border-brand-border-strong px-4 py-2 text-sm font-semibold text-brand-black transition-colors"
           >
             Previous
           </button>
@@ -142,10 +169,11 @@ export function Carousel({
           <button
             type="button"
             onClick={() =>
-              startTransition(() => setPage((currentPage) => currentPage + 1))
+              startTransition(() =>
+                setPage((currentPage) => (currentPage + 1) % pageCount),
+              )
             }
-            disabled={!canGoNext}
-            className="inline-flex rounded-full bg-brand-black px-4 py-2 text-sm font-semibold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-35"
+            className="inline-flex rounded-full bg-brand-black px-4 py-2 text-sm font-semibold text-white transition-colors"
           >
             Next
           </button>

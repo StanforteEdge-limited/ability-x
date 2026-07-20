@@ -2,21 +2,24 @@ import type { RecapVideoItem } from "@/content/types";
 
 export const recapVideos = [
   {
-    id: "highlight-reel",
-    label: "Featured Livestream",
-    description: "The official AbilityX 1.0 livestream replay from the AbilityX Conference channel.",
-    youtubeId: "GH018QVgX9g",
+    id: "main-stage",
+    label: "Main Stage",
+    description:
+      "Opening context, keynote moments, and the main stage conversations from AbilityX 1.0.",
+    youtubeId: "ECkUf2QPkzQ",
   },
   {
-    id: "livestream-part-one",
-    label: "Livestream Part 1",
-    description: "Opening conversations and featured sessions from AbilityX 1.0.",
-    youtubeId: "GH018QVgX9g",
+    id: "breakout-a",
+    label: "Breakout A",
+    description:
+      "Focused sessions exploring inclusion, innovation, and practical implementation.",
+    youtubeId: "Nt_28-5t6A8",
   },
   {
-    id: "livestream-part-two",
-    label: "Livestream Part 2",
-    description: "More panels, community moments, and closing conversations from the official replay archive.",
+    id: "breakout-b",
+    label: "Breakout B",
+    description:
+      "Additional breakout sessions, community insights, and closing conversations from the day.",
     youtubeId: "_DwvL6wEUsg",
   },
 ] satisfies RecapVideoItem[];

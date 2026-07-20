@@ -41,6 +41,17 @@ export type SpeakerItem = {
   };
 };
 
+export type SpeakerQuoteItem = {
+  id: string;
+  name: string;
+  title: string;
+  quote: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
 export type RecapVideoItem = {
   id: string;
   label: string;

@@ -3,20 +3,18 @@ import { Container } from "@/components/layout/container";
 import { homeContent } from "@/content/home";
 
 export function MissionSection() {
-  // Grid span classes for each image
-  const gridClasses = [
-    "md:col-span-2 md:row-span-2", // Image 1 (Featured)
-    "",                            // Image 2
-    "",                            // Image 3
-    "",                            // Image 4
-    "",                            // Image 5
-    "md:col-span-2",               // Image 6 (Wide)
+  const imageHeights = [
+    "h-[320px]",
+    "h-[220px]",
+    "h-[280px]",
+    "h-[240px]",
+    "h-[300px]",
+    "h-[240px]",
   ];
 
   return (
     <section className="section-shell bg-white">
       <Container>
-        {/* Section Heading */}
         <div className="mx-auto max-w-4xl text-center">
           <p className="kicker">{homeContent.mission.kicker}</p>
 
@@ -27,36 +25,27 @@ export function MissionSection() {
           </div>
         </div>
 
-        {/* Gallery */}
-        <div className="mx-auto mt-14 grid max-w-6xl auto-rows-[220px] grid-cols-1 gap-4 md:grid-cols-4">
-          {homeContent.gallery
-            .filter((item) => item.src)
-            .map((item, index) => (
-              <div
-                key={item.id}
-                className={`group relative overflow-hidden rounded-xl ${gridClasses[index]}`}
-              >
-                <Image
-                  src={item.src!}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1024px) 50vw,
-                         25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-
-                {/* Optional Dark Overlay */}
-                <div className="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:bg-black/20" />
-
-                {/* Optional Caption */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4">
-                  <p className="text-sm font-medium text-white">
-                    {item.label}
-                  </p>
-                </div>
+        <div className="mx-auto mt-14 max-w-6xl columns-1 gap-4 sm:columns-2 xl:columns-3">
+          {homeContent.gallery.map((item, index) => (
+            <article
+              key={item.id}
+              className={`group relative mb-4 break-inside-avoid overflow-hidden rounded-[14px] bg-brand-subtle ${imageHeights[index % imageHeights.length]}`}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end p-4">
+                <span className="rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-brand-black">
+                  {item.label}
+                </span>
               </div>
-            ))}
+            </article>
+          ))}
         </div>
       </Container>
     </section>
