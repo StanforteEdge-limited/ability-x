@@ -25,7 +25,7 @@ export function MissionSection() {
           </div>
         </div>
 
-        <div className="mx-auto mt-14 max-w-6xl columns-1 gap-4 sm:columns-2 xl:columns-3">
+        <div className="mx-auto mt-14 max-w-6xl columns-2 gap-4 xl:columns-3">
           {homeContent.gallery.map((item, index) => (
             <article
               key={item.id}

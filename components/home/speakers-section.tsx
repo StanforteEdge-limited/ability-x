@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -20,7 +20,15 @@ function shuffleQuotes() {
 }
 
 export function SpeakersSection() {
-  const [quotes] = useState(shuffleQuotes);
+  const [quotes, setQuotes] = useState(speakerQuotes);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setQuotes(shuffleQuotes());
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <section className="section-shell bg-white">
