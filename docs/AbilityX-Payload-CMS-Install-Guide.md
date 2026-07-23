@@ -1,3 +1,7 @@
+[www.youtube.com/live/GH018QVgX9g?si=26pWPbILGyaOF9Nb](https://www.youtube.com/live/GH018QVgX9g?si=26pWPbILGyaOF9Nb)[www.youtube.com/live/_DwvL6wEUsg?si=pRt_](https://www.youtube.com/live/_DwvL6wEUsg?si=pRtubHGAe-hCOxd_)
+
+[_bHGAe-hCOxd_](https://www.youtube.com/live/_DwvL6wEUsg?si=pRtubHGAe-hCOxd_)
+
 # Installing Payload CMS — Split Deployment (VPS backend + Cloudflare frontend)
 
 **Architecture:** Payload CMS runs as its own standalone Next.js app on your existing Contabo VPS, backed by Postgres, with its REST API exposed over HTTPS. The public AbilityX site remains a separate Next.js app deployed to Cloudflare Workers (via OpenNext), which fetches content from Payload's REST API instead of the local `content/` data objects. This preserves the swap-in design decided earlier: the content shape stays the same, only the source changes.
@@ -45,11 +49,13 @@ npx create-payload-app@latest abilityx-cms
 ```
 
 When prompted:
+
 - **Template:** `blank` (you don't need Payload's bundled frontend — the public site is a separate app)
 - **Database:** `PostgreSQL`
 - **Package manager:** your preference (pnpm recommended for speed)
 
 This creates a Next.js project with Payload pre-wired. Key files you'll touch:
+
 - `payload.config.ts` — collections, database, CORS, plugins
 - `collections/` — your content types (Speakers, SessionTracks, Sessions, Stats, PartnerInquiries, etc.)
 - `.env` — secrets and connection strings
