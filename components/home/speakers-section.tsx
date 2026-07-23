@@ -5,17 +5,14 @@ import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Carousel } from "@/components/ui/carousel";
-import { homeContent } from "@/content/home";
 import { speakerQuotes } from "@/content/quotes";
 
 function shuffleQuotes() {
   const cloned = [...speakerQuotes];
-
   for (let index = cloned.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(Math.random() * (index + 1));
     [cloned[index], cloned[swapIndex]] = [cloned[swapIndex], cloned[index]];
   }
-
   return cloned;
 }
 
@@ -26,17 +23,13 @@ export function SpeakersSection() {
     const frame = window.requestAnimationFrame(() => {
       setQuotes(shuffleQuotes());
     });
-
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
   return (
     <section className="section-shell bg-white">
       <Container>
-        <SectionHeading
-          kicker={homeContent.speakers.kicker}
-          title={homeContent.speakers.title}
-        />
+        <SectionHeading kicker="1.0 Speakers" title="Voices that shaped the first edition." />
         <div className="mx-auto mt-12 max-w-[1200px]">
           <Carousel
             ariaLabel="Speaker quote carousel"
@@ -45,13 +38,7 @@ export function SpeakersSection() {
             slides={quotes.map((speaker) => (
               <article key={speaker.id} className="flex h-full flex-col overflow-hidden rounded-[16px] border border-brand-border bg-white shadow-card md:grid md:grid-cols-[220px_minmax(0,1fr)]">
                 <div className="relative min-h-[280px] bg-brand-subtle md:min-h-full">
-                  <Image
-                    src={speaker.image.src}
-                    alt={speaker.image.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 220px"
-                    className="object-cover"
-                  />
+                  <Image src={speaker.image.src} alt={speaker.image.alt} fill sizes="(max-width: 1024px) 100vw, 220px" className="object-cover" />
                 </div>
                 <div className="flex flex-col justify-between p-6 text-left md:p-8">
                   <p className="font-display text-[22px] font-bold leading-[1.45] text-brand-black md:text-[26px]">
@@ -66,7 +53,9 @@ export function SpeakersSection() {
             ))}
           />
         </div>
-        <p className="mt-8 text-center text-sm text-[#8f8f8f]">{homeContent.speakers.caption}</p>
+        <p className="mt-8 text-center text-sm text-[#8f8f8f]">
+          Verified quotes from AbilityX 1.0 speakers, pulled directly from the conference report.
+        </p>
       </Container>
     </section>
   );

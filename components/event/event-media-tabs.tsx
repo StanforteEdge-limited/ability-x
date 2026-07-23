@@ -13,6 +13,7 @@ type EventMediaTabsProps = {
   pressRelease: {
     title: string;
     body: string;
+    outlets?: ReadonlyArray<string>;
     items: ReadonlyArray<{
       title: string;
       description: string;
@@ -92,6 +93,18 @@ export function EventMediaTabs({
             <p className="mt-4 max-w-3xl text-[16px] leading-8 text-brand-muted">
               {pressRelease.body}
             </p>
+            {pressRelease.outlets ? (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {pressRelease.outlets.map((outlet) => (
+                  <span
+                    key={outlet}
+                    className="rounded-full border border-brand-border bg-brand-subtle px-4 py-2 text-sm font-semibold text-brand-black"
+                  >
+                    {outlet}
+                  </span>
+                ))}
+              </div>
+            ) : null}
             <div className="mt-8 grid gap-4">
               {pressRelease.items.map((item) => (
                 <article key={item.title} className="rounded-[12px] bg-brand-subtle p-5">
