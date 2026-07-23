@@ -26,7 +26,7 @@ export function PageBanner({
         />
       ) : (
         <div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.14),transparent_28%),linear-gradient(180deg,rgba(31,31,31,0.78),rgba(13,13,13,0.92))]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.14),transparent_28%),linear-gradient(180deg,rgba(31,31,31,0.88),rgba(13,13,13,0.92))]"
           role="img"
           aria-label={imageAlt}
         />
