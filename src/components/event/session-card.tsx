@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { SessionItem } from "@/content/types";
+import type { SessionItem } from "@/data/types";
 import { getYouTubeThumbnailUrl, isPlaceholderYouTubeId } from "@/lib/youtube";
 
 export function SessionCard({

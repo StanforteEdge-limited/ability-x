@@ -1,4 +1,4 @@
-import type { GalleryImage } from "@/content/types";
+import type { GalleryImage } from "@/data/types";
 
 export const galleryImages: GalleryImage[] = [
   { src: "/gallery/Crowd.jpg", alt: "AbilityX 1.0 audience gathered during a session." },

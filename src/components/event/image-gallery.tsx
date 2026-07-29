@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Lightbox } from "@/components/ui/lightbox";
-import type { GalleryImage } from "@/content/types";
+import type { GalleryImage } from "@/data/types";
 
 type ImageGalleryProps = {
   images: GalleryImage[];

@@ -1,4 +1,4 @@
-import type { SessionItem, SessionTrack } from "@/content/types";
+import type { SessionItem, SessionTrack } from "@/data/types";
 
 export const sessionTracks = [
   {

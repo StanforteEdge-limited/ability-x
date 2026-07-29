@@ -4,10 +4,10 @@ import { PageBanner } from "@/components/ui/page-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { AnimatedStatValue } from "@/components/ui/animated-stat-value";
-import { awards } from "@/content/awards";
-import { galleryImages } from "@/content/gallery";
-import { allSessions } from "@/content/sessions";
-import { speakers } from "@/content/speakers";
+import { awards } from "@/data/awards";
+import { galleryImages } from "@/data/gallery";
+import { allSessions } from "@/data/sessions";
+import { speakers } from "@/data/speakers";
 
 const stats = [
   { value: "500+", label: "Stakeholders engaged, in person and virtually" },

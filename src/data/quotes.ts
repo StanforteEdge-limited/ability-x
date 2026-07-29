@@ -1,4 +1,4 @@
-import type { SpeakerQuoteItem } from "@/content/types";
+import type { SpeakerQuoteItem } from "@/data/types";
 
 export const speakerQuotes = [
   {

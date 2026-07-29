@@ -6,12 +6,13 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { Container } from "@/components/layout/container";
 import { HeroSection } from "@/components/home/hero-section";
-import { SpeakersSection } from "@/components/home/speakers-section";
 import { AnimatedStatValue } from "@/components/ui/animated-stat-value";
 import { PillButton } from "@/components/ui/pill-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Carousel } from "@/components/ui/carousel";
-import { speakerQuotes } from "@/content/quotes";
+import { Modal } from "@/components/ui/modal";
+import { InquiryForm } from "@/components/InquiryForm";
+import { speakerQuotes } from "@/data/quotes";
 
 /* ------------------------------------------------------------------ */
 /*  Mission data                                                       */
@@ -62,13 +63,13 @@ const pillars = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Lead cards data                                                    */
+/*  CTA card data                                                      */
 /* ------------------------------------------------------------------ */
 
-const leadCards = [
-  { id: "partner", title: "Partner With Us", description: "Sponsor, co-convene, or support AbilityX 2.0. Reach 500+ decision-makers, innovators, and changemakers across Africa's disability inclusion ecosystem.", href: "https://forms.gle/PLACEHOLDER-PARTNER", buttonLabel: "Start a Conversation", featured: true },
-  { id: "waitlist", title: "Join the Waitlist", description: "Registration for AbilityX 2.0 opens once dates are confirmed. Be first to know.", href: "https://forms.gle/PLACEHOLDER-WAITLIST", buttonLabel: "Join Waitlist" },
-  { id: "exhibit", title: "Exhibit Your Innovation", description: "Showcase your solution to Africa's top disability inclusion stakeholders. Applications open closer to the event.", href: "https://forms.gle/PLACEHOLDER-EXHIBIT", buttonLabel: "Register Interest" },
+const ctaCards = [
+  { id: "partner", title: "Partner With Us", description: "Sponsor, co-convene, or support AbilityX 2.0. Reach 500+ decision-makers, innovators, and changemakers across Africa's disability inclusion ecosystem.", featured: true },
+  { id: "waitlist", title: "Join the Waitlist", description: "Registration for AbilityX 2.0 opens once dates are confirmed. Be first to know." },
+  { id: "exhibit", title: "Exhibit Your Innovation", description: "Showcase your solution to Africa's top disability inclusion stakeholders. Applications open closer to the event." },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -87,7 +88,8 @@ function shuffleQuotes() {
 /* ================================================================== */
 
 export default function HomePage() {
-  const [featured, ...secondary] = leadCards;
+  const [partnerCard, waitlistCard, exhibitCard] = ctaCards;
+  const [activeForm, setActiveForm] = useState<"waitlist" | "exhibit" | null>(null);
   const [quotes, setQuotes] = useState(speakerQuotes);
 
   useEffect(() => {
@@ -231,24 +233,37 @@ export default function HomePage() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.3fr_1fr_1fr]">
             <article className="rounded-[16px] bg-brand-black p-6 text-white shadow-card md:p-8">
-              <h3 className="font-display text-2xl font-black tracking-[-0.03em] text-white">{featured.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-white/70 md:text-base">{featured.description}</p>
-              <div className="mt-6 space-y-3">
-                <a href={featured.href} target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-red-dark">{featured.buttonLabel}</a>
-                <p className="text-xs text-white/60">Opens a Google Form in a new tab.</p>
+              <h3 className="font-display text-2xl font-black tracking-[-0.03em] text-white">{partnerCard.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-white/70 md:text-base">{partnerCard.description}</p>
+              <div className="mt-6">
+                <a href="/partner" className="inline-flex rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-red-dark">
+                  Start a Conversation
+                </a>
               </div>
             </article>
-            {secondary.map((card) => (
-              <article key={card.id} className="rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
-                <h3 className="font-display text-2xl font-black tracking-[-0.03em] text-brand-black">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-brand-muted md:text-base">{card.description}</p>
-                <div className="mt-6 space-y-3">
-                  <a href={card.href} target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-brand-black px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-surface">{card.buttonLabel}</a>
-                  <p className="text-xs text-brand-muted">Opens a Google Form in a new tab.</p>
-                </div>
-              </article>
-            ))}
+            <article className="rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
+              <h3 className="font-display text-2xl font-black tracking-[-0.03em] text-brand-black">{waitlistCard.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-brand-muted md:text-base">{waitlistCard.description}</p>
+              <div className="mt-6">
+                <button type="button" onClick={() => setActiveForm("waitlist")} className="inline-flex rounded-full bg-brand-black px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-surface">
+                  Join Waitlist
+                </button>
+              </div>
+            </article>
+            <article className="rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
+              <h3 className="font-display text-2xl font-black tracking-[-0.03em] text-brand-black">{exhibitCard.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-brand-muted md:text-base">{exhibitCard.description}</p>
+              <div className="mt-6">
+                <button type="button" onClick={() => setActiveForm("exhibit")} className="inline-flex rounded-full bg-brand-black px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-surface">
+                  Register Interest
+                </button>
+              </div>
+            </article>
           </div>
+
+          <Modal open={activeForm !== null} onClose={() => setActiveForm(null)} title={activeForm === "waitlist" ? "Join the Waitlist" : "Exhibit Your Innovation"}>
+            {activeForm && <InquiryForm formType={activeForm} />}
+          </Modal>
         </Container>
       </section>
 

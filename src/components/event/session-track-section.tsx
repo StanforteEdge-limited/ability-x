@@ -1,4 +1,4 @@
-import type { SessionTrack } from "@/content/types";
+import type { SessionTrack } from "@/data/types";
 import { WatchTrackCarousel } from "@/components/event/watch-track-carousel";
 
 export function SessionTrackSection({ track }: { track: SessionTrack }) {

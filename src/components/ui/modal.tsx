@@ -59,7 +59,7 @@ export function Modal({
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="w-full max-w-5xl rounded-[16px] bg-white p-5 outline-none md:p-6"
+        className="w-full max-w-lg rounded-[16px] bg-white p-5 outline-none md:p-6 max-h-[85vh] overflow-y-auto"
       >
         <div className="mb-4 flex items-start justify-between gap-4">
           <h2 id={titleId} className="font-display text-[24px] font-black tracking-[-0.02em] text-brand-black md:text-[32px]">

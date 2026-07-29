@@ -1,8 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { PageBanner } from "@/components/ui/page-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
+import { Modal } from "@/components/ui/modal";
+import { InquiryForm } from "@/components/InquiryForm";
 
 const benefits = [
   { number: "01", text: "Visibility: Partners gain prominent, contextualised brand placement across every AbilityX 2026 touchpoint - from stage to media to digital." },
@@ -23,6 +28,8 @@ const experienceItems = [
 ];
 
 export default function PartnerPage() {
+  const [showInquiry, setShowInquiry] = useState(false);
+
   return (
     <main className="bg-white">
       <SiteNav active="partner" />
@@ -50,13 +57,22 @@ export default function PartnerPage() {
               <p className="mt-4 text-[16px] leading-7 text-brand-muted">
                 We welcome a conversation on how a partnership can be tailored to your organisation&apos;s DEI, brand, and business development goals.
               </p>
-              <div className="mt-6 rounded-[14px] border border-brand-border bg-white p-5">
-                <a href="mailto:damilare@projectenable.africa" className="text-[17px] font-semibold text-brand-red underline decoration-brand-red/30 underline-offset-4 hover:decoration-brand-red">
-                  damilare@projectenable.africa
-                </a>
-                <p className="mt-2 text-sm leading-6 text-brand-muted">Business Development and Partnerships Lead, Project Enable Africa</p>
+              <div className="mt-6 flex flex-col gap-4">
+                <div className="rounded-[14px] border border-brand-border bg-white p-5">
+                  <a href="mailto:damilare@projectenable.africa" className="text-[17px] font-semibold text-brand-red underline decoration-brand-red/30 underline-offset-4 hover:decoration-brand-red">
+                    damilare@projectenable.africa
+                  </a>
+                  <p className="mt-2 text-sm leading-6 text-brand-muted">Business Development and Partnerships Lead, Project Enable Africa</p>
+                </div>
+                <button type="button" onClick={() => setShowInquiry(true)} className="inline-flex items-center justify-center rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-red-dark">
+                  Send an Inquiry
+                </button>
               </div>
             </article>
+
+            <Modal open={showInquiry} onClose={() => setShowInquiry(false)} title="Partner Inquiry">
+              <InquiryForm formType="partner" />
+            </Modal>
           </div>
         </Container>
       </section>
