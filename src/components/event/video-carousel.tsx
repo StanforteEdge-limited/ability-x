@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Carousel } from "@/components/ui/carousel";
 import { Modal } from "@/components/ui/modal";
 import { SessionCard } from "@/components/event/session-card";
-import type { SessionItem } from "@/content/types";
+import type { SessionItem } from "@/data/types";
 
 type VideoCarouselProps = {
   sessions: SessionItem[];

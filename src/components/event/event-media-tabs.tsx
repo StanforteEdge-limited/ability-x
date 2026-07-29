@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ImageGallery } from "@/components/event/image-gallery";
 import { VideoCarousel } from "@/components/event/video-carousel";
-import type { GalleryImage, SessionItem, SpeakerItem } from "@/content/types";
+import type { GalleryImage, SessionItem, SpeakerItem } from "@/data/types";
 
 type EventMediaTabsProps = {
   galleryImages: GalleryImage[];

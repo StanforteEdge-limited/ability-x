@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Carousel } from "@/components/ui/carousel";
-import { speakerQuotes } from "@/content/quotes";
+import { speakerQuotes } from "@/data/quotes";
 
 function shuffleQuotes() {
   const cloned = [...speakerQuotes];

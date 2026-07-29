@@ -5,7 +5,7 @@ import { Carousel } from "@/components/ui/carousel";
 import { Modal } from "@/components/ui/modal";
 import { SessionCard } from "@/components/event/session-card";
 import { getYouTubeEmbedUrl, isPlaceholderYouTubeId } from "@/lib/youtube";
-import type { SessionItem, SessionTrack } from "@/content/types";
+import type { SessionItem, SessionTrack } from "@/data/types";
 
 export function WatchTrackCarousel({ track }: { track: SessionTrack }) {
   const [selectedSession, setSelectedSession] = useState<SessionItem | null>(null);
