@@ -174,7 +174,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Form submission failed:", err);
+    const message = err instanceof Error ? err.message : "Unknown error";
+    console.error(`Form submission failed (${formType}):`, message);
     return NextResponse.json({ error: "Submission failed" }, { status: 500 });
   }
 }
