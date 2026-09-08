@@ -4,13 +4,14 @@ import { Container } from "@/components/layout/container";
 import { PillButton } from "@/components/ui/pill-button";
 
 type SiteNavProps = {
-  active: "home" | "event-1-0" | "about" | "partner";
+  active: "home" | "event-1-0" | "about" | "blog" | "partner";
 };
 
 export function SiteNav({ active }: SiteNavProps) {
   const homeActive = active === "home";
   const eventActive = active === "event-1-0";
   const aboutActive = active === "about";
+  const blogActive = active === "blog";
   const partnerActive = active === "partner";
 
   return (
@@ -40,6 +41,9 @@ export function SiteNav({ active }: SiteNavProps) {
             </PillButton>
             <PillButton href="/about" variant={aboutActive ? "nav-active" : "nav-idle"}>
               About
+            </PillButton>
+            <PillButton href="/blog" variant={blogActive ? "nav-active" : "nav-idle"}>
+              Blog
             </PillButton>
           </nav>
 
@@ -71,6 +75,9 @@ export function SiteNav({ active }: SiteNavProps) {
           </Link>
           <Link href="/about" className={aboutActive ? "font-semibold text-brand-red" : "text-brand-muted"}>
             About
+          </Link>
+          <Link href="/blog" className={blogActive ? "font-semibold text-brand-red" : "text-brand-muted"}>
+            Blog
           </Link>
         </nav>
       </Container>
