@@ -8,6 +8,10 @@ directory = ".open-next/assets"
 binding = "ASSETS"
 run_worker_first = true
 
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "ability-x"
+
 [observability]
 enabled = true
 head_sampling_rate = 1
