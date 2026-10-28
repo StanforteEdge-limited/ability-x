@@ -1,0 +1,117 @@
+---
+import { FormModalButton } from "@/components/react/form-modal-button";
+import Container from "@/components/astro/Container.astro";
+import PageBanner from "@/components/astro/PageBanner.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { benefits, experienceItems, partnerImages } from "@/data/partner";
+
+const description =
+  "500+ stakeholders. 7 partner organizations. 1M+ media reach. One movement - and it's growing. Join us as a partner for AbilityX 2026.";
+---
+
+<BaseLayout title="Partner With Us" active="partner" image="/abilityx/Team Photo.jpg" description={description}>
+  <PageBanner
+    imageSrc="/abilityx/Team Photo.jpg"
+    imageAlt="AbilityX partnership opportunities"
+    kicker="Partnership"
+    title="Back AbilityX 2026"
+    description={description}
+  />
+
+  <section class="section-shell bg-white">
+    <Container>
+      <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
+        <div>
+          <p class="kicker">Why Partner With AbilityX 2026</p>
+          <h2 class="mt-4 font-display text-[24px] font-black tracking-[-0.03em] text-brand-black md:text-[44px]">
+            A single platform delivering brand visibility, policy influence, innovation access, and a direct talent pipeline -
+            with credible, documented DEI impact.
+          </h2>
+        </div>
+
+        <article class="rounded-[16px] border border-brand-border bg-brand-subtle p-6 md:p-8">
+          <h3 class="font-display text-[28px] font-black tracking-[-0.03em] text-brand-black">Get in touch</h3>
+          <p class="mt-4 text-[16px] leading-7 text-brand-muted">
+            We welcome a conversation on how a partnership can be tailored to your organisation&apos;s DEI, brand, and
+            business development goals.
+          </p>
+          <div class="mt-6 flex flex-col gap-4">
+            <div class="rounded-[14px] border border-brand-border bg-white p-5">
+              <a
+                href="mailto:damilare@projectenable.africa"
+                class="text-[17px] font-semibold text-brand-red underline decoration-brand-red/30 underline-offset-4 hover:decoration-brand-red"
+              >
+                damilare@projectenable.africa
+              </a>
+              <p class="mt-2 text-sm leading-6 text-brand-muted">Business Development and Partnerships Lead, Project Enable Africa</p>
+            </div>
+            <FormModalButton
+              client:visible
+              formType="partner"
+              label="Send an Inquiry"
+              title="Partner Inquiry"
+              tone="red"
+              className="w-full px-6"
+            />
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-shell bg-brand-subtle">
+    <Container>
+      <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
+        <div>
+          <p class="kicker">Benefits</p>
+          <h2 class="mt-4 font-display text-[30px] font-black tracking-[-0.03em] text-brand-black md:text-[38px]">
+            Why AbilityX works for partners
+          </h2>
+          <div class="mt-8 space-y-5">
+            {
+              benefits.map((benefit) => (
+                <div class="flex items-start gap-4 border-b border-brand-border py-[22px] first:pt-0 last:border-b-0 last:pb-0">
+                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-red-soft font-display text-[15px] font-extrabold text-brand-red">
+                    {benefit.number}
+                  </div>
+                  <p class="pt-1.5 text-[16px] leading-[1.6] text-brand-surface">{benefit.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <p class="kicker">The AbilityX 2026 Experience</p>
+          <h2 class="mt-4 font-display text-[30px] font-black tracking-[-0.03em] text-brand-black md:text-[38px]">
+            A redesigned, higher-impact format - built for co-creation, not just attendance.
+          </h2>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            {
+              experienceItems.map((item) => (
+                <article class="rounded-[16px] border border-brand-border bg-white p-5 shadow-card">
+                  <h3 class="font-display text-[18px] font-bold tracking-[-0.02em] text-brand-black">{item.title}</h3>
+                  <p class="mt-2 text-[15px] leading-7 text-brand-muted">{item.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-shell bg-white">
+    <Container>
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+        {
+          partnerImages.map((image) => (
+            <div class="relative min-h-[180px] overflow-hidden rounded-[12px] border border-brand-border md:min-h-[240px]">
+              <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

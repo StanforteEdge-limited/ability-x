@@ -7,11 +7,13 @@ export function FormModalButton({
   formType,
   label,
   title,
+  tone = "dark",
   className,
 }: {
   formType: InquiryFormType;
   label: string;
   title: string;
+  tone?: "dark" | "red";
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -22,7 +24,8 @@ export function FormModalButton({
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "inline-flex rounded-full bg-brand-black px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out hover:bg-brand-surface",
+          "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition-colors duration-150 ease-in-out",
+          tone === "red" ? "bg-brand-red hover:bg-brand-red-dark" : "bg-brand-black hover:bg-brand-surface",
           className,
         )}
       >
