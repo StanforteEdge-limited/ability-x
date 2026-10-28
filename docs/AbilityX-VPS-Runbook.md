@@ -194,7 +194,7 @@ There's no staging host, so the site goes live the moment ability-x.org points a
    - *Why AbilityX Exists*: 29 July 2026
    - *Why We Built AbilityX: From a Forum to a Movement*: 10 September 2026
 6. Caching → Configuration → **Purge Everything**, so nothing from the minutes before setup stays cached.
-7. **Settings → Email → Send test email.** If it fails with a domain error, `projectenable.africa` isn't verified in Resend. Either verify it, or change the From address in `astro.config.mjs` to one on `abilityx.projectenable.africa` (the website forms already send from there).
+7. **Settings → Email → Send test email.** All email (CMS invites and sign-in links, and the website forms) comes from `abilityx@projectenable.africa`, so `RESEND_API_KEY` must be allowed to send from `projectenable.africa`. A key restricted to another domain fails with "not authorized to send emails from projectenable.africa".
 8. Invite the editors (Settings → Users). They follow `docs/AbilityX-CMS-Editor-Guide.md`.
 
 **If the blog and speakers are empty after the wizard**, import the sample content from the command line. `--skip-media` keeps the images as links to the site's own `/speakers` and `/abilityx` files instead of copying them to R2. Back up, stop the service, import, start, then Purge Everything:
