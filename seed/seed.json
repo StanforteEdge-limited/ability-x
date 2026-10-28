@@ -1,0 +1,1567 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "meta": {
+    "name": "AbilityX",
+    "description": "AbilityX Disability Leadership Forum: speakers, schedule and blog.",
+    "author": "Project Enable Africa"
+  },
+  "settings": {
+    "title": "AbilityX",
+    "tagline": "From Margins to Markets: Africa’s Blueprint for Disability-Inclusive Growth"
+  },
+  "collections": [
+    {
+      "slug": "speakers",
+      "label": "Speakers",
+      "labelSingular": "Speaker",
+      "description": "Speakers for each AbilityX edition. 2026 speakers appear on the homepage.",
+      "routable": false,
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "fields": [
+        {
+          "slug": "name",
+          "label": "Full name",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "role",
+          "label": "Role / title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "organisation",
+          "label": "Organisation",
+          "type": "string"
+        },
+        {
+          "slug": "photo",
+          "label": "Photo",
+          "type": "image"
+        },
+        {
+          "slug": "session_title",
+          "label": "Session title (only once confirmed)",
+          "type": "string"
+        },
+        {
+          "slug": "edition",
+          "label": "Edition",
+          "type": "select",
+          "required": true,
+          "defaultValue": "2026",
+          "validation": {
+            "options": [
+              "2026",
+              "2025"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Sort order (lower shows first)",
+          "type": "integer",
+          "defaultValue": 100
+        }
+      ]
+    },
+    {
+      "slug": "programme",
+      "label": "Schedule",
+      "labelSingular": "Session",
+      "description": "AbilityX 2026 programme sessions, shown on the Schedule page.",
+      "routable": false,
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "session_type",
+          "label": "Session type",
+          "type": "select",
+          "validation": {
+            "options": [
+              "Registration",
+              "Opening",
+              "Keynote",
+              "Plenary",
+              "Panel",
+              "Fireside Chat",
+              "Breakout",
+              "Break",
+              "Networking",
+              "Awards",
+              "Closing"
+            ]
+          }
+        },
+        {
+          "slug": "start_time",
+          "label": "Start time (24h, e.g. 09:00)",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "end_time",
+          "label": "End time (24h, e.g. 10:30)",
+          "type": "string"
+        },
+        {
+          "slug": "location",
+          "label": "Location (e.g. Main Hall)",
+          "type": "string"
+        },
+        {
+          "slug": "description",
+          "label": "Description",
+          "type": "text"
+        },
+        {
+          "slug": "speakers",
+          "label": "Speakers",
+          "type": "reference",
+          "validation": {
+            "targetCollection": "speakers",
+            "multiple": true
+          }
+        }
+      ]
+    },
+    {
+      "slug": "posts",
+      "label": "Blog Posts",
+      "labelSingular": "Blog Post",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search",
+        "seo",
+        "scheduling"
+      ],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "excerpt",
+          "label": "Excerpt",
+          "type": "text"
+        },
+        {
+          "slug": "featured_image",
+          "label": "Featured image",
+          "type": "image"
+        },
+        {
+          "slug": "content",
+          "label": "Content",
+          "type": "portableText",
+          "searchable": true
+        }
+      ]
+    }
+  ],
+  "taxonomies": [
+    {
+      "name": "category",
+      "label": "Categories",
+      "labelSingular": "Category",
+      "hierarchical": false,
+      "collections": [
+        "posts"
+      ],
+      "terms": [
+        {
+          "slug": "movement",
+          "label": "Movement"
+        }
+      ]
+    }
+  ],
+  "bylines": [
+    {
+      "id": "byline-abilityx-team",
+      "slug": "abilityx-team",
+      "displayName": "AbilityX Team"
+    }
+  ],
+  "content": {
+    "speakers": [
+      {
+        "id": "dr-kolawole-olugbodi",
+        "status": "published",
+        "data": {
+          "name": "Dr Kolawole Olugbodi",
+          "role": "Founder & CEO, Background Checks International (BCI) - Opening Remarks",
+          "edition": "2025",
+          "sort_order": 0,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Dr-Kola-Olugbodi.jpeg",
+              "alt": "Portrait of Dr Kolawole Olugbodi.",
+              "filename": "Dr-Kola-Olugbodi.jpeg"
+            }
+          }
+        }
+      },
+      {
+        "id": "temi-dalley",
+        "status": "published",
+        "data": {
+          "name": "Temi Dalley",
+          "role": "Group Executive, Human Capital & Corporate Services, Sterling Financial Holdings - Keynote",
+          "edition": "2025",
+          "sort_order": 10,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Temi-Dalley.jpg",
+              "alt": "Portrait of Temi Dalley.",
+              "filename": "Temi-Dalley.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "mrs-bolaji-alabi",
+        "status": "published",
+        "data": {
+          "name": "Mrs Bolaji Alabi",
+          "role": "Director, Human Resources, Sheraton Hotel, Ikeja - delivered welcome address on behalf of Martin Bredenoord, GM",
+          "edition": "2025",
+          "sort_order": 20
+        }
+      },
+      {
+        "id": "alakija-adaeze",
+        "status": "published",
+        "data": {
+          "name": "Alakija Adaeze",
+          "role": "Spoken word performer",
+          "edition": "2025",
+          "sort_order": 30
+        }
+      },
+      {
+        "id": "tobiloba-ajayi",
+        "status": "published",
+        "data": {
+          "name": "Tobiloba Ajayi",
+          "role": "Disability Inclusion Advocate & Development Expert - Plenary Moderator",
+          "edition": "2025",
+          "sort_order": 40
+        }
+      },
+      {
+        "id": "oluseun-onigbinde",
+        "status": "published",
+        "data": {
+          "name": "Oluseun Onigbinde",
+          "role": "CEO, BudgIT (represented by Joseph Idaosha Aminahon, Acting Country Director)",
+          "edition": "2025",
+          "sort_order": 50,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Oluseun-Onigbinde.jpg",
+              "alt": "Portrait of Oluseun Onigbinde.",
+              "filename": "Oluseun-Onigbinde.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "glory-ayiegbeni",
+        "status": "published",
+        "data": {
+          "name": "Glory Ayiegbeni",
+          "role": "MERL Lead, Jobberman Nigeria",
+          "edition": "2025",
+          "sort_order": 60
+        }
+      },
+      {
+        "id": "cosmas-okoli",
+        "status": "published",
+        "data": {
+          "name": "Cosmas I. B. Okoli",
+          "role": "CEO, Mobility Aid and Appliances Research & Development Centre (MAARDEC); National Honour: OON (Dec 2006)",
+          "edition": "2025",
+          "sort_order": 70,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Cosmas-Okoli.jpg",
+              "alt": "Portrait of Cosmas I. B. Okoli.",
+              "filename": "Cosmas-Okoli.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "daniel-isaiah-olamide",
+        "status": "published",
+        "data": {
+          "name": "Daniel Isaiah Olamide",
+          "role": "Moderator - Financial Inclusion breakout",
+          "edition": "2025",
+          "sort_order": 80
+        }
+      },
+      {
+        "id": "akporee-idenedo",
+        "status": "published",
+        "data": {
+          "name": "Akporee Idenedo",
+          "role": "Divisional Head, Commercial Banking, Sterling Bank",
+          "edition": "2025",
+          "sort_order": 90
+        }
+      },
+      {
+        "id": "khafil-animashaun",
+        "status": "published",
+        "data": {
+          "name": "Khafil Animashaun",
+          "role": "Chief Experience Enabler, The Alternative Bank",
+          "edition": "2025",
+          "sort_order": 100
+        }
+      },
+      {
+        "id": "chioma-nwaiwu",
+        "status": "published",
+        "data": {
+          "name": "Chioma Nwaiwu",
+          "role": "Research Associate, EFInA",
+          "edition": "2025",
+          "sort_order": 110
+        }
+      },
+      {
+        "id": "esther-obele",
+        "status": "published",
+        "data": {
+          "name": "Esther Obele",
+          "role": "Speaker - Employment breakout, Jobberman Nigeria",
+          "edition": "2025",
+          "sort_order": 120
+        }
+      },
+      {
+        "id": "oluwajuwonlo-esho",
+        "status": "published",
+        "data": {
+          "name": "Oluwajuwonlo Esho",
+          "role": "Senior Associate, Engagement and Learning Development, Jobberman Nigeria",
+          "edition": "2025",
+          "sort_order": 130
+        }
+      },
+      {
+        "id": "amirah-hassan",
+        "status": "published",
+        "data": {
+          "name": "Amirah Hassan",
+          "role": "Co-Founder, Citizens Application for Political Participation (CAPP) & Actizen Centre - Moderator",
+          "edition": "2025",
+          "sort_order": 140,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/AMIRAH-HASSAN.jpg",
+              "alt": "Portrait of Amirah Hassan.",
+              "filename": "AMIRAH-HASSAN.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "dare-dairo",
+        "status": "published",
+        "data": {
+          "name": "Dare Dairo",
+          "role": "Former General Manager, Lagos State Office for Disability Affairs (LASODA)",
+          "edition": "2025",
+          "sort_order": 150,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Dare-Dairo.jpg",
+              "alt": "Portrait of Dare Dairo.",
+              "filename": "Dare-Dairo.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "oluwatosin-iseniyi",
+        "status": "published",
+        "data": {
+          "name": "Oluwatosin Iseniyi",
+          "role": "Public Policy, Research, and Data Analyst",
+          "edition": "2025",
+          "sort_order": 160,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Oluwatosin-Iseniyi.jpg",
+              "alt": "Portrait of Oluwatosin Iseniyi.",
+              "filename": "Oluwatosin-Iseniyi.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "busola-oladunjoye",
+        "status": "published",
+        "data": {
+          "name": "Busola Oladunjoye",
+          "role": "Project Lead & Senior Project Officer, Centre for Disability and Inclusion Africa (CDIA)",
+          "edition": "2025",
+          "sort_order": 170,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Busola-Oladunjoye.jpg",
+              "alt": "Portrait of Busola Oladunjoye.",
+              "filename": "Busola-Oladunjoye.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "oluwatosin-ishola",
+        "status": "published",
+        "data": {
+          "name": "Oluwatosin Ishola",
+          "role": "Chief Operating Officer, LAFIAMI - Moderator",
+          "edition": "2025",
+          "sort_order": 180,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Oluwatosin%20Ishola%20-%20COO%20of%20Lafiami,%20and%20Founder%20of%20Together%20for%20Needs%20Initiative..jpeg",
+              "alt": "Portrait of Oluwatosin Ishola.",
+              "filename": "Oluwatosin Ishola - COO of Lafiami, and Founder of Together for Needs Initiative..jpeg"
+            }
+          }
+        }
+      },
+      {
+        "id": "kingsley-ezeocha",
+        "status": "published",
+        "data": {
+          "name": "Kingsley Ezeocha",
+          "role": "Head of Sales & Marketing, Hygeia HMO Ltd",
+          "edition": "2025",
+          "sort_order": 190,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Kingsley-Ezeocha.jpg",
+              "alt": "Portrait of Kingsley Ezeocha.",
+              "filename": "Kingsley-Ezeocha.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "olubunmi-olugbamila",
+        "status": "published",
+        "data": {
+          "name": "Olubunmi T. Olugbamila",
+          "role": "Founder, Damar Place Learning Foundation",
+          "edition": "2025",
+          "sort_order": 200,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Olubunmi-Olugbamila.jpg",
+              "alt": "Portrait of Olubunmi T. Olugbamila.",
+              "filename": "Olubunmi-Olugbamila.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "segun-matthew",
+        "status": "published",
+        "data": {
+          "name": "Segun Matthew",
+          "role": "Director, ADI College of Counselling and Psychotherapy",
+          "edition": "2025",
+          "sort_order": 210,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Segun-Matthew.jpg",
+              "alt": "Portrait of Segun Matthew.",
+              "filename": "Segun-Matthew.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "janet-olaoluwa",
+        "status": "published",
+        "data": {
+          "name": "Janet Olaoluwa",
+          "role": "Program Officer, Project Enable Africa - Moderator",
+          "edition": "2025",
+          "sort_order": 220
+        }
+      },
+      {
+        "id": "michael-ojediran",
+        "status": "published",
+        "data": {
+          "name": "Michael Ojediran",
+          "role": "Programs Lead, Project Enable Africa - Presenter, State of Disability Inclusion Report",
+          "edition": "2025",
+          "sort_order": 230
+        }
+      },
+      {
+        "id": "fabia-ogunmekan",
+        "status": "published",
+        "data": {
+          "name": "Fabia Ogunmekan",
+          "role": "Principal Consultant, Adaba Initiative - Moderator",
+          "edition": "2025",
+          "sort_order": 240
+        }
+      },
+      {
+        "id": "yehia-elmansoury",
+        "status": "published",
+        "data": {
+          "name": "Yehia Elmansoury",
+          "role": "General Manager, Radisson Hotel Ikeja",
+          "edition": "2025",
+          "sort_order": 250,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Yehia-Elmansoury.jpg",
+              "alt": "Portrait of Yehia Elmansoury.",
+              "filename": "Yehia-Elmansoury.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "satender-singh",
+        "status": "published",
+        "data": {
+          "name": "Satender Singh",
+          "role": "CEO, KFC Nigeria",
+          "edition": "2025",
+          "sort_order": 260,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Satender-Singh.jpg",
+              "alt": "Portrait of Satender Singh.",
+              "filename": "Satender-Singh.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "dolapo-agbede",
+        "status": "published",
+        "data": {
+          "name": "Dolapo Agbede",
+          "role": "Diversity, Equity & Inclusion (DEI) Expert, Africa - Moderator (two sessions)",
+          "edition": "2025",
+          "sort_order": 270,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Dolapo-Agbede.jpg",
+              "alt": "Portrait of Dolapo Agbede.",
+              "filename": "Dolapo-Agbede.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "kemi-shonubi",
+        "status": "published",
+        "data": {
+          "name": "Kemi Shonubi",
+          "role": "Director, People, Culture, Experience and Operations, TVC Communications",
+          "edition": "2025",
+          "sort_order": 280,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Kemi%20Shonubi%20-%20%20Head%20of%20People%20and%20Culture,%20TVC%20Communications.jpg",
+              "alt": "Portrait of Kemi Shonubi.",
+              "filename": "Kemi Shonubi -  Head of People and Culture, TVC Communications.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "victor-otuya",
+        "status": "published",
+        "data": {
+          "name": "Victor Otuya",
+          "role": "Presenter and Editor, Max FM",
+          "edition": "2025",
+          "sort_order": 290,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Victor-Otuya.jpg",
+              "alt": "Portrait of Victor Otuya.",
+              "filename": "Victor-Otuya.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "monsuroh-abdulsemiu",
+        "status": "published",
+        "data": {
+          "name": "Monsuroh Abdulsemiu",
+          "role": "Program Officer, Cable Newspaper Journalism Foundation (CNJF) - Moderator",
+          "edition": "2025",
+          "sort_order": 300,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Monsuroh-Abdulsemiu.jpg",
+              "alt": "Portrait of Monsuroh Abdulsemiu.",
+              "filename": "Monsuroh-Abdulsemiu.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "kolapo-olapoju",
+        "status": "published",
+        "data": {
+          "name": "Kolapo Olapoju",
+          "role": "Editor, TheCable",
+          "edition": "2025",
+          "sort_order": 310,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Kolapo-Olapoju.jpg",
+              "alt": "Portrait of Kolapo Olapoju.",
+              "filename": "Kolapo-Olapoju.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "gbenga-ogundare",
+        "status": "published",
+        "data": {
+          "name": "Gbenga Ogundare",
+          "role": "Disability Rights Advocate",
+          "edition": "2025",
+          "sort_order": 320,
+          "photo": {
+            "$media": {
+              "url": "https://ability-x.org/speakers/Gbenga-Ogundare.jpg",
+              "alt": "Portrait of Gbenga Ogundare.",
+              "filename": "Gbenga-Ogundare.jpg"
+            }
+          }
+        }
+      },
+      {
+        "id": "olusola-adeyefa",
+        "status": "published",
+        "data": {
+          "name": "Olusola Adeyefa",
+          "role": "Fireside Chat Moderator",
+          "edition": "2025",
+          "sort_order": 330
+        }
+      },
+      {
+        "id": "dipo-adesina",
+        "status": "published",
+        "data": {
+          "name": "Dipo Adesina",
+          "role": "Chief Operating Officer, Verdant Zeal Group",
+          "edition": "2025",
+          "sort_order": 340
+        }
+      },
+      {
+        "id": "balogun-ajibola",
+        "status": "published",
+        "data": {
+          "name": "Balogun Ajibola",
+          "role": "Delivered goodwill message on behalf of Lagos State Commissioner for Youth and Social Development",
+          "edition": "2025",
+          "sort_order": 350
+        }
+      }
+    ],
+    "posts": [
+      {
+        "id": "post-why-abilityx-exists",
+        "slug": "why-abilityx-exists",
+        "status": "published",
+        "data": {
+          "title": "Why AbilityX Exists",
+          "excerpt": "AbilityX is building a practical platform for disability inclusion, innovation, leadership, and measurable change across Africa.",
+          "content": [
+            {
+              "_type": "block",
+              "_key": "p0",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s0",
+                  "text": "AbilityX exists because disability inclusion in Africa needs more than awareness. It needs infrastructure, leadership, capital, data, policy action, and platforms where persons with disabilities are positioned as builders of the future.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s1",
+                  "text": "The convening brings together innovators, policymakers, startups, civil society, donors, private sector leaders, and the disability community to move from conversation to execution.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s2",
+                  "text": "AbilityX 2025 proved that there is demand for a more ambitious disability inclusion ecosystem. AbilityX 2026 builds on that momentum with deeper partnerships, stronger programming, and a clearer focus on measurable outcomes.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p3",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s3",
+                  "text": "This blog will share updates, ideas, stories, and practical lessons from the AbilityX community as the movement grows.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "featured_image": {
+            "$media": {
+              "url": "https://ability-x.org/abilityx/Extra%20Pictures/AbilityX-4.jpg",
+              "alt": "Why AbilityX Exists",
+              "filename": "AbilityX-4.jpg"
+            }
+          }
+        },
+        "taxonomies": {
+          "category": [
+            "movement"
+          ]
+        },
+        "bylines": [
+          {
+            "byline": "byline-abilityx-team"
+          }
+        ]
+      },
+      {
+        "id": "post-why-we-built-abilityx",
+        "slug": "why-we-built-abilityx",
+        "status": "published",
+        "data": {
+          "title": "Why We Built AbilityX: From a Forum to a Movement",
+          "excerpt": "There comes a point when you realise that the conversation you started is no longer big enough for the problem you are trying to solve.",
+          "content": [
+            {
+              "_type": "block",
+              "_key": "p0",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s0",
+                  "text": "There comes a point when you realise that the conversation you started is no longer big enough for the problem you are trying to solve.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s1",
+                  "text": "For us, that moment was the evolution from DIAL (Disability Inclusion and Leadersship) Forum to AbilityX.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s2",
+                  "text": "DIAL Forum was born from an important need: to bring people together to talk about disability inclusion, share experiences, challenge assumptions and put disability on the agenda.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p3",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s3",
+                  "text": "And it did exactly that.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p4",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s4",
+                  "text": "But as the conversations grew, something became increasingly clear.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p5",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s5",
+                  "text": "We didn't just need another forum. We needed a platform.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p6",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s6",
+                  "text": "A platform where inclusion could move beyond conversation.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p7",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s7",
+                  "text": "Because disability inclusion is not only a social issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p8",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s8",
+                  "text": "It is an employment issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p9",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s9",
+                  "text": "A business issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p10",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s10",
+                  "text": "A technology issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p11",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s11",
+                  "text": "An education issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p12",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s12",
+                  "text": "A healthcare issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p13",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s13",
+                  "text": "And increasingly, an economic issue.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p14",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s14",
+                  "text": "We began asking ourselves harder questions.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p15",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s15",
+                  "text": "What happens after the panel discussion?",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p16",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s16",
+                  "text": "Where does a young person with a disability go to find opportunities?",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p17",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s17",
+                  "text": "Where does an employer go to understand how to build a truly inclusive workplace?",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p18",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s18",
+                  "text": "Where does an entrepreneur with a disability find access to markets, networks, capital and customers?",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p19",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s19",
+                  "text": "Where do organisations that genuinely want to become more inclusive find the knowledge, partnerships and people to help them do it?",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p20",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s20",
+                  "text": "A single event cannot answer all of those questions.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p21",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s21",
+                  "text": "A platform can.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p22",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s22",
+                  "text": "That thinking became the foundation for AbilityX.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p23",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s23",
+                  "text": "From conversation to connection.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p24",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s24",
+                  "text": "From awareness to action.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p25",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s25",
+                  "text": "From visibility to opportunity.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p26",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s26",
+                  "text": "AbilityX was created to bring together the different pieces of the inclusion ecosystem, persons with disabilities, businesses, employers, policymakers, development organisations, innovators, investors, media and other stakeholders, and create a space where they can do more than talk.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p27",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s27",
+                  "text": "They can connect.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p28",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s28",
+                  "text": "They can collaborate.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p29",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s29",
+                  "text": "They can create opportunities.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p30",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s30",
+                  "text": "They can build solutions.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p31",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s31",
+                  "text": "And they can challenge the systems that continue to keep millions of people at the margins of economic and social participation.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p32",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s32",
+                  "text": "This evolution does not mean we are leaving the DIAL (Disability Inclusion and Leadership) Forum behind.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p33",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s33",
+                  "text": "Quite the opposite.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p34",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s34",
+                  "text": "DIAL Forum was the beginning. AbilityX is the expansion.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p35",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s35",
+                  "text": "DIAL Forum was the beginning. AbilityX is the expansion.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p36",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s36",
+                  "text": "It is our response to what we have learned, what we have seen, and what we believe is possible when the right people are brought into the same room, and given the opportunity to build together.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p37",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s37",
+                  "text": "And that is why AbilityX 2026 carries a theme that captures where we believe the conversation needs to go next:",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p38",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s38",
+                  "text": "FROM MARGINS TO MARKETS.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p39",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s39",
+                  "text": "Because inclusion should not stop at being seen.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p40",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s40",
+                  "text": "It should mean being hired.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p41",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s41",
+                  "text": "Being funded.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p42",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s42",
+                  "text": "Being a customer.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p43",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s43",
+                  "text": "Being a founder.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p44",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s44",
+                  "text": "Being a decision-maker.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p45",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s45",
+                  "text": "Being able to create value and access the value that already exists.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p46",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s46",
+                  "text": "The journey from DIAL Forum to AbilityX is therefore more than a change of name.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p47",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s47",
+                  "text": "It is a change in ambition.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p48",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s48",
+                  "text": "We are building for a future where persons with disabilities are not simply included in conversations about the economy.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p49",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s49",
+                  "text": "They are active participants in it.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p50",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s50",
+                  "text": "And we invite organisations, leaders, innovators and changemakers who share that vision to build that future with us.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p51",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s51",
+                  "text": "The next chapter is AbilityX.",
+                  "marks": []
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "p52",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "s52",
+                  "text": "And we are only getting started.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "featured_image": {
+            "$media": {
+              "url": "https://ability-x.org/abilityx/why%20we%20built%20ability%20x.jpeg",
+              "alt": "Why We Built AbilityX: From a Forum to a Movement",
+              "filename": "why we built ability x.jpeg"
+            }
+          }
+        },
+        "taxonomies": {
+          "category": [
+            "movement"
+          ]
+        },
+        "bylines": [
+          {
+            "byline": "byline-abilityx-team"
+          }
+        ]
+      }
+    ]
+  }
+}

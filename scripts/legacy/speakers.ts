@@ -1,4 +1,4 @@
-import type { SpeakerItem } from "@/data/types";
+import type { SpeakerItem } from "../../src/data/types";
 
 const placeholderImage = {
   src: "/abilityx/speakers/speaker-placeholder.svg",

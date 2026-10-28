@@ -13,7 +13,7 @@ import { sqlite } from "emdash/db";
 // mount its routes when astro.config passes a function to defineConfig.)
 const siteUrl =
 	process.env.NODE_ENV === "production"
-		? (process.env.EMDASH_SITE_URL ?? "https://abilityx.projectenable.africa")
+		? (process.env.EMDASH_SITE_URL ?? "https://ability-x.org")
 		: undefined;
 
 // The database is a SQLite file. The path is read at BUILD time and baked

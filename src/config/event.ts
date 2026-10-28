@@ -1,6 +1,6 @@
 export const REGISTER_URL = "https://bit.ly/AbilityX2026";
 
-export const SITE_URL = "https://abilityx.projectenable.africa";
+export const SITE_URL = "https://ability-x.org";
 
 export const EVENT = {
   edition: "AbilityX 2026",
