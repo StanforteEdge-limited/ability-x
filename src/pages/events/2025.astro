@@ -1,0 +1,195 @@
+---
+import { getEmDashCollection } from "emdash";
+import { AnimatedStatValue } from "@/components/react/animated-stat-value";
+import { EventMediaTabs } from "@/components/react/event-media-tabs";
+import Container from "@/components/astro/Container.astro";
+import PageBanner from "@/components/astro/PageBanner.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { awards } from "@/data/awards";
+import { overviewBullets, pressRelease, stats2025 } from "@/data/event2025";
+import { galleryImages } from "@/data/gallery";
+import { allSessions } from "@/data/sessions";
+import { mediaUrl } from "@/lib/media";
+import { speakerSubtitle, type IslandSpeaker } from "@/lib/speakers";
+
+const { entries } = await getEmDashCollection("speakers", {
+  status: "published",
+  where: { edition: "2025" },
+  orderBy: { sort_order: "asc" },
+  limit: 100,
+});
+
+const speakers: IslandSpeaker[] = entries.map((entry) => {
+  const src = mediaUrl(entry.data.photo);
+  return {
+    id: entry.id,
+    name: entry.data.name,
+    role: speakerSubtitle(entry.data),
+    image: src ? { src, alt: entry.data.photo?.alt || `Portrait of ${entry.data.name}.` } : null,
+  };
+});
+
+const highlightedStat = stats2025.find((s) => s.label === "Breakout sessions across seven sectors");
+const secondaryStats = stats2025.filter((s) => s !== highlightedStat);
+const statCard = "min-w-[150px] flex-1 rounded-[16px] border border-brand-border bg-brand-subtle p-5 text-center shadow-card xl:max-w-[220px]";
+---
+
+<BaseLayout
+  title="AbilityX 2025"
+  active="event-2025"
+  image="/gallery/Crowd.jpg"
+  description="Revisit the conversations, community moments, and official recordings from AbilityX 2025."
+>
+  <PageBanner
+    imageSrc="/gallery/Crowd.jpg"
+    imageAlt="AbilityX 2025 event venue"
+    kicker="AbilityX 2025"
+    title="The Conference That Started the Movement"
+    description="Revisit the conversations, community moments, and official recordings from AbilityX 2025."
+  />
+
+  <section class="bg-white px-5 py-16 md:px-8 lg:px-20 lg:py-16">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,0.9fr)] lg:items-center">
+        <div>
+          <p class="kicker">Overview</p>
+          <h2 class="mt-4 font-display text-[30px] font-black tracking-[-0.03em] text-brand-black md:text-[42px]">
+            A landmark first edition for disability inclusion in Nigeria.
+          </h2>
+          <div class="mt-5 space-y-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand-muted">
+            <p>The Future of Disability Inclusion in Nigeria</p>
+            <p>December 2, 2025 · Banquet Hall, Sheraton Hotel, Ikeja, Lagos</p>
+            <p>Project Enable Africa, in collaboration with Jobberman Nigeria</p>
+          </div>
+          <p class="mt-5 max-w-3xl text-[17px] leading-8 text-brand-muted">
+            AbilityX 2025 provided a high-level, multi-stakeholder platform to assess Nigeria&apos;s disability inclusion
+            landscape five years after the passage of the national disability law. Across plenary discussions and ten
+            breakout sessions, government actors, private sector leaders, civil society organisations, media practitioners,
+            development partners, and persons with disabilities examined disability inclusion as central to human rights,
+            economic productivity, and institutional effectiveness - and set out a shared call to move from awareness to
+            implementation.
+          </p>
+          <div class="mt-8 space-y-4">
+            {
+              overviewBullets.map((bullet) => (
+                <div class="flex items-start gap-3">
+                  <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-red" />
+                  <p class="text-[16px] leading-7 text-brand-surface">{bullet}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex h-full flex-col justify-center gap-4 self-stretch">
+          {
+            highlightedStat && (
+              <div class="flex justify-center">
+                <article class="w-full max-w-[320px] rounded-[16px] border border-brand-border bg-brand-subtle p-5 text-center shadow-card">
+                  <p class="font-display text-[28px] font-black tracking-[-0.03em] text-brand-black">
+                    <AnimatedStatValue client:visible value={highlightedStat.value} />
+                  </p>
+                  <p class="mt-2 text-sm leading-6 text-brand-muted">{highlightedStat.label}</p>
+                </article>
+              </div>
+            )
+          }
+          {
+            [secondaryStats.slice(0, 2), secondaryStats.slice(2)].map((row) => (
+              <div class="flex flex-wrap justify-center gap-4">
+                {row.map((stat) => (
+                  <article class={statCard}>
+                    <p class="font-display text-[28px] font-black tracking-[-0.03em] text-brand-black">
+                      <AnimatedStatValue client:visible value={stat.value} />
+                    </p>
+                    <p class="mt-2 text-sm leading-6 text-brand-muted">{stat.label}</p>
+                  </article>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white px-5 py-16 md:px-8 lg:px-20 lg:py-16">
+    <Container>
+      <h2 class="mb-8 font-display text-[28px] font-bold tracking-[-0.02em] md:text-[36px]">Awards Presented at AbilityX 2025</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          awards.map((award) => (
+            <article class="overflow-hidden rounded-[16px] border border-brand-border bg-white shadow-card">
+              <div class="relative flex min-h-[180px] items-center justify-center bg-brand-subtle">
+                <div class="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 3l2.1 4.26 4.7.69-3.4 3.3.8 4.67L12 13.8 7.8 15.92l.8-4.67-3.4-3.3 4.7-.69L12 3Z" fill="currentColor" />
+                  </svg>
+                </div>
+                <span class="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-muted">Winner image placeholder</span>
+              </div>
+              <div class="p-6">
+                <p class="text-[12px] font-bold uppercase tracking-[0.12em] text-brand-red">{award.category}</p>
+                <h3 class="mt-4 font-display text-[22px] font-bold tracking-[-0.02em] text-brand-black">{award.recipient}</h3>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-brand-subtle px-5 py-16 md:px-8 lg:px-20 lg:py-16">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+        <div>
+          <p class="kicker">Video Highlight</p>
+          <h2 class="mt-4 font-display text-[30px] font-black tracking-[-0.03em] text-brand-black md:text-[42px]">
+            Watch the main stage recording.
+          </h2>
+          <p class="mt-5 max-w-[520px] text-[17px] leading-8 text-brand-muted">
+            Start with the flagship main stage session, then explore the full recording archive, gallery, speaker roster, and
+            press references below.
+          </p>
+          <a
+            href="https://www.youtube.com/@AbilityXconference"
+            target="_blank"
+            rel="noreferrer"
+            class="mt-6 inline-flex rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red-dark"
+          >
+            Visit the AbilityX channel
+          </a>
+        </div>
+        <div class="overflow-hidden rounded-[20px] border border-brand-border bg-black shadow-card">
+          <div class="aspect-video w-full">
+            <iframe
+              src="https://www.youtube.com/embed/ECkUf2QPkzQ"
+              title="Watch the main stage recording."
+              class="h-full w-full"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white px-5 py-16 md:px-8 lg:px-20 lg:py-16">
+    <Container>
+      <div class="mb-8">
+        <h2 class="font-display text-[28px] font-bold tracking-[-0.02em] md:text-[36px]">Explore AbilityX 2025</h2>
+        <p class="mt-2 text-base text-black/60">
+          Switch between the recording archive, verified speaker roster, photo gallery, and press references.
+        </p>
+      </div>
+      <EventMediaTabs
+        client:visible
+        sessions={allSessions}
+        speakers={speakers}
+        galleryImages={galleryImages}
+        pressRelease={pressRelease}
+      />
+    </Container>
+  </section>
+</BaseLayout>

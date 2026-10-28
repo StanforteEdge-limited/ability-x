@@ -1,4 +1,4 @@
-type MediaValue = { src?: string; meta?: { storageKey?: string } } | null | undefined;
+type MediaValue = { src?: string; meta?: Record<string, unknown> } | null | undefined;
 
 /**
  * URL for a CMS image field. Images picked from the media library carry no
@@ -7,6 +7,6 @@ type MediaValue = { src?: string; meta?: { storageKey?: string } } | null | unde
  */
 export function mediaUrl(image: MediaValue): string | null {
   const storageKey = image?.meta?.storageKey;
-  if (storageKey) return `/_emdash/api/media/file/${storageKey}`;
+  if (typeof storageKey === "string" && storageKey) return `/_emdash/api/media/file/${storageKey}`;
   return image?.src || null;
 }
