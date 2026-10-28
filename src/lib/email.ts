@@ -46,7 +46,7 @@ export async function sendConfirmation(
 
   await sendEmail(
     to,
-    `Thank you for your ${label} — AbilityX 2.0`,
+    `Thank you for your ${label} — AbilityX 2026`,
     `<h2>Thank you, ${name}!</h2>
 <p>We've received your ${label.toLowerCase()} submission and will get back to you shortly.</p>
 <p>If you have any immediate questions, reply to this email and it will reach our team.</p>
