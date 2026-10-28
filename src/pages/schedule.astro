@@ -1,0 +1,72 @@
+---
+import { getEmDashCollection, getEmDashReferences } from "emdash";
+import type { Speaker } from "../../emdash-env";
+import Container from "@/components/astro/Container.astro";
+import PageBanner from "@/components/astro/PageBanner.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import ScheduleList, { type ScheduleSession } from "@/components/astro/ScheduleList.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { EVENT, REGISTER_URL } from "@/config/event";
+import { sortSessions } from "@/lib/programme";
+
+const { entries } = await getEmDashCollection("programme", { status: "published", limit: 200 });
+
+// Collection queries can't load reference fields, so each session asks for its
+// own speakers. EmDash's query cache and the edge cache keep this cheap.
+const sessions: ScheduleSession[] = await Promise.all(
+  sortSessions(entries.map((entry) => ({ ...entry.data, start_time: entry.data.start_time ?? "", title: entry.data.title }))).map(
+    async (data) => {
+      const { entries: speakerEntries } = await getEmDashReferences<Speaker>("programme", data.id, "speakers", { limit: 20 });
+      return {
+        key: data.id,
+        title: data.title,
+        sessionType: data.session_type,
+        startTime: data.start_time,
+        endTime: data.end_time,
+        location: data.location,
+        description: data.description,
+        speakers: speakerEntries.map((speaker) => speaker.data),
+      };
+    },
+  ),
+);
+---
+
+<BaseLayout
+  title="Schedule"
+  active="schedule"
+  description={`The AbilityX 2026 programme. ${EVENT.dateLine}, ${EVENT.venue}.`}
+>
+  <PageBanner
+    imageSrc="/gallery/stage.jpg"
+    imageAlt="The AbilityX stage"
+    kicker={EVENT.edition}
+    title="Schedule"
+    description={`${EVENT.dateLine} · ${EVENT.venue}`}
+  >
+    <div class="mt-8">
+      <PillButton href={REGISTER_URL} class="px-6 py-3.5">Register for AbilityX 2026</PillButton>
+    </div>
+  </PageBanner>
+
+  <section class="section-shell bg-brand-subtle">
+    <Container>
+      {
+        sessions.length > 0 ? (
+          <ScheduleList sessions={sessions} />
+        ) : (
+          <div class="mx-auto max-w-3xl rounded-[16px] border border-dashed border-brand-border-strong bg-white p-8 text-center md:p-12">
+            <p class="kicker">{EVENT.themeFull}</p>
+            <h2 class="mt-4 font-display text-[26px] font-black text-brand-black md:text-[34px]">
+              The full programme will be published soon.
+            </h2>
+            <p class="mt-3 text-brand-muted">Register now to be first to hear about speakers and sessions.</p>
+            <div class="mt-6">
+              <PillButton href={REGISTER_URL}>Register for AbilityX 2026</PillButton>
+            </div>
+          </div>
+        )
+      }
+    </Container>
+  </section>
+</BaseLayout>
