@@ -146,6 +146,7 @@
       "slug": "posts",
       "label": "Blog Posts",
       "labelSingular": "Blog Post",
+      "urlPattern": "/blog/{slug}",
       "supports": [
         "drafts",
         "revisions",

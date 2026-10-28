@@ -124,6 +124,8 @@ const collections = [
     slug: "posts",
     label: "Blog Posts",
     labelSingular: "Blog Post",
+    // Used by the admin's "View" links and the sitemap; must match src/pages/blog/[slug].astro.
+    urlPattern: "/blog/{slug}",
     supports: ["drafts", "revisions", "search", "seo", "scheduling"],
     fields: [
       { slug: "title", label: "Title", type: "string", required: true, searchable: true },

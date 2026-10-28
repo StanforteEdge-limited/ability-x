@@ -31,6 +31,7 @@ describe("buildSeed", () => {
   it("defines the three editable collections", () => {
     expect(seed.collections.map((c) => c.slug)).toEqual(["speakers", "programme", "posts"]);
     expect(seed.taxonomies.map((t) => t.name)).toEqual(["category"]);
+    expect(seed.collections.find((c) => c.slug === "posts")?.urlPattern).toBe("/blog/{slug}");
   });
 
   it("imports every 2025 speaker", () => {
