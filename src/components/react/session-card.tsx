@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { SessionItem } from "@/data/types";
 import { getYouTubeThumbnailUrl, isPlaceholderYouTubeId } from "@/lib/youtube";
 
@@ -20,12 +19,12 @@ export function SessionCard({
               </span>
             </div>
           ) : (
-            <Image
+            <img
               src={getYouTubeThumbnailUrl(session.youtubeId)}
               alt={session.thumbnailLabel}
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              className="object-cover"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           )}
           <div className="absolute inset-0 flex items-center justify-center bg-black/20">

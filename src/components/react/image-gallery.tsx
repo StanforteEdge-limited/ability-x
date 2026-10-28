@@ -1,7 +1,6 @@
-"use client";
 
 import { useState } from "react";
-import { Lightbox } from "@/components/ui/lightbox";
+import { Lightbox } from "@/components/react/lightbox";
 import type { GalleryImage } from "@/data/types";
 
 type ImageGalleryProps = {
@@ -27,7 +26,6 @@ export function ImageGallery({ images }: ImageGalleryProps) {
             onClick={() => handleImageClick(index)}
             className="mb-4 break-inside-avoid"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={image.src}
               alt={image.alt}

@@ -1,15 +1,14 @@
-"use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { ImageGallery } from "@/components/event/image-gallery";
-import { VideoCarousel } from "@/components/event/video-carousel";
-import type { GalleryImage, SessionItem, SpeakerItem } from "@/data/types";
+import { ImageGallery } from "@/components/react/image-gallery";
+import { VideoCarousel } from "@/components/react/video-carousel";
+import type { GalleryImage, SessionItem } from "@/data/types";
+import { initials, type IslandSpeaker } from "@/lib/speakers";
 
 type EventMediaTabsProps = {
   galleryImages: GalleryImage[];
   sessions: SessionItem[];
-  speakers: SpeakerItem[];
+  speakers: IslandSpeaker[];
   pressRelease: {
     title: string;
     body: string;
@@ -68,13 +67,22 @@ export function EventMediaTabs({
             {speakers.map((speaker) => (
               <article key={speaker.id} className="flex h-full flex-col text-center">
                 <div className="relative aspect-square overflow-hidden rounded-[8px] border border-brand-border bg-brand-subtle">
-                  <Image
-                    src={speaker.image.src}
-                    alt={speaker.image.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 25vw"
-                    className="object-cover"
-                  />
+                  {speaker.image ? (
+                    <img
+                      src={speaker.image.src}
+                      alt={speaker.image.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 flex items-center justify-center font-display text-[40px] font-black text-brand-muted-light"
+                    >
+                      {initials(speaker.name)}
+                    </span>
+                  )}
                 </div>
                 <h3 className="mt-4 text-[14px] font-semibold text-brand-black">
                   {speaker.name}

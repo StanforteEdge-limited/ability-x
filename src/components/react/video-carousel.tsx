@@ -1,9 +1,8 @@
-"use client";
 
 import { useState } from "react";
-import { Carousel } from "@/components/ui/carousel";
-import { Modal } from "@/components/ui/modal";
-import { SessionCard } from "@/components/event/session-card";
+import { Carousel } from "@/components/react/carousel";
+import { Modal } from "@/components/react/modal";
+import { SessionCard } from "@/components/react/session-card";
 import type { SessionItem } from "@/data/types";
 
 type VideoCarouselProps = {

@@ -1,4 +1,3 @@
-"use client";
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -55,7 +54,6 @@ function LightboxContent({
         className="relative max-h-[90vh] max-w-[90vw]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={currentImage.src}
           alt={currentImage.alt}

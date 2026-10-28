@@ -1,13 +1,62 @@
 ---
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import SiteFooter from "@/components/astro/SiteFooter.astro";
+import SiteNav from "@/components/astro/SiteNav.astro";
+import { EVENT, type NavKey } from "@/config/event";
 import "@/styles/global.css";
 
 interface Props {
+  /** Bare page title; " | AbilityX" is appended except on the homepage. */
   title: string;
   description?: string;
+  active?: NavKey;
+  /** Share image, absolute or site-relative. */
+  image?: string | null;
+  /** The CMS entry a content page renders (SEO panel overlay + visual editing). */
+  entry?: { id: string; data: { id: string; slug?: string | null } } | null;
+  collection?: string;
+  pageType?: string;
+  article?: { publishedTime?: string | null; modifiedTime?: string | null; author?: string | null };
+  noindex?: boolean;
+  /** Pages like /admin render without the site's nav and footer. */
+  chrome?: boolean;
 }
 
-const { title, description = "AbilityX Disability Leadership Forum." } = Astro.props;
+const {
+  title,
+  description = `${EVENT.forumName}. ${EVENT.themeFull}. ${EVENT.dateLine}, ${EVENT.venue}.`,
+  active,
+  image = "/Stage.jpg",
+  entry,
+  collection = "posts",
+  pageType = "website",
+  article,
+  noindex = false,
+  chrome = true,
+} = Astro.props;
+
+const siteName = "AbilityX";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+// Social crawlers ignore relative og:image/og:url.
+const origin = Astro.url.origin;
+const absoluteImage = image ? new URL(encodeURI(decodeURI(image)), origin).href : undefined;
+
+const page = createPublicPageContext({
+  Astro,
+  kind: entry ? "content" : "custom",
+  pageType,
+  title: fullTitle,
+  pageTitle: title,
+  description,
+  canonical: new URL(Astro.url.pathname, origin).href,
+  image: absoluteImage,
+  siteName,
+  siteUrl: origin,
+  articleMeta: article,
+  seo: noindex ? { robots: "noindex, nofollow" } : undefined,
+  content: entry ? { collection, id: entry.data.id, slug: entry.data.slug ?? entry.id } : undefined,
+});
 ---
 
 <!doctype html>
@@ -15,19 +64,24 @@ const { title, description = "AbilityX Disability Leadership Forum." } = Astro.p
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap"
     />
-    <EmDashHead />
+    <slot name="head" />
+    <EmDashHead page={page} />
   </head>
   <body class="min-h-full bg-white font-sans text-brand-black">
-    <EmDashBodyStart />
-    <slot />
-    <EmDashBodyEnd />
+    <EmDashBodyStart page={page} />
+    {chrome && <SiteNav active={active} />}
+    <main id="main">
+      <slot />
+    </main>
+    {chrome && <SiteFooter />}
+    <EmDashBodyEnd page={page} />
   </body>
 </html>

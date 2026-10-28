@@ -1,0 +1,44 @@
+---
+import { REGISTER_URL } from "@/config/event";
+import Container from "./Container.astro";
+
+const links = [
+  { href: "/schedule", label: "Schedule" },
+  { href: "/events/2025", label: "AbilityX 2025" },
+  { href: "/blog", label: "Blog" },
+  { href: "/partner", label: "Partner With Us" },
+  { href: REGISTER_URL, label: "Register" },
+];
+---
+
+<footer class="bg-brand-black text-white">
+  <Container class="px-5 py-12 md:px-8 lg:px-20 lg:py-16">
+    <div class="border-b border-white/10 pb-8 md:flex md:items-end md:justify-between md:gap-10">
+      <img src="/abilityx/logo-white.png" alt="AbilityX" width="152" height="36" class="h-8 w-auto" loading="lazy" decoding="async" />
+      <p class="mt-6 max-w-xl text-sm leading-7 text-white/70 md:text-base">
+        It&apos;s not just an event. It&apos;s a movement. - By ProjectEnable Africa
+      </p>
+      <nav aria-label="Footer" class="mt-6 flex flex-wrap gap-6 text-sm text-white/70 md:mt-0 md:shrink-0">
+        {
+          links.map((link) => {
+            const external = link.href.startsWith("http");
+            return (
+              <a
+                href={link.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+                class="transition-colors hover:text-brand-red"
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </div>
+
+    <div class="flex flex-col gap-3 pt-6 text-xs text-white/30 md:flex-row md:items-center md:justify-between">
+      <p>© 2026 ProjectEnable Africa. All rights reserved.</p>
+    </div>
+  </Container>
+</footer>

@@ -1,8 +1,7 @@
-"use client";
 
 import { useState, type FormEvent } from "react";
 
-type FormType = "partner" | "waitlist" | "exhibit";
+export type InquiryFormType = "partner" | "exhibit";
 
 type FieldType = "text" | "email" | "textarea" | "select" | "radio" | "checkbox";
 
@@ -14,24 +13,12 @@ interface Field {
   options?: string[];
 }
 
-const FIELD_CONFIG: Record<FormType, Field[]> = {
+const FIELD_CONFIG: Record<InquiryFormType, Field[]> = {
   partner: [
     { name: "name", label: "Full name", type: "text", required: true },
     { name: "organization", label: "Organization", type: "text", required: true },
     { name: "email", label: "Email", type: "email", required: true },
     { name: "message", label: "How would you like to partner?", type: "textarea" },
-  ],
-  waitlist: [
-    { name: "name", label: "Name", type: "text", required: true },
-    { name: "email", label: "Email", type: "email", required: true },
-    { name: "phone", label: "Phone number", type: "text", required: true },
-    { name: "position", label: "Organization Position", type: "text" },
-    { name: "disability", label: "Do you identify as a person with disability?", type: "radio", required: true, options: ["Yes", "No", "Prefer not to say"] },
-    { name: "category", label: "What category best describes you?", type: "select", required: true, options: ["NGO/Civil society", "Student", "Government Official", "Media", "Technology/Innovation", "Other"] },
-    { name: "interest", label: "Interest in AbilityX 2026", type: "select", required: true, options: ["Financial Inclusion & Access to Capital", "Inclusive Agriculture", "Informal Economy & Inclusive Marketing", "Assistive Technology Lab & Hackathon", "Inclusive Public & Private Procurement", "Entrepreneurship Accelerator", "Gig Economy & Remote Work Pathways", "Inclusive Healthcare Systems"] },
-    { name: "updates", label: "How would you like to receive updates?", type: "select", required: true, options: ["Email", "WhatsApp", "Both"] },
-    { name: "heardFrom", label: "How did you hear about the AbilityX 2026 Waitlist?", type: "text" },
-    { name: "extraInfo", label: "Is there anything else you would like to know?", type: "textarea" },
   ],
   exhibit: [
     { name: "organization", label: "Organization/Company Name", type: "text", required: true },
@@ -61,7 +48,7 @@ function hasOther(options?: string[]): boolean {
   return options?.some((o) => o === "Other") ?? false;
 }
 
-export function InquiryForm({ formType }: { formType: FormType }) {
+export function InquiryForm({ formType }: { formType: InquiryFormType }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const fields = FIELD_CONFIG[formType];
 
