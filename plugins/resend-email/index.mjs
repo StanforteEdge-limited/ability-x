@@ -4,7 +4,7 @@
  *
  * The API key is read from the process environment at delivery time
  * (RESEND_API_KEY), never stored in the database or bundle. On the VPS it
- * comes from /etc/abilityx.env; in local dev from .env.
+ * comes from /etc/ability-x.env; in local dev from .env.
  * The From address must be on a domain verified in Resend.
  */
 import { definePlugin } from "emdash";
@@ -77,7 +77,7 @@ async function readSecret(name) {
 	} catch {
 		value = globalThis.process?.env?.[name];
 	}
-	if (!value) throw new Error(`[resend-email] ${name} is not set — add it to /etc/abilityx.env (or .env for dev).`);
+	if (!value) throw new Error(`[resend-email] ${name} is not set — add it to /etc/ability-x.env (or .env for dev).`);
 	return value;
 }
 

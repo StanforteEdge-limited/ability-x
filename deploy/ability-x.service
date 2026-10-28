@@ -1,34 +1,34 @@
 # AbilityX: the Node process that serves the site.
 #
-# Install as /etc/systemd/system/abilityx.service (root-owned, 644), then:
-#   systemctl daemon-reload && systemctl enable --now abilityx
+# Install as /etc/systemd/system/ability-x.service (root-owned, 644), then:
+#   systemctl daemon-reload && systemctl enable --now ability-x
 #
-# Runs as the `abilityx` user (the one Virtualmin created for ability-x.org;
-# if Virtualmin chose a different name, replace `abilityx` throughout this
-# file, deploy/sudoers-abilityx and the env files).
+# Runs as the `ability-x` user (the one Virtualmin created for ability-x.org;
+# if Virtualmin chose a different name, replace `ability-x` throughout this
+# file, deploy/sudoers-ability-x and the env files).
 
 [Unit]
 Description=AbilityX (Astro + EmDash on Node)
-Documentation=file:/home/abilityx/app/docs/AbilityX-VPS-Runbook.md
+Documentation=file:/home/ability-x/app/docs/AbilityX-VPS-Runbook.md
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-User=abilityx
-Group=abilityx
-WorkingDirectory=/home/abilityx/app
+User=ability-x
+Group=ability-x
+WorkingDirectory=/home/ability-x/app
 
 # Runtime configuration, secrets included. Mode 600, owned by root. PORT lives
 # there and must match the proxy_pass port in the nginx file.
-EnvironmentFile=/etc/abilityx.env
+EnvironmentFile=/etc/ability-x.env
 Environment=HOST=127.0.0.1
 Environment=NODE_ENV=production
 
 # Node 24 for this user only (fnm). `fnm default 24` makes aliases/default a
 # stable link; never use `which node`, which prints a per-shell path that
 # disappears after logout.
-ExecStart=/home/abilityx/.local/share/fnm/aliases/default/bin/node ./dist/server/entry.mjs
+ExecStart=/home/ability-x/.local/share/fnm/aliases/default/bin/node ./dist/server/entry.mjs
 
 Restart=always
 RestartSec=5
@@ -48,11 +48,11 @@ ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectControlGroups=true
 RestrictSUIDSGID=true
-ReadWritePaths=/home/abilityx/data /home/abilityx/app/.astro
+ReadWritePaths=/home/ability-x/data /home/ability-x/app/.astro
 
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=abilityx
+SyslogIdentifier=ability-x
 
 [Install]
 WantedBy=multi-user.target

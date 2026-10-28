@@ -3,5 +3,5 @@
 // cloudflare-email plugin).
 //
 // On the VPS the process environment is the only source of secrets: systemd
-// reads /etc/abilityx.env (mode 600, root-owned) into the process.
+// reads /etc/ability-x.env (mode 600, root-owned) into the process.
 export const env = globalThis.process?.env ?? {};

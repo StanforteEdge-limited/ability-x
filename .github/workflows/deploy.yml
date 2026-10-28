@@ -6,7 +6,7 @@
 # and deploys only if that commit passed its check. If main contains anything
 # development never checked, the trees differ and nothing is deployed.
 #
-# The deploy is one SSH login as `abilityx`. On the server the key is pinned in
+# The deploy is one SSH login as `ability-x`. On the server the key is pinned in
 # ~/.ssh/authorized_keys with command="…/scripts/deploy-vps.sh", so it can run
 # the deploy script and nothing else (docs/AbilityX-VPS-Runbook.md).
 #
@@ -97,7 +97,7 @@ jobs:
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           # The server's forced command runs the deploy and smoke-tests the
           # origin; nothing is sent from here.
-          ssh -i ~/.ssh/deploy_key -o BatchMode=yes abilityx@"$HOST"
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes ability-x@"$HOST"
 
       - name: Purge Cloudflare's cache
         # Pages stay at the edge for 30 days and only a publish purges them, so

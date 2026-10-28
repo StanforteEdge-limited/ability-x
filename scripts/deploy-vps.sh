@@ -2,8 +2,8 @@
 #
 # Deploy the site on the VPS: pull, install, build, restart, smoke-test.
 #
-# Runs as the `abilityx` user. The only privileged step is the restart, which
-# deploy/sudoers-abilityx allows. GitHub Actions runs this over SSH on every
+# Runs as the `ability-x` user. The only privileged step is the restart, which
+# deploy/sudoers-ability-x allows. GitHub Actions runs this over SSH on every
 # deploy (the key is pinned to this script in ~/.ssh/authorized_keys).
 #
 #   bash scripts/deploy-vps.sh          # deploy the current branch
@@ -13,9 +13,9 @@
 # after the restart) or touch the media (it stays in R2).
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-/home/abilityx/app}"
-BUILD_ENV="${BUILD_ENV:-/home/abilityx/abilityx.build.env}"
-SERVICE="${SERVICE:-abilityx.service}"
+APP_DIR="${APP_DIR:-/home/ability-x/app}"
+BUILD_ENV="${BUILD_ENV:-/home/ability-x/ability-x.build.env}"
+SERVICE="${SERVICE:-ability-x.service}"
 CHECK_ONLY=0
 [ "${1:-}" = "--check" ] && CHECK_ONLY=1
 
