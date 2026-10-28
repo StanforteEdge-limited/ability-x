@@ -197,7 +197,25 @@ There's no staging host, so the site goes live the moment ability-x.org points a
 7. **Settings → Email → Send test email.** If it fails with a domain error, `projectenable.africa` isn't verified in Resend. Either verify it, or change the From address in `astro.config.mjs` to one on `abilityx.projectenable.africa` (the website forms already send from there).
 8. Invite the editors (Settings → Users). They follow `docs/AbilityX-CMS-Editor-Guide.md`.
 
-If the speakers have no photos after step 2, Cloudflare blocked the server fetching its own images. Re-upload the missing photos in the admin, or ask the web team.
+**If the blog and speakers are empty after the wizard**, import the sample content from the command line. `--skip-media` keeps the images as links to the site's own `/speakers` and `/abilityx` files instead of copying them to R2. Back up, stop the service, import, start, then Purge Everything:
+
+```bash
+sudo -u ability-x sqlite3 /home/ability-x/data/emdash.db ".backup '/home/ability-x/backups/before-seed.db'"
+```
+
+```bash
+systemctl stop ability-x
+```
+
+```bash
+sudo -iu ability-x bash -c 'export PATH="$HOME/.local/share/fnm:$PATH"; eval "$(fnm env --shell bash)"; cd /home/ability-x/app && npx emdash seed seed/seed.json --database /home/ability-x/data/emdash.db --skip-media'
+```
+
+```bash
+systemctl start ability-x
+```
+
+It ends with `Content: 38 created`. Existing entries are never overwritten, so running it twice is safe.
 
 ## 8. Checks
 
