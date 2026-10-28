@@ -1,0 +1,40 @@
+---
+import PillButton from "@/components/astro/PillButton.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+Astro.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+
+const areas = [
+  { title: "Speakers", description: "Add AbilityX 2026 speakers as they are cleared for announcement, with photo, role and session." },
+  { title: "Schedule", description: "Build the day's programme: sessions, times, locations and the speakers on each one." },
+  { title: "Blog", description: "Write, schedule and publish posts, with images and categories." },
+];
+---
+
+<BaseLayout title="Editor sign in" noindex chrome={false}>
+  <section class="flex min-h-screen items-center bg-brand-subtle px-5 py-16">
+    <div class="mx-auto w-full max-w-3xl">
+      <img src="/abilityx/logo-primary.png" alt="AbilityX" width="160" height="37" class="h-9 w-auto" />
+      <h1 class="mt-8 font-display text-[34px] font-black tracking-[-0.03em] text-brand-black md:text-[46px]">
+        Manage AbilityX speakers, schedule and blog.
+      </h1>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {
+          areas.map((area) => (
+            <article class="rounded-[16px] border border-brand-border bg-white p-5 shadow-card">
+              <h2 class="font-display text-[20px] font-black text-brand-black">{area.title}</h2>
+              <p class="mt-2 text-sm leading-6 text-brand-muted">{area.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <PillButton href="/_emdash/admin" class="px-7 py-3.5">Sign in</PillButton>
+        <PillButton href="/" variant="ghost" class="px-7 py-3.5">Visit the site</PillButton>
+      </div>
+      <p class="mt-6 text-sm text-brand-muted">
+        No account yet? Ask an AbilityX admin to send you an invite. Everything else on the site is changed by the web team.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

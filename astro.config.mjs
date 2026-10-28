@@ -4,6 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, sessionDrivers } from "astro/config";
 import emdash, { local, memoryCache, s3 } from "emdash/astro";
 import { sqlite } from "emdash/db";
+import { cloudflarePurge } from "@abilityx/cloudflare-purge";
+import { resendEmail } from "@abilityx/resend-email";
 
 // Dev runs on loopback, where EmDash needs no configured origin, and a
 // config-file siteUrl would send unauthenticated admin redirects to the live
@@ -77,7 +79,17 @@ export default defineConfig({
 				footerLabel: "AbilityX",
 				favicon: "/favicon.svg",
 			},
-			plugins: [],
+			plugins: [
+				// Invites, magic links and recovery for editors, via Resend
+				// (RESEND_API_KEY). The From address must be on a Resend-verified domain.
+				resendEmail({
+					from: { email: "abilityx@projectenable.africa", name: "AbilityX" },
+					replyTo: "abilityx@projectenable.africa",
+				}),
+				// Purges Cloudflare's edge cache when content changes, so a publish is
+				// visible straight away. Does nothing without CLOUDFLARE_API_TOKEN.
+				cloudflarePurge(),
+			],
 		}),
 	],
 	devToolbar: { enabled: false },
