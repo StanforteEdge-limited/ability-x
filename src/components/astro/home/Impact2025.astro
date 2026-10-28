@@ -1,0 +1,68 @@
+---
+import { AnimatedStatValue } from "@/components/react/animated-stat-value";
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import { impactStats2025 } from "@/data/home";
+---
+
+<section class="relative overflow-hidden py-20 text-white md:py-28">
+  <img src="/abilityx/Extra Pictures/AbilityX-4.jpg" alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+  <div class="absolute inset-0 bg-brand-black/85"></div>
+  <Container class="relative px-5 md:px-8 lg:px-20">
+    <div class="mx-auto mb-14 max-w-3xl text-center">
+      <p class="kicker">AbilityX 2025 Impact</p>
+      <h2 class="mt-4 font-display text-[28px] font-black leading-tight tracking-[-0.02em] text-white md:text-[40px]">
+        AbilityX 2025 laid the foundation. In 2026, we are taking the conversation further, from inclusion to economic
+        participation.
+      </h2>
+    </div>
+
+    <div class="mx-auto mt-10 grid max-w-[1020px] grid-cols-2 gap-4 lg:grid-cols-4">
+      {
+        impactStats2025.map((item) => (
+          <article class="rounded-[16px] bg-white/10 p-6 text-center backdrop-blur-sm md:p-7">
+            <p class="font-display text-4xl font-black tracking-[-0.03em] text-brand-red md:text-[52px]">
+              <AnimatedStatValue client:visible value={item.value} />
+            </p>
+            <p class="mt-3 text-sm text-white/70 md:text-base">{item.label}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <PillButton href="/events/2025" class="px-6 py-3.5">Watch the AbilityX 2025 Recap</PillButton>
+    </div>
+  </Container>
+</section>
+
+<section class="section-shell bg-brand-subtle">
+  <Container>
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
+      <div>
+        <p class="kicker">Relive AbilityX 2025</p>
+        <h2 class="mt-4 font-display text-[28px] font-black tracking-[-0.02em] text-brand-black md:text-[40px]">
+          The Day That Started It All
+        </h2>
+        <p class="mt-4 max-w-[440px] text-[17px] leading-[1.65] text-brand-muted">
+          AbilityX 2025 brought together Nigeria&apos;s disability inclusion ecosystem for the first time. Explore the
+          sessions, speakers, and moments that made it happen.
+        </p>
+        <div class="mt-6">
+          <PillButton href="/events/2025">Explore AbilityX 2025</PillButton>
+        </div>
+      </div>
+      <a href="/events/2025" class="group block overflow-hidden rounded-[16px] border border-brand-border shadow-card">
+        <div class="relative min-h-[280px] md:min-h-[380px]">
+          <img
+            src="/abilityx/Team Photo.jpg"
+            alt="AbilityX 2025 team photo"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      </a>
+    </div>
+  </Container>
+</section>

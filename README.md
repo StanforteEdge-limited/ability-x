@@ -1,118 +1,62 @@
 # AbilityX
 
-AbilityX is a Next.js marketing site for the AbilityX conference and movement.
+The website for AbilityX, the disability leadership forum by Project Enable Africa: https://ability-x.org
 
-The site is content-driven, with all copy and structured data stored locally in the repo. It is deployed to Cloudflare Workers using OpenNext.
+Astro 7 + [EmDash](https://docs.emdashcms.com) CMS on Node, with SQLite for content and Cloudflare R2 for media. It runs on a VPS behind Cloudflare.
 
-## Stack
+## What is editable
 
-- Next.js 16 App Router
-- React 19
-- Tailwind CSS v4
-- TypeScript
-- Vitest
-- OpenNext for Cloudflare
-- Wrangler
+Editors manage three collections at `/admin`:
 
-## Content Model
+- **Speakers**: both editions. 2026 speakers appear on the homepage; 2025 speakers on `/events/2025`.
+- **Schedule** (`programme` collection): sessions on `/schedule`.
+- **Blog Posts**: `/blog`.
 
-There is no CMS or database in this project.
+Everything else (homepage copy, About, Partner, the 2025 page) is code: `src/pages`, `src/components/astro`, and data in `src/data`. Event facts and the registration link are in `src/config/event.ts`.
 
-- Page and section content lives under `content/`
-- Shared UI lives under `components/`
-- App routes live under `app/`
-- Utility helpers live under `lib/`
+See `docs/AbilityX-CMS-Editor-Guide.md` for editors and `docs/AbilityX-VPS-Runbook.md` for the server.
 
-Google Form placeholders are defined in `content/form-links.ts`.
-
-## Routes
-
-- `/` - Home
-- `/events/1.0` - AbilityX 1.0
-- `/about` - About
-- `/partner` - Partner With Us
-
-## Local Development
-
-Install dependencies:
+## Local development
 
 ```bash
+cp .env.example .env              # then fill in
+npx emdash secrets generate --write=.env
+mkdir -p data/uploads
 npm install
+npm run dev                       # Astro 7 dev runs in the background; logs in .astro/dev.log
 ```
 
-Run the dev server:
+On the first run, open `/_emdash/api/setup/dev-bypass` to apply the schema and the sample content (2025 speakers and existing blog posts) from `seed/seed.json`, and sign in as a dev admin. The admin is at `/_emdash/admin`.
 
-```bash
-npm run dev
-```
-
-Open `http://localhost:3000`.
+Stop the dev server with `npx astro dev stop`.
 
 ## Scripts
 
-```bash
-npm run dev
-npm run lint
-npm run test
-npm run build
-npm run build:cloudflare
-npm run preview
-npm run deploy
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build (`dist/server/entry.mjs`) |
+| `npm start` | Run the production build |
+| `npm run check` | Type check (`astro check`) |
+| `npm test` | Unit tests (Vitest) |
+| `npm run seed:build` | Rebuild `seed/seed.json` from `scripts/legacy/*` |
+| `npm run seed:validate` | Validate the seed |
+
+## Layout
+
+```
+src/pages/             routes: /, /about, /partner, /schedule, /events/2025, /blog, /admin, /api/submit-form
+src/components/astro/  server-rendered components (home sections, nav, footer, cards)
+src/components/react/  interactive islands (carousels, modals, forms, lightbox)
+src/lib/               helpers (schedule times, speakers, blog, forms, cache tags)
+src/middleware.ts      Cache-Control / Cache-Tag headers for Cloudflare
+plugins/               EmDash plugins: Cloudflare cache purge, Resend email
+seed/seed.json         CMS schema + initial content (generated)
+deploy/, scripts/      VPS service, nginx, deploy and backup scripts
 ```
 
-Notes:
+## Deploying
 
-- `npm run build` runs the standard Next.js production build
-- `npm run build:cloudflare` builds the Cloudflare Worker bundle via OpenNext
-- `npm run deploy` is for Wrangler/OpenNext deployment workflows
+Push to `development` → GitHub Actions type-checks, tests and builds. Merge `development` → `main` → it deploys to the VPS over SSH and purges Cloudflare's cache. Details in `docs/AbilityX-VPS-Runbook.md`.
 
-## Cloudflare Deployment
-
-This repo is configured for Cloudflare Workers Builds.
-
-Relevant files:
-
-- `wrangler.toml`
-- `open-next.config.ts`
-- `next.config.ts`
-
-Expected Cloudflare settings:
-
-- Production branch: `main`
-- Preview branch: `development`
-- Build command: `npm run build:cloudflare`
-
-## Git Workflow
-
-Branch flow:
-
-- `main` - production
-- `development` - active development / preview branch
-
-Recommended flow:
-
-1. Branch off `development`
-2. Open PRs into `development`
-3. Merge `development` into `main` for production releases
-
-## Verification
-
-Before pushing deployment-related changes, run:
-
-```bash
-npm run lint
-npm run test
-npm run build
-npm run build:cloudflare
-```
-
-## Design References
-
-Design and brand references live under `docs/`, including:
-
-- `docs/abilityx_design_system/`
-- `docs/design_handoff_abilityx_2_0 2/`
-
-## Repository
-
-GitHub: `https://github.com/StanforteEdge/ability-x`
+The previous Next.js site is preserved on the branch `backup/nextjs-2026-10-28`.

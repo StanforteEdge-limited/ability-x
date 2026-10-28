@@ -1,0 +1,10 @@
+# The `ability-x` user may restart and inspect the site's service, and nothing else.
+# A rule that lists arguments matches only those exact arguments, so the status
+# line must match the command in scripts/deploy-vps.sh word for word.
+#
+# Install (mode 440, root-owned), then check the syntax:
+#   sudo install -o root -g root -m 440 deploy/sudoers-ability-x /etc/sudoers.d/ability-x
+#   sudo visudo -c
+
+ability-x ALL=(root) NOPASSWD: /usr/bin/systemctl restart ability-x.service
+ability-x ALL=(root) NOPASSWD: /usr/bin/systemctl status ability-x.service --no-pager --lines=10

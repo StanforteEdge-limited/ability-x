@@ -1,0 +1,50 @@
+---
+import Container from "@/components/astro/Container.astro";
+import { movementGallery, movementImageHeights } from "@/data/home";
+---
+
+<section class="section-shell bg-white">
+  <Container>
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="kicker">The Movement</p>
+      <div class="mt-4 space-y-4 text-left text-[18px] leading-[1.65] text-brand-surface md:text-center md:text-[20px]">
+        <p>
+          AbilityX is more than an event. It is Nigeria’s leading annual convening focused on the future of disability
+          inclusion, bringing together persons with disabilities, business leaders, policymakers, innovators, development
+          partners and civil society to shape what inclusive development can look like in Africa.
+        </p>
+        <p>
+          Following the first edition in 2025, AbilityX returns on November 26, 2026 with a sharper focus on economic
+          participation. Under the theme “From Margins to Markets: Africa’s Blueprint for Disability-Inclusive Growth,”
+          this year’s forum will examine how employment, entrepreneurship, finance, technology and policy can create real
+          pathways to opportunity for persons with disabilities.
+        </p>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-14 max-w-6xl columns-2 gap-4 xl:columns-3">
+      {
+        movementGallery.map((item, index) => (
+          <article
+            class:list={[
+              "group relative mb-4 break-inside-avoid overflow-hidden rounded-[14px] bg-brand-subtle",
+              movementImageHeights[index % movementImageHeights.length],
+            ]}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 flex items-end p-4">
+              <span class="rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-brand-black">{item.label}</span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

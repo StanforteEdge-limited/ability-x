@@ -1,0 +1,107 @@
+---
+import { AnimatedStatValue } from "@/components/react/animated-stat-value";
+import Container from "@/components/astro/Container.astro";
+import PageBanner from "@/components/astro/PageBanner.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import SectionHeading from "@/components/astro/SectionHeading.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { REGISTER_URL } from "@/config/event";
+import { aboutStats, objectives, storyParagraphs } from "@/data/about";
+---
+
+<BaseLayout title="About" active="about" image="/Team Photo.jpg" description="Who's behind AbilityX, why it exists, and what it is building next.">
+  <PageBanner
+    imageSrc="/Team Photo.jpg"
+    imageAlt="AbilityX team and community"
+    kicker="About"
+    title="A Decade of Advocacy. Now Building the Future."
+    description="Who's behind AbilityX, why it exists, and what it is building next."
+  />
+
+  <section class="section-shell bg-white">
+    <Container>
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-start lg:gap-12">
+        <div>
+          <p class="kicker">Project Enable Africa</p>
+          <div class="space-y-5 text-base leading-8 text-brand-muted md:text-[17px]">
+            {storyParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+        <div class="relative min-h-[420px] overflow-hidden rounded-[16px] bg-brand-subtle shadow-card">
+          <img
+            src="/Team Photo.jpg"
+            alt="Project Enable Africa team and community photo."
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-2">
+        <article class="rounded-[16px] border border-brand-border bg-brand-subtle p-6 shadow-card md:p-8">
+          <p class="kicker">Vision</p>
+          <p class="mt-4 text-[17px] leading-8 text-brand-surface">
+            To position Nigeria as a regional leader in disability-inclusive innovation and technology-driven empowerment.
+          </p>
+        </article>
+        <article class="rounded-[16px] border border-brand-border bg-brand-subtle p-6 shadow-card md:p-8">
+          <p class="kicker">Mission</p>
+          <p class="mt-4 text-[17px] leading-8 text-brand-surface">
+            To create a dynamic, youth-focused, community-owned platform that drives cutting-edge solutions, fosters
+            cross-sectoral partnerships, and empowers persons with disabilities as leaders in Africa&apos;s digital
+            transformation.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-12 rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
+        <p class="kicker">Core Objectives</p>
+        <div class="mt-6 flex flex-wrap gap-4">
+          {
+            objectives.map((objective) => (
+              <article class="min-w-[220px] flex-1 rounded-[12px] bg-brand-subtle p-5">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-red-soft text-brand-red">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 4.5 14.7 9 5 .73-3.6 3.5.85 4.95L12 15.8l-4.95 2.38.85-4.95-3.6-3.5 5-.73L12 4.5Z" fill="currentColor" />
+                  </svg>
+                </div>
+                <h3 class="mt-4 text-base font-semibold text-brand-black">{objective.title}</h3>
+                <p class="mt-2 text-sm leading-7 text-brand-muted">{objective.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-shell bg-brand-subtle">
+    <Container>
+      <div class="flex flex-wrap justify-center gap-5">
+        {
+          aboutStats.map((stat) => (
+            <article class="min-w-[180px] flex-1 rounded-[16px] bg-white p-6 shadow-card md:p-8 xl:max-w-[260px]">
+              <p class="font-display text-[36px] font-black tracking-[-0.03em] text-brand-red">
+                <AnimatedStatValue client:visible value={stat.value} />
+              </p>
+              <p class="mt-2 text-sm leading-7 text-brand-muted">{stat.label}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-shell bg-white">
+    <Container>
+      <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <SectionHeading kicker="Get Involved" title="Ready to be part of what's next?" />
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <PillButton href={REGISTER_URL} class="px-8 py-4">Register for AbilityX 2026</PillButton>
+          <PillButton href="/partner" variant="ghost" class="px-8 py-4">Partner With Us</PillButton>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

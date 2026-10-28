@@ -1,0 +1,48 @@
+---
+import { FormModalButton } from "@/components/react/form-modal-button";
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import { REGISTER_URL } from "@/config/event";
+---
+
+<section id="ask" class="section-shell scroll-mt-32 bg-brand-subtle">
+  <Container>
+    <div class="mb-14 text-center">
+      <p class="kicker">Get Involved</p>
+      <h2 class="mt-4 font-display text-[32px] font-black tracking-[-0.02em] text-brand-black md:text-[40px]">
+        Three ways to be part of AbilityX 2026.
+      </h2>
+    </div>
+    <div class="mt-10 grid gap-5 lg:grid-cols-[1.3fr_1fr_1fr]">
+      <article class="rounded-[16px] bg-brand-black p-6 text-white shadow-card md:p-8">
+        <h3 class="font-display text-2xl font-black tracking-[-0.03em] text-white">Attend</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70 md:text-base">
+          Join the conversations shaping disability-inclusive growth and connect with the people working to turn inclusion
+          into opportunity.
+        </p>
+        <div class="mt-6">
+          <PillButton href={REGISTER_URL}>Register Now</PillButton>
+        </div>
+      </article>
+      <article class="rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
+        <h3 class="font-display text-2xl font-black tracking-[-0.03em] text-brand-black">Partner</h3>
+        <p class="mt-3 text-sm leading-7 text-brand-muted md:text-base">
+          Work with AbilityX to support and strengthen conversations, solutions and opportunities around
+          disability-inclusive growth.
+        </p>
+        <div class="mt-6">
+          <PillButton href="/partner" variant="dark">Partner With Us</PillButton>
+        </div>
+      </article>
+      <article class="rounded-[16px] border border-brand-border bg-white p-6 shadow-card md:p-8">
+        <h3 class="font-display text-2xl font-black tracking-[-0.03em] text-brand-black">Exhibit</h3>
+        <p class="mt-3 text-sm leading-7 text-brand-muted md:text-base">
+          Showcase a relevant innovation, product, service or solution to participants and stakeholders at AbilityX 2026.
+        </p>
+        <div class="mt-6">
+          <FormModalButton client:visible formType="exhibit" label="Register Interest" title="Exhibit at AbilityX 2026" />
+        </div>
+      </article>
+    </div>
+  </Container>
+</section>

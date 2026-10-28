@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FinalCta from "@/components/astro/home/FinalCta.astro";
+import Focus from "@/components/astro/home/Focus.astro";
+import Hero from "@/components/astro/home/Hero.astro";
+import Impact2025 from "@/components/astro/home/Impact2025.astro";
+import ImpactBeyond from "@/components/astro/home/ImpactBeyond.astro";
+import Movement from "@/components/astro/home/Movement.astro";
+import Speakers2026 from "@/components/astro/home/Speakers2026.astro";
+import WaysToJoin from "@/components/astro/home/WaysToJoin.astro";
+import WhatToExpect from "@/components/astro/home/WhatToExpect.astro";
+import WhoShouldAttend from "@/components/astro/home/WhoShouldAttend.astro";
+---
+
+<!-- Section order follows the 2026 brief's suggested homepage order. -->
+<BaseLayout title="AbilityX" active="home" image="/abilityx/Extra Pictures/AbilityX-4.jpg">
+  <Hero />
+  <Movement />
+  <Focus />
+  <WhoShouldAttend />
+  <WhatToExpect />
+  <Speakers2026 />
+  <Impact2025 />
+  <ImpactBeyond />
+  <WaysToJoin />
+  <FinalCta />
+</BaseLayout>

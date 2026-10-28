@@ -1,0 +1,53 @@
+---
+import { NAV_ITEMS, REGISTER_URL, type NavKey } from "@/config/event";
+import Container from "./Container.astro";
+import PillButton from "./PillButton.astro";
+
+interface Props {
+  active?: NavKey;
+}
+
+const { active } = Astro.props;
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-brand-border bg-white/95 backdrop-blur-sm">
+  <Container>
+    <div class="flex min-h-16 items-center justify-between gap-4 px-5 md:min-h-20 lg:px-8">
+      <a href="/" aria-label="AbilityX home">
+        <img src="/abilityx/logo-primary.png" alt="AbilityX" width="138" height="32" class="h-[26px] w-auto md:h-8" />
+      </a>
+
+      <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        {
+          NAV_ITEMS.map((item) => (
+            <PillButton href={item.href} variant={item.key === active ? "nav-active" : "nav-idle"} class="px-4">
+              {item.label}
+            </PillButton>
+          ))
+        }
+      </nav>
+
+      <PillButton href={REGISTER_URL} class="px-4 py-2.5 md:px-5 md:py-3">
+        <span class="hidden sm:inline">Register for AbilityX 2026</span>
+        <span class="sm:hidden">Register</span>
+      </PillButton>
+    </div>
+
+    <nav
+      class="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-brand-border px-5 py-2 text-[13px] lg:hidden"
+      aria-label="Mobile primary"
+    >
+      {
+        NAV_ITEMS.map((item) => (
+          <a
+            href={item.href}
+            aria-current={item.key === active ? "page" : undefined}
+            class={item.key === active ? "font-semibold text-brand-red" : "text-brand-muted"}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </Container>
+</header>

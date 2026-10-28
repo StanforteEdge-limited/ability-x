@@ -1,36 +1,42 @@
 {
   "name": "abilityx",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "build:cloudflare": "npx opennextjs-cloudflare build",
-    "start": "next start",
-    "preview": "npx opennextjs-cloudflare build && npx opennextjs-cloudflare preview",
-    "deploy": "npx opennextjs-cloudflare build && npx opennextjs-cloudflare deploy",
-    "upload": "npx opennextjs-cloudflare build && npx opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "lint": "eslint",
-    "test": "vitest run"
+    "dev": "astro dev",
+    "build": "astro build",
+    "start": "node ./dist/server/entry.mjs",
+    "check": "astro check",
+    "test": "vitest run",
+    "seed:build": "tsx scripts/build-seed.ts",
+    "seed:validate": "emdash seed seed/seed.json --validate"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "^1.20.1",
-    "jose": "^6.2.4",
-    "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@abilityx/cloudflare-purge": "file:plugins/cloudflare-purge",
+    "@abilityx/resend-email": "file:plugins/resend-email",
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/react": "^7.1.1",
+    "@aws-sdk/client-s3": "^3.1158.0",
+    "@aws-sdk/s3-request-presigner": "^3.1158.0",
+    "astro": "^7.4.2",
+    "emdash": "^1.3.1",
+    "jose": "^6.2.13",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "vitest": "^3.2.4",
-    "wrangler": "^4.86.0"
+    "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
   }
 }
