@@ -1,0 +1,94 @@
+---
+import { getEmDashEntry } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Container from "@/components/astro/Container.astro";
+import ShareIcon from "@/components/astro/ShareIcon.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buildShareLinks, estimateReadTime, formatPostDate } from "@/lib/blog";
+import { mediaUrl } from "@/lib/media";
+
+const { slug } = Astro.params;
+const { entry: post } = slug ? await getEmDashEntry("posts", slug) : { entry: null };
+
+if (!post) {
+  return Astro.rewrite("/404");
+}
+
+const category = post.data.terms?.category?.[0]?.label;
+const author = post.data.byline?.displayName ?? "AbilityX Team";
+const heroSrc = mediaUrl(post.data.featured_image);
+const shareLinks = buildShareLinks(new URL(`/blog/${post.id}`, Astro.url.origin).href, post.data.title);
+---
+
+<BaseLayout
+  title={post.data.title}
+  active="blog"
+  description={post.data.excerpt ?? undefined}
+  image={heroSrc}
+  entry={post}
+  collection="posts"
+  pageType="article"
+  article={{
+    publishedTime: post.data.publishedAt?.toISOString() ?? null,
+    modifiedTime: post.data.updatedAt?.toISOString() ?? null,
+    author,
+  }}
+>
+  <article>
+    <section class="relative overflow-hidden bg-brand-black pt-[108px] text-white md:pt-[128px]">
+      {
+        heroSrc && (
+          <img src={heroSrc} alt="" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+        )
+      }
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-black/70 to-brand-black"></div>
+      <Container class="relative px-5 pb-14 pt-16 md:px-8 md:pb-16 lg:px-20">
+        <a href="/blog" class="text-sm font-semibold text-white/70 hover:text-white">&larr; Back to blog</a>
+        <div class="mt-8 max-w-4xl">
+          {category && <p class="text-[12px] font-bold uppercase tracking-[0.14em] text-brand-red">{category}</p>}
+          <h1 class="mt-4 font-display text-[34px] font-black tracking-[-0.03em] md:text-[56px]">{post.data.title}</h1>
+          {post.data.excerpt && <p class="mt-5 max-w-2xl text-base leading-7 text-white/70 md:text-xl">{post.data.excerpt}</p>}
+          <p class="mt-6 text-sm text-white/60">
+            {formatPostDate(post.data.publishedAt)} by {author} / {estimateReadTime(post.data.content)}
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <section class="section-shell bg-white">
+      <Container>
+        <div class="mx-auto max-w-3xl">
+          {
+            post.data.featured_image && (
+              <div class="blog-hero mb-10 overflow-hidden rounded-[16px] bg-brand-subtle shadow-card">
+                <Image image={post.data.featured_image} alt={post.data.featured_image.alt || post.data.title} class="aspect-[16/9] h-full w-full object-cover" />
+              </div>
+            )
+          }
+          <div class="blog-prose text-[18px] leading-9 text-brand-surface">
+            <PortableText value={post.data.content ?? []} />
+          </div>
+
+          <div class="mt-12 border-t border-brand-border pt-6">
+            <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-muted">Share this post</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              {
+                shareLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={link.label}
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-border-strong text-brand-black transition-colors hover:border-brand-red hover:bg-brand-red-soft hover:text-brand-red"
+                  >
+                    <ShareIcon type={link.icon} />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </article>
+</BaseLayout>

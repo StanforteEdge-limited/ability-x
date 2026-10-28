@@ -1,0 +1,26 @@
+---
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+Astro.response.status = 404;
+---
+
+<BaseLayout title="Page not found" noindex>
+  <section class="section-shell bg-white pt-40 lg:pt-48">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="kicker">404</p>
+        <h1 class="mt-4 font-display text-[36px] font-black tracking-[-0.03em] text-brand-black md:text-[52px]">
+          We couldn&apos;t find that page.
+        </h1>
+        <p class="mt-4 text-brand-muted">It may have moved. Try the homepage, the schedule or the blog.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <PillButton href="/">Go to the homepage</PillButton>
+          <PillButton href="/schedule" variant="ghost">Schedule</PillButton>
+          <PillButton href="/blog" variant="ghost">Blog</PillButton>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
