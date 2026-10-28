@@ -1,0 +1,25 @@
+---
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import { REGISTER_URL } from "@/config/event";
+---
+
+<section class="section-shell bg-white">
+  <Container>
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="kicker">Who Should Attend</p>
+      <p class="mt-5 text-[18px] leading-[1.7] text-brand-muted md:text-[20px]">
+        AbilityX 2026 is for persons with disabilities, employers, entrepreneurs, policymakers, investors, development
+        professionals, innovators, disability advocates, researchers, corporate leaders and anyone interested in building a
+        more inclusive economy.
+      </p>
+      <p class="mt-6 font-display text-[22px] font-black leading-snug text-brand-black md:text-[28px]">
+        If you are interested in an economy where persons with disabilities can work, build, earn, innovate and lead, you
+        should be in the room.
+      </p>
+      <div class="mt-8">
+        <PillButton href={REGISTER_URL} class="px-6 py-3.5">Register for AbilityX 2026</PillButton>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,44 @@
+---
+import { getEmDashCollection } from "emdash";
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import SectionHeading from "@/components/astro/SectionHeading.astro";
+import SpeakerCard from "@/components/astro/SpeakerCard.astro";
+import { REGISTER_URL } from "@/config/event";
+
+const { entries: speakers } = await getEmDashCollection("speakers", {
+  status: "published",
+  where: { edition: "2026" },
+  orderBy: { sort_order: "asc" },
+  limit: 100,
+});
+---
+
+<section class="section-shell bg-white" id="speakers">
+  <Container>
+    <SectionHeading kicker="AbilityX 2026" title="AbilityX 2026 speakers" />
+    {
+      speakers.length > 0 ? (
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {speakers.map((speaker) => (
+            <SpeakerCard
+              name={speaker.data.name}
+              role={speaker.data.role}
+              organisation={speaker.data.organisation}
+              sessionTitle={speaker.data.session_title}
+              photo={speaker.data.photo}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="mt-8 rounded-[16px] border border-dashed border-brand-border-strong bg-brand-subtle p-8 md:p-10">
+          <p class="font-display text-[22px] font-bold text-brand-black md:text-[26px]">Speakers will be announced soon.</p>
+          <p class="mt-2 text-brand-muted">Register now and be in the room when they take the stage.</p>
+          <div class="mt-6">
+            <PillButton href={REGISTER_URL}>Register for AbilityX 2026</PillButton>
+          </div>
+        </div>
+      )
+    }
+  </Container>
+</section>

@@ -1,0 +1,51 @@
+---
+import { QuoteCarousel } from "@/components/react/quote-carousel";
+import Container from "@/components/astro/Container.astro";
+import SectionHeading from "@/components/astro/SectionHeading.astro";
+import { impactItems } from "@/data/home";
+import { speakerQuotes } from "@/data/quotes";
+---
+
+<section class="section-shell bg-white">
+  <Container>
+    <div class="mb-12 text-center">
+      <p class="kicker">Impact Beyond the Room</p>
+      <h2 class="mt-4 font-display text-[28px] font-black tracking-[-0.02em] text-brand-black md:text-[40px]">
+        Real deliverables, not just a conference day.
+      </h2>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        impactItems.map((item) => {
+          const Card = item.href ? "a" : "article";
+          return (
+            <Card
+              {...(item.href ? { href: item.href, target: "_blank", rel: "noreferrer" } : {})}
+              class:list={[
+                "rounded-[16px] border border-brand-border bg-brand-subtle p-6 shadow-card transition-shadow duration-200 hover:shadow-raised",
+                item.href && "cursor-pointer hover:border-brand-red/40",
+              ]}
+            >
+              <h3 class="font-display text-[18px] font-bold tracking-[-0.02em] text-brand-black">{item.title}</h3>
+              <p class="mt-3 text-[15px] leading-7 text-brand-muted">{item.description}</p>
+              {item.href && <p class="mt-4 text-sm font-semibold text-brand-red">Visit site &rarr;</p>}
+            </Card>
+          );
+        })
+      }
+    </div>
+  </Container>
+</section>
+
+<section class="section-shell bg-white pt-0 lg:pt-0">
+  <Container>
+    <SectionHeading kicker="AbilityX 2025 Speakers" title="Voices from AbilityX 2025" />
+    <div class="mx-auto mt-12 max-w-[1200px]">
+      <QuoteCarousel client:visible quotes={speakerQuotes} />
+    </div>
+    <p class="mt-8 text-center text-sm text-[#8f8f8f]">
+      Verified quotes from AbilityX 2025 speakers, pulled directly from the conference report.
+    </p>
+  </Container>
+</section>

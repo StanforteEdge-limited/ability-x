@@ -1,0 +1,28 @@
+---
+import Container from "@/components/astro/Container.astro";
+import PillButton from "@/components/astro/PillButton.astro";
+import { EVENT, REGISTER_URL } from "@/config/event";
+---
+
+<section class="section-shell bg-brand-red text-white">
+  <Container>
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-[40px] font-black uppercase leading-none tracking-[-0.03em] md:text-[64px]">Be in the room.</h2>
+      <p class="mt-6 text-[18px] leading-[1.65] text-white/85 md:text-[20px]">
+        Join the people, ideas and conversations working to move disability inclusion from representation to real economic
+        opportunity.
+      </p>
+      <div class="mt-8 space-y-1 text-base md:text-lg">
+        <p class="font-display text-[22px] font-black">{EVENT.edition}</p>
+        <p class="font-semibold">{EVENT.dateLine}</p>
+        <p class="text-white/85">{EVENT.venue}</p>
+      </div>
+      <div class="mt-8">
+        <PillButton href={REGISTER_URL} variant="dark" class="px-7 py-4 uppercase tracking-[0.06em]">Register for AbilityX 2026</PillButton>
+      </div>
+      <p class="mt-4 text-sm font-semibold text-white/85">
+        <a href={REGISTER_URL} target="_blank" rel="noreferrer" class="underline underline-offset-4">bit.ly/AbilityX2026</a>
+      </p>
+    </div>
+  </Container>
+</section>

@@ -1,5 +1,6 @@
 ---
 import { Image } from "emdash/ui";
+import type { Speaker } from "../../../emdash-env";
 import { initials } from "@/lib/speakers";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   role?: string | null;
   organisation?: string | null;
   sessionTitle?: string | null;
-  photo?: { id: string; src?: string; alt?: string } | null;
+  photo?: Speaker["photo"] | null;
 }
 
 const { name, role, organisation, sessionTitle, photo } = Astro.props;
