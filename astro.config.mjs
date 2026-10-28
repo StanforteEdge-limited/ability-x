@@ -54,6 +54,8 @@ export default defineConfig({
 	redirects: {
 		"/events/1.0": { status: 301, destination: "/events/2025" },
 		"/programme": { status: 301, destination: "/schedule" },
+		// EmDash's default post URL; the blog lives under /blog.
+		"/posts/[slug]": { status: 301, destination: "/blog/[slug]" },
 	},
 	vite: {
 		plugins: [tailwindcss()],

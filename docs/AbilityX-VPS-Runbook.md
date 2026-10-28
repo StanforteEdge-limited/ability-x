@@ -271,10 +271,12 @@ cd /home/ability-x/app && git fetch && git checkout main
 Off-site remote for `ability-x` (R2 token from step 2):
 
 ```bash
-sudo -iu ability-x rclone config create r2 s3 provider=Cloudflare access_key_id=<key> secret_access_key=<secret> endpoint=https://<ACCOUNT_ID>.r2.cloudflarestorage.com no_head=true
+sudo -iu ability-x rclone config create r2 s3 provider=Cloudflare access_key_id=<key> secret_access_key=<secret> endpoint=https://<ACCOUNT_ID>.r2.cloudflarestorage.com no_head=true no_check_bucket=true
 ```
 
-`no_head=true` matters: without it rclone's post-upload check gets `501` from R2 and reports a false failure.
+Both flags matter. `no_check_bucket=true`: otherwise rclone tries to create the bucket before uploading, and an object-level token gets `AccessDenied`. `no_head=true`: otherwise rclone's post-upload check gets `501` from R2 and reports a false failure.
+
+Start the command with a space so the secret stays out of the shell history. Test with `rclone ls r2:ability-x-backups`; a token scoped to the bucket can't run `rclone lsd r2:`.
 
 Nightly cron for `ability-x` (Webmin → Scheduled Cron Jobs, or `crontab -e`):
 
