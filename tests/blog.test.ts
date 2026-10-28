@@ -22,13 +22,13 @@ describe("blog helpers", () => {
   });
 
   it("builds the four share links", () => {
-    const links = buildShareLinks("https://abilityx.projectenable.africa/blog/a b", "Hi & bye");
+    const links = buildShareLinks("https://ability-x.org/blog/a b", "Hi & bye");
     expect(links.map((l) => l.icon)).toEqual(["x", "linkedin", "facebook", "whatsapp"]);
     expect(links[0].href).toBe(
-      "https://twitter.com/intent/tweet?url=https%3A%2F%2Fabilityx.projectenable.africa%2Fblog%2Fa%20b&text=Hi%20%26%20bye",
+      "https://twitter.com/intent/tweet?url=https%3A%2F%2Fability-x.org%2Fblog%2Fa%20b&text=Hi%20%26%20bye",
     );
     expect(links[3].href).toBe(
-      "https://wa.me/?text=Hi%20%26%20bye%20https%3A%2F%2Fabilityx.projectenable.africa%2Fblog%2Fa%20b",
+      "https://wa.me/?text=Hi%20%26%20bye%20https%3A%2F%2Fability-x.org%2Fblog%2Fa%20b",
     );
   });
 });

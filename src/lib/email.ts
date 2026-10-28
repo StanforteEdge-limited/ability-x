@@ -11,7 +11,7 @@ async function sendEmail(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "AbilityX Website <notifications@abilityx.projectenable.africa>",
+      from: "AbilityX Website <notifications@ability-x.org>",
       to,
       subject,
       html,
