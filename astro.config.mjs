@@ -10,7 +10,7 @@ import { resendEmail } from "@abilityx/resend-email";
 // Dev runs on loopback, where EmDash needs no configured origin, and a
 // config-file siteUrl would send unauthenticated admin redirects to the live
 // site. Production builds bake the canonical origin in; staging builds
-// override it:  EMDASH_SITE_URL=https://vps.ability-x.org npm run build
+// override it with EMDASH_SITE_URL.
 // (Keep defineConfig's object-literal form: the emdash integration does not
 // mount its routes when astro.config passes a function to defineConfig.)
 const siteUrl =

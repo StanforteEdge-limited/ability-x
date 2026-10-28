@@ -1,6 +1,6 @@
 # AbilityX VPS Runbook
 
-How the site runs, how to set it up on the VPS, and how to move ability-x.org off the old Cloudflare Worker.
+How the site runs, and how to set it up on the VPS and move ability-x.org off the old Cloudflare Worker.
 
 ```
 Cloudflare (proxied DNS, Cache Rule, purge by tag, R2 media)
@@ -11,8 +11,7 @@ Cloudflare (proxied DNS, Cache Rule, purge by tag, R2 media)
 
 | Thing | Value |
 |---|---|
-| Production | https://ability-x.org (still the Next.js Worker `ability-x` until cutover) |
-| Staging | https://vps.ability-x.org |
+| Site | https://ability-x.org (no staging host; the old Next.js Worker `ability-x` serves it until step 7) |
 | Server user | `ability-x` (replace everywhere if Virtualmin chose another name) |
 | App checkout | `/home/ability-x/app` |
 | Data (DB, sessions) | `/home/ability-x/data` |
@@ -45,9 +44,8 @@ Use the first free port from 4321 up. Set that same number in `/etc/ability-x.en
 2. **R2 → Manage API tokens** → create a token with Object Read & Write on both buckets. Note the access key, the secret and the S3 endpoint (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`).
 3. **My Profile → API Tokens** → create a token with Zone → Cache Purge on ability-x.org. It's used twice: in `/etc/ability-x.env` and as the GitHub secret `CLOUDFLARE_PURGE_TOKEN`. Also copy the **Zone ID** from the zone's overview page.
 4. **SSL/TLS → Origin Server** → create a certificate for `ability-x.org, *.ability-x.org`. Keep both the certificate and the private key for step 5.
-5. **DNS** → add `A  vps  <server IP>`, proxied (orange cloud).
-6. **Caching → Cache Rules** → create a rule:
-   - Expression: `(http.host in {"vps.ability-x.org"} and not starts_with(http.request.uri.path, "/_emdash") and not http.cookie contains "astro-session=")`
+5. **Caching → Cache Rules** → create a rule now (it does nothing until DNS points at the VPS in step 7):
+   - Expression: `(http.host in {"ability-x.org"} and not starts_with(http.request.uri.path, "/_emdash") and not http.cookie contains "astro-session=")`
    - Cache eligibility: **Eligible for cache**
    - Edge TTL: **Use cache-control header if present**
 
@@ -89,7 +87,7 @@ fnm install 24 && fnm default 24
 ~/.local/share/fnm/aliases/default/bin/node --version
 ```
 
-Clone the repo. Use the `development` branch for staging; you'll switch to `main` at cutover. If the repo is private, add a read-only deploy key on GitHub first.
+Clone the repo on `development` for now; step 9 moves it to `main`. If the repo is private, add a read-only deploy key on GitHub first.
 
 ```bash
 git clone --branch development https://github.com/StanforteEdge-limited/ability-x.git /home/ability-x/app
@@ -181,27 +179,36 @@ systemctl enable ability-x
 
 If the build fails, the old service keeps running; read the error, fix it and run the script again.
 
-## 7. Set up the CMS on staging
+## 7. Go live and set up the CMS
 
-1. Open https://vps.ability-x.org/_emdash/admin and complete the setup wizard **with sample content**. This creates the Speakers, Schedule and Blog collections and imports the 36 speakers from 2025 and the 2 blog posts. Their images are downloaded from the live ability-x.org into R2.
-2. Create your admin account (passkey). Passkeys are tied to the domain: the one you make on `vps.` won't work on `ability-x.org`. After cutover, sign in with an email link and add a new passkey.
-3. **Settings**: check the site title is `AbilityX`.
-4. **Blog Posts**: seeds can't carry dates, so set each post's publish date:
+There's no staging host, so the site goes live the moment ability-x.org points at the VPS. Before that, the deploy script's own check (`the site answers 200`) is the only test. Do the steps below together, at a quiet time: until the setup wizard is finished, the public pages have no content.
+
+1. Cloudflare dashboard:
+   - Workers & Pages → `ability-x` → Settings → Domains & Routes: **remove** `ability-x.org` and `www.ability-x.org`.
+   - DNS: add `A  @  <server IP>` and `CNAME  www  ability-x.org`, both proxied (orange cloud).
+   - Rules → Redirect Rules: `www.ability-x.org/*` → `https://ability-x.org/${1}` (301).
+2. Open https://ability-x.org/_emdash/admin and complete the setup wizard **with sample content**. This creates the Speakers, Schedule and Blog collections and imports the 36 speakers from 2025 and the 2 blog posts. Their images are downloaded from the site's own `/speakers` and `/abilityx` files into R2.
+3. Create your admin account (passkey).
+4. **Settings**: check the site title is `AbilityX`.
+5. **Blog Posts**: seeds can't carry dates, so set each post's publish date:
    - *Why AbilityX Exists*: 29 July 2026
    - *Why We Built AbilityX: From a Forum to a Movement*: 10 September 2026
-5. **Settings → Email → Send test email.** If it fails with a domain error, `projectenable.africa` isn't verified in Resend. Either verify it, or change the From address in `astro.config.mjs` to one on `abilityx.projectenable.africa` (the website forms already send from there).
-6. Invite the editors (Settings → Users). They follow `docs/AbilityX-CMS-Editor-Guide.md`.
+6. Caching → Configuration → **Purge Everything**, so nothing from the minutes before setup stays cached.
+7. **Settings → Email → Send test email.** If it fails with a domain error, `projectenable.africa` isn't verified in Resend. Either verify it, or change the From address in `astro.config.mjs` to one on `abilityx.projectenable.africa` (the website forms already send from there).
+8. Invite the editors (Settings → Users). They follow `docs/AbilityX-CMS-Editor-Guide.md`.
 
-## 8. Staging checks
+If the speakers have no photos after step 2, Cloudflare blocked the server fetching its own images. Re-upload the missing photos in the admin, or ask the web team.
+
+## 8. Checks
 
 - [ ] `/`, `/about`, `/partner`, `/schedule`, `/events/2025`, `/blog`, both posts and `/admin` load; images show.
-- [ ] `/events/1.0` → 301 to `/events/2025`. `/programme` → 301 to `/schedule`. `/blog/nope` → 404.
+- [ ] `/events/1.0` → 301 to `/events/2025`. `/programme` → 301 to `/schedule`. `/blog/nope` → 404. `www.ability-x.org` → `ability-x.org`.
 - [ ] Second load of `/` shows `cf-cache-status: HIT` (browser dev tools → Network → response headers).
 - [ ] Publish a test blog post: `/blog` shows it within a minute (`MISS` once, then `HIT`). The service log shows `[cloudflare-purge] purged`. Then delete the post.
 - [ ] A post scheduled two minutes ahead goes live by itself.
 - [ ] Partner and Exhibit forms: the row lands in the Google Sheet and both emails arrive.
 - [ ] `bash /home/ability-x/app/scripts/backup-vps.sh` writes a backup.
-- [ ] From your laptop, the origin refuses direct access: `curl -sk -o /dev/null -w '%{http_code}' --resolve vps.ability-x.org:443:<server IP> https://vps.ability-x.org/` prints `403`.
+- [ ] From your laptop, the origin refuses direct access: `curl -sk -o /dev/null -w '%{http_code}' --resolve ability-x.org:443:<server IP> https://ability-x.org/` prints `403`.
 
 ## 9. Automatic deploys from GitHub
 
@@ -235,7 +242,11 @@ On GitHub → Settings → Secrets and variables → Actions, add `VPS_HOST` (se
 rm ./ability-x_deploy ./ability-x_deploy.pub
 ```
 
-The deploy runs `git pull` on whatever branch the server checkout is on, so the server must be on `main` once you deploy through GitHub (step 11).
+The deploy runs `git pull` on whatever branch the server checkout is on, so move the server to `main`. First merge `development` → `main` on GitHub, then as `ability-x`:
+
+```bash
+cd /home/ability-x/app && git fetch && git checkout main
+```
 
 ## 10. Backups
 
@@ -255,39 +266,7 @@ Nightly cron for `ability-x` (Webmin → Scheduled Cron Jobs, or `crontab -e`):
 
 Restore: stop the service, copy a backup over `/home/ability-x/data/emdash.db`, delete any `emdash.db-wal` and `emdash.db-shm`, then start the service.
 
-## 11. Cutover: ability-x.org moves to the VPS
-
-Pick a quiet time, then do these steps in order.
-
-1. Freeze edits in the CMS.
-2. Merge `development` → `main` on GitHub and let the workflow pass (or, before step 9 is set up, deploy by hand).
-3. On the server, as `ability-x`, move the checkout to `main`:
-
-   ```bash
-   cd /home/ability-x/app && git fetch && git checkout main
-   ```
-
-4. In **both** `/etc/ability-x.env` and `/home/ability-x/ability-x.build.env`, set `EMDASH_SITE_URL=https://ability-x.org`. Then deploy:
-
-   ```bash
-   bash /home/ability-x/app/scripts/deploy-vps.sh
-   ```
-
-5. As root, add the apex to nginx. In `/etc/nginx/conf.d/ability-x.conf`, change the line to `server_name ability-x.org vps.ability-x.org;`, then:
-
-   ```bash
-   nginx -t && systemctl reload nginx
-   ```
-
-6. Cloudflare dashboard:
-   - Workers & Pages → `ability-x` → Settings → Domains & Routes: **remove** `ability-x.org` and `www.ability-x.org`.
-   - DNS: add `A  @  <server IP>` (proxied). For www, add `CNAME  www  ability-x.org` (proxied).
-   - Rules → Redirect Rules: www.ability-x.org/* → https://ability-x.org/$1 (301).
-   - Cache Rules: add `"ability-x.org"` to the host list in the expression.
-   - Caching → Configuration → **Purge Everything**.
-7. Run the checks from step 8 on https://ability-x.org, plus an email-link sign-in and a new passkey.
-
-## 12. Rollback
+## 11. Rollback
 
 The old Next.js Worker stays deployed. To go back:
 
@@ -297,7 +276,7 @@ The old Next.js Worker stays deployed. To go back:
 
 The old code is on the branch `backup/nextjs-2026-10-28`.
 
-## 13. After 14 days
+## 12. After 14 days
 
 - Delete the `ability-x` Worker (Workers & Pages → `ability-x` → Settings → Delete).
 - **Never delete the `ability-x-media` bucket.** Every image on the site lives there.
@@ -313,4 +292,4 @@ The old code is on the branch `backup/nextjs-2026-10-28`.
 | Service won't start: `namespace` error | `/home/ability-x/app/.astro` doesn't exist. Create it as `ability-x`. |
 | Everyone gets 403 | nginx is filtering on `$remote_addr`. It must use `$realip_remote_addr` (it does in the shipped file). |
 | Images 404 after deploy | The R2 keys or `S3_*` values differ between the build env and `/etc/ability-x.env`. |
-| Wrong links after cutover (still `vps.`) | `EMDASH_SITE_URL` is baked in at build time: update both env files and redeploy. |
+| Wrong domain in links or sign-in | `EMDASH_SITE_URL` is baked in at build time: it must be `https://ability-x.org` in both env files, then redeploy. |
