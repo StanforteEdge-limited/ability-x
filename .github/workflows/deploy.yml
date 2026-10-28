@@ -1,0 +1,114 @@
+# development: type check, tests, build. main: deploy to the VPS, no second check.
+#
+# Promote with a pull request development → main (or `git push origin development:main`).
+# The deploy job finds the development commit whose file tree is identical to
+# main's (the same commit after a push; the PR head after a merge or squash)
+# and deploys only if that commit passed its check. If main contains anything
+# development never checked, the trees differ and nothing is deployed.
+#
+# The deploy is one SSH login as `abilityx`. On the server the key is pinned in
+# ~/.ssh/authorized_keys with command="…/scripts/deploy-vps.sh", so it can run
+# the deploy script and nothing else (docs/AbilityX-VPS-Runbook.md).
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   VPS_HOST                the server's address
+#   VPS_SSH_KEY             private half of the deploy key
+#   VPS_KNOWN_HOSTS         the server's host key line (run ssh-keyscan ON the server)
+#   CLOUDFLARE_PURGE_TOKEN  token with Zone → Cache Purge on ability-x.org
+#   CLOUDFLARE_ZONE_ID      zone id of ability-x.org
+name: check and deploy
+
+on:
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+# Never two deploys at once; a newer push waits for the running one.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.ref == 'refs/heads/development' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Require a passing check on development for this content
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tree=$(git rev-parse 'HEAD^{tree}')
+          SHA=$(git log origin/development -n 50 --format='%H %T' | awk -v t="$tree" '$2 == t { print $1; exit }')
+          if [ -z "$SHA" ]; then
+            echo "::error::main's content matches no recent development commit; it contains changes that were never checked. Not deploying."; exit 1
+          fi
+          echo "main matches development commit $SHA"
+          # The development run may still be going if both branches were pushed together.
+          for i in $(seq 1 45); do
+            result=$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy.yml --branch development \
+              --commit "$SHA" --event push --json status,conclusion \
+              --jq 'map(select(.status == "completed")) | (map(.conclusion) | if index("success") then "success" elif length > 0 then "failed" else "" end)')
+            pending=$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy.yml --branch development \
+              --commit "$SHA" --event push --json status --jq 'map(select(.status != "completed")) | length')
+            if [ "$result" = "success" ]; then echo "development passed for $SHA"; exit 0; fi
+            if [ "$pending" = "0" ] && [ -z "$result" ]; then
+              echo "::error::$SHA was never checked on development. Push it there first, then promote to main."; exit 1
+            fi
+            if [ "$pending" = "0" ] && [ "$result" = "failed" ]; then
+              echo "::error::$SHA failed its check on development; not deploying."; exit 1
+            fi
+            sleep 20
+          done
+          echo "::error::timed out waiting for the development check of $SHA"; exit 1
+
+      - name: Deploy over SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # The server's forced command runs the deploy and smoke-tests the
+          # origin; nothing is sent from here.
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes abilityx@"$HOST"
+
+      - name: Purge Cloudflare's cache
+        # Pages stay at the edge for 30 days and only a publish purges them, so
+        # a template change would otherwise not show until each page expired.
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_PURGE_TOKEN }}
+          ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$ZONE" ]; then
+            echo "::warning::CLOUDFLARE_PURGE_TOKEN / CLOUDFLARE_ZONE_ID not set; purge by hand (Caching → Purge Everything)"; exit 0
+          fi
+          curl -sf -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE/purge_cache" \
+            -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' | grep -q '"success":true' && echo "edge cache purged"
