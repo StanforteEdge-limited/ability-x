@@ -27,11 +27,11 @@ describe("cachePolicyFor", () => {
     expect(policy("/partner").cacheControl).toBe(PUBLIC);
   });
 
-  it("never caches the admin, login or a signed-in editor's view", () => {
+  it("never caches, or lets the edge rewrite, the admin, login or a signed-in editor's view", () => {
     for (const path of ["/_emdash/admin", "/_emdash/api/content/posts", "/admin", "/admin/", "/login"]) {
-      expect(policy(path)).toEqual({ cacheControl: "private, no-store", tags: null });
+      expect(policy(path)).toEqual({ cacheControl: "private, no-store, no-transform", tags: null });
     }
-    expect(policy("/", 200, true)).toEqual({ cacheControl: "private, no-store", tags: null });
+    expect(policy("/", 200, true)).toEqual({ cacheControl: "private, no-store, no-transform", tags: null });
   });
 
   it("caches media for a year, but not a missing file", () => {

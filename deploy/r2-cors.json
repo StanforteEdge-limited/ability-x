@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "allowed": {
+        "origins": [
+          "https://ability-x.org",
+          "https://www.ability-x.org",
+          "http://localhost:4321",
+          "http://127.0.0.1:4321"
+        ],
+        "methods": ["GET", "HEAD", "PUT"],
+        "headers": [
+          "content-type",
+          "content-length",
+          "cache-control",
+          "x-amz-acl",
+          "x-amz-content-sha256",
+          "x-amz-date",
+          "x-amz-security-token",
+          "x-amz-sdk-checksum-algorithm",
+          "x-amz-checksum-crc32",
+          "x-amz-user-agent"
+        ]
+      },
+      "exposeHeaders": ["ETag"],
+      "maxAgeSeconds": 3600
+    }
+  ]
+}

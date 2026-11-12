@@ -42,6 +42,14 @@ Use the first free port from 4321 up. Set that same number in `/etc/ability-x.en
 
 1. **R2** → enable it if asked → create the buckets `ability-x-media` and `ability-x-backups`. On `ability-x-backups`, add a lifecycle rule that deletes objects after 30 days.
 2. **R2 → Manage API tokens** → create a token with Object Read & Write on both buckets. Note the access key, the secret and the S3 endpoint (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`).
+   Then give `ability-x-media` a CORS policy. The admin uploads straight from the browser to R2 with presigned URLs, so R2 must allow the site's origin or the upload dies on the preflight with `No 'Access-Control-Allow-Origin' header`. From the repo root:
+
+   ```bash
+   npx wrangler r2 bucket cors set ability-x-media --file deploy/r2-cors.json
+   npx wrangler r2 bucket cors list ability-x-media
+   ```
+
+   The file allows `https://ability-x.org` (and `www`) to `GET`/`HEAD`/`PUT` with the headers the SDK sends. Keep it in step with the env: a new origin (staging hostname) must be added here too.
 3. **My Profile → API Tokens** → create a token with Zone → Cache Purge on ability-x.org. It's used twice: in `/etc/ability-x.env` and as the GitHub secret `CLOUDFLARE_PURGE_TOKEN`. Also copy the **Zone ID** from the zone's overview page.
 4. **SSL/TLS → Origin Server** → create a certificate for `ability-x.org, *.ability-x.org`. Keep both the certificate and the private key for step 5.
 5. **Caching → Cache Rules** → create a rule now (it does nothing until DNS points at the VPS in step 7):
@@ -312,4 +320,7 @@ The old code is on the branch `backup/nextjs-2026-10-28`.
 | Service won't start: `namespace` error | `/home/ability-x/app/.astro` doesn't exist. Create it as `ability-x`. |
 | Everyone gets 403 | nginx is filtering on `$remote_addr`. It must use `$realip_remote_addr` (it does in the shipped file). |
 | Images 404 after deploy | The R2 keys or `S3_*` values differ between the build env and `/etc/ability-x.env`. |
+| Media upload fails: `No 'Access-Control-Allow-Origin' header` | The bucket's CORS policy doesn't include the site origin. Apply `deploy/r2-cors.json` (step 2), wait ~30s, retry. |
+| Media upload fails: `400` checksum mismatch | `AWS_REQUEST_CHECKSUM_CALCULATION=WHEN_REQUIRED` is missing from `/etc/ability-x.env`. Add it and `sudo systemctl restart ability-x`. |
+| Console on `/_emdash`: `beacon.min.js` violates CSP | Cloudflare Web Analytics tried to inject its beacon into the admin. The admin answers `Cache-Control: private, no-store, no-transform`, so the edge should leave it alone; if it persists, add a Web Analytics rule excluding `/_emdash/*` (Web Analytics → Manage site → Advanced options → Add rule). |
 | Wrong domain in links or sign-in | `EMDASH_SITE_URL` is baked in at build time: it must be `https://ability-x.org` in both env files, then redeploy. |
