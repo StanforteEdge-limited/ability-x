@@ -53,8 +53,13 @@ export function cachePolicyFor(input: { pathname: string; status: number; hasSes
       : { cacheControl: "no-store", tags: null };
   }
 
-  // The admin, its API and anything a signed-in editor sees.
-  if (PRIVATE_PATH.test(pathname) || hasSession) return { cacheControl: "private, no-store", tags: null };
+  // The admin, its API and anything a signed-in editor sees. `no-transform`
+  // stops Cloudflare rewriting the response at the edge: its Web Analytics
+  // beacon is blocked by the admin's own CSP, so injecting it only fills the
+  // console with policy violations.
+  if (PRIVATE_PATH.test(pathname) || hasSession) {
+    return { cacheControl: "private, no-store, no-transform", tags: null };
+  }
 
   if (API_PATH.test(pathname)) return { cacheControl: "no-store", tags: null };
 
