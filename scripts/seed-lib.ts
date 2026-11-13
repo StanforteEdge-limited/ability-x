@@ -68,14 +68,6 @@ const collections = [
       { slug: "organisation", label: "Organisation", type: "string" },
       { slug: "photo", label: "Photo", type: "image" },
       { slug: "session_title", label: "Session title (only once confirmed)", type: "string" },
-      {
-        slug: "edition",
-        label: "Edition",
-        type: "select",
-        required: true,
-        defaultValue: "2026",
-        validation: { options: ["2026", "2025"] },
-      },
       { slug: "sort_order", label: "Sort order (lower shows first)", type: "integer", defaultValue: 100 },
     ],
   },
@@ -143,13 +135,17 @@ export function buildSeed(input: { speakers: SpeakerItem[]; posts: BlogPost[]; m
     const data: Record<string, unknown> = {
       name: speaker.name,
       role: renameEditions(speaker.role),
-      edition: "2025",
       sort_order: index * 10,
     };
     if (speaker.image.src !== PLACEHOLDER_IMAGE) {
       data.photo = mediaRef(speaker.image.src, speaker.image.alt, mediaBase);
     }
-    return { id: speaker.id, status: "published", data };
+    return {
+      id: speaker.id,
+      status: "published",
+      data,
+      taxonomies: { edition: ["2025"] },
+    };
   });
 
   // Seeds cannot set a publish date, and entries are published in file
@@ -195,6 +191,17 @@ export function buildSeed(input: { speakers: SpeakerItem[]; posts: BlogPost[]; m
         hierarchical: false,
         collections: ["posts"],
         terms: categoryLabels.map((label) => ({ slug: slugify(label), label })),
+      },
+      {
+        name: "edition",
+        label: "Editions",
+        labelSingular: "Edition",
+        hierarchical: false,
+        collections: ["speakers"],
+        terms: [
+          { slug: "2025", label: "2025" },
+          { slug: "2026", label: "2026" },
+        ],
       },
     ],
     bylines: [{ id: "byline-abilityx-team", slug: "abilityx-team", displayName: "AbilityX Team" }],

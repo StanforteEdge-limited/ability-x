@@ -52,19 +52,6 @@
           "type": "string"
         },
         {
-          "slug": "edition",
-          "label": "Edition",
-          "type": "select",
-          "required": true,
-          "defaultValue": "2026",
-          "validation": {
-            "options": [
-              "2026",
-              "2025"
-            ]
-          }
-        },
-        {
           "slug": "sort_order",
           "label": "Sort order (lower shows first)",
           "type": "integer",
@@ -196,6 +183,25 @@
           "label": "Movement"
         }
       ]
+    },
+    {
+      "name": "edition",
+      "label": "Editions",
+      "labelSingular": "Edition",
+      "hierarchical": false,
+      "collections": [
+        "speakers"
+      ],
+      "terms": [
+        {
+          "slug": "2025",
+          "label": "2025"
+        },
+        {
+          "slug": "2026",
+          "label": "2026"
+        }
+      ]
     }
   ],
   "bylines": [
@@ -213,7 +219,6 @@
         "data": {
           "name": "Dr Kolawole Olugbodi",
           "role": "Founder & CEO, Background Checks International (BCI) - Opening Remarks",
-          "edition": "2025",
           "sort_order": 0,
           "photo": {
             "$media": {
@@ -222,6 +227,11 @@
               "filename": "Dr-Kola-Olugbodi.jpeg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -230,7 +240,6 @@
         "data": {
           "name": "Temi Dalley",
           "role": "Group Executive, Human Capital & Corporate Services, Sterling Financial Holdings - Keynote",
-          "edition": "2025",
           "sort_order": 10,
           "photo": {
             "$media": {
@@ -239,6 +248,11 @@
               "filename": "Temi-Dalley.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -247,8 +261,12 @@
         "data": {
           "name": "Mrs Bolaji Alabi",
           "role": "Director, Human Resources, Sheraton Hotel, Ikeja - delivered welcome address on behalf of Martin Bredenoord, GM",
-          "edition": "2025",
           "sort_order": 20
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -257,8 +275,12 @@
         "data": {
           "name": "Alakija Adaeze",
           "role": "Spoken word performer",
-          "edition": "2025",
           "sort_order": 30
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -267,8 +289,12 @@
         "data": {
           "name": "Tobiloba Ajayi",
           "role": "Disability Inclusion Advocate & Development Expert - Plenary Moderator",
-          "edition": "2025",
           "sort_order": 40
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -277,7 +303,6 @@
         "data": {
           "name": "Oluseun Onigbinde",
           "role": "CEO, BudgIT (represented by Joseph Idaosha Aminahon, Acting Country Director)",
-          "edition": "2025",
           "sort_order": 50,
           "photo": {
             "$media": {
@@ -286,6 +311,11 @@
               "filename": "Oluseun-Onigbinde.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -294,8 +324,12 @@
         "data": {
           "name": "Glory Ayiegbeni",
           "role": "MERL Lead, Jobberman Nigeria",
-          "edition": "2025",
           "sort_order": 60
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -304,7 +338,6 @@
         "data": {
           "name": "Cosmas I. B. Okoli",
           "role": "CEO, Mobility Aid and Appliances Research & Development Centre (MAARDEC); National Honour: OON (Dec 2006)",
-          "edition": "2025",
           "sort_order": 70,
           "photo": {
             "$media": {
@@ -313,6 +346,11 @@
               "filename": "Cosmas-Okoli.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -321,8 +359,12 @@
         "data": {
           "name": "Daniel Isaiah Olamide",
           "role": "Moderator - Financial Inclusion breakout",
-          "edition": "2025",
           "sort_order": 80
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -331,8 +373,12 @@
         "data": {
           "name": "Akporee Idenedo",
           "role": "Divisional Head, Commercial Banking, Sterling Bank",
-          "edition": "2025",
           "sort_order": 90
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -341,8 +387,12 @@
         "data": {
           "name": "Khafil Animashaun",
           "role": "Chief Experience Enabler, The Alternative Bank",
-          "edition": "2025",
           "sort_order": 100
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -351,8 +401,12 @@
         "data": {
           "name": "Chioma Nwaiwu",
           "role": "Research Associate, EFInA",
-          "edition": "2025",
           "sort_order": 110
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -361,8 +415,12 @@
         "data": {
           "name": "Esther Obele",
           "role": "Speaker - Employment breakout, Jobberman Nigeria",
-          "edition": "2025",
           "sort_order": 120
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -371,8 +429,12 @@
         "data": {
           "name": "Oluwajuwonlo Esho",
           "role": "Senior Associate, Engagement and Learning Development, Jobberman Nigeria",
-          "edition": "2025",
           "sort_order": 130
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -381,7 +443,6 @@
         "data": {
           "name": "Amirah Hassan",
           "role": "Co-Founder, Citizens Application for Political Participation (CAPP) & Actizen Centre - Moderator",
-          "edition": "2025",
           "sort_order": 140,
           "photo": {
             "$media": {
@@ -390,6 +451,11 @@
               "filename": "AMIRAH-HASSAN.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -398,7 +464,6 @@
         "data": {
           "name": "Dare Dairo",
           "role": "Former General Manager, Lagos State Office for Disability Affairs (LASODA)",
-          "edition": "2025",
           "sort_order": 150,
           "photo": {
             "$media": {
@@ -407,6 +472,11 @@
               "filename": "Dare-Dairo.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -415,7 +485,6 @@
         "data": {
           "name": "Oluwatosin Iseniyi",
           "role": "Public Policy, Research, and Data Analyst",
-          "edition": "2025",
           "sort_order": 160,
           "photo": {
             "$media": {
@@ -424,6 +493,11 @@
               "filename": "Oluwatosin-Iseniyi.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -432,7 +506,6 @@
         "data": {
           "name": "Busola Oladunjoye",
           "role": "Project Lead & Senior Project Officer, Centre for Disability and Inclusion Africa (CDIA)",
-          "edition": "2025",
           "sort_order": 170,
           "photo": {
             "$media": {
@@ -441,6 +514,11 @@
               "filename": "Busola-Oladunjoye.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -449,7 +527,6 @@
         "data": {
           "name": "Oluwatosin Ishola",
           "role": "Chief Operating Officer, LAFIAMI - Moderator",
-          "edition": "2025",
           "sort_order": 180,
           "photo": {
             "$media": {
@@ -458,6 +535,11 @@
               "filename": "Oluwatosin Ishola - COO of Lafiami, and Founder of Together for Needs Initiative..jpeg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -466,7 +548,6 @@
         "data": {
           "name": "Kingsley Ezeocha",
           "role": "Head of Sales & Marketing, Hygeia HMO Ltd",
-          "edition": "2025",
           "sort_order": 190,
           "photo": {
             "$media": {
@@ -475,6 +556,11 @@
               "filename": "Kingsley-Ezeocha.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -483,7 +569,6 @@
         "data": {
           "name": "Olubunmi T. Olugbamila",
           "role": "Founder, Damar Place Learning Foundation",
-          "edition": "2025",
           "sort_order": 200,
           "photo": {
             "$media": {
@@ -492,6 +577,11 @@
               "filename": "Olubunmi-Olugbamila.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -500,7 +590,6 @@
         "data": {
           "name": "Segun Matthew",
           "role": "Director, ADI College of Counselling and Psychotherapy",
-          "edition": "2025",
           "sort_order": 210,
           "photo": {
             "$media": {
@@ -509,6 +598,11 @@
               "filename": "Segun-Matthew.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -517,8 +611,12 @@
         "data": {
           "name": "Janet Olaoluwa",
           "role": "Program Officer, Project Enable Africa - Moderator",
-          "edition": "2025",
           "sort_order": 220
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -527,8 +625,12 @@
         "data": {
           "name": "Michael Ojediran",
           "role": "Programs Lead, Project Enable Africa - Presenter, State of Disability Inclusion Report",
-          "edition": "2025",
           "sort_order": 230
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -537,8 +639,12 @@
         "data": {
           "name": "Fabia Ogunmekan",
           "role": "Principal Consultant, Adaba Initiative - Moderator",
-          "edition": "2025",
           "sort_order": 240
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -547,7 +653,6 @@
         "data": {
           "name": "Yehia Elmansoury",
           "role": "General Manager, Radisson Hotel Ikeja",
-          "edition": "2025",
           "sort_order": 250,
           "photo": {
             "$media": {
@@ -556,6 +661,11 @@
               "filename": "Yehia-Elmansoury.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -564,7 +674,6 @@
         "data": {
           "name": "Satender Singh",
           "role": "CEO, KFC Nigeria",
-          "edition": "2025",
           "sort_order": 260,
           "photo": {
             "$media": {
@@ -573,6 +682,11 @@
               "filename": "Satender-Singh.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -581,7 +695,6 @@
         "data": {
           "name": "Dolapo Agbede",
           "role": "Diversity, Equity & Inclusion (DEI) Expert, Africa - Moderator (two sessions)",
-          "edition": "2025",
           "sort_order": 270,
           "photo": {
             "$media": {
@@ -590,6 +703,11 @@
               "filename": "Dolapo-Agbede.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -598,7 +716,6 @@
         "data": {
           "name": "Kemi Shonubi",
           "role": "Director, People, Culture, Experience and Operations, TVC Communications",
-          "edition": "2025",
           "sort_order": 280,
           "photo": {
             "$media": {
@@ -607,6 +724,11 @@
               "filename": "Kemi Shonubi -  Head of People and Culture, TVC Communications.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -615,7 +737,6 @@
         "data": {
           "name": "Victor Otuya",
           "role": "Presenter and Editor, Max FM",
-          "edition": "2025",
           "sort_order": 290,
           "photo": {
             "$media": {
@@ -624,6 +745,11 @@
               "filename": "Victor-Otuya.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -632,7 +758,6 @@
         "data": {
           "name": "Monsuroh Abdulsemiu",
           "role": "Program Officer, Cable Newspaper Journalism Foundation (CNJF) - Moderator",
-          "edition": "2025",
           "sort_order": 300,
           "photo": {
             "$media": {
@@ -641,6 +766,11 @@
               "filename": "Monsuroh-Abdulsemiu.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -649,7 +779,6 @@
         "data": {
           "name": "Kolapo Olapoju",
           "role": "Editor, TheCable",
-          "edition": "2025",
           "sort_order": 310,
           "photo": {
             "$media": {
@@ -658,6 +787,11 @@
               "filename": "Kolapo-Olapoju.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -666,7 +800,6 @@
         "data": {
           "name": "Gbenga Ogundare",
           "role": "Disability Rights Advocate",
-          "edition": "2025",
           "sort_order": 320,
           "photo": {
             "$media": {
@@ -675,6 +808,11 @@
               "filename": "Gbenga-Ogundare.jpg"
             }
           }
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -683,8 +821,12 @@
         "data": {
           "name": "Olusola Adeyefa",
           "role": "Fireside Chat Moderator",
-          "edition": "2025",
           "sort_order": 330
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -693,8 +835,12 @@
         "data": {
           "name": "Dipo Adesina",
           "role": "Chief Operating Officer, Verdant Zeal Group",
-          "edition": "2025",
           "sort_order": 340
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       },
       {
@@ -703,8 +849,12 @@
         "data": {
           "name": "Balogun Ajibola",
           "role": "Delivered goodwill message on behalf of Lagos State Commissioner for Youth and Social Development",
-          "edition": "2025",
           "sort_order": 350
+        },
+        "taxonomies": {
+          "edition": [
+            "2025"
+          ]
         }
       }
     ],

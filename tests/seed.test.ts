@@ -30,13 +30,13 @@ describe("buildSeed", () => {
 
   it("defines the three editable collections", () => {
     expect(seed.collections.map((c) => c.slug)).toEqual(["speakers", "programme", "posts"]);
-    expect(seed.taxonomies.map((t) => t.name)).toEqual(["category"]);
+    expect(seed.taxonomies.map((t) => t.name)).toEqual(["category", "edition"]);
     expect(seed.collections.find((c) => c.slug === "posts")?.urlPattern).toBe("/blog/{slug}");
   });
 
   it("imports every 2025 speaker", () => {
     expect(seed.content.speakers).toHaveLength(speakers.length);
-    expect(seed.content.speakers.every((s) => s.data.edition === "2025")).toBe(true);
+    expect(seed.content.speakers.every((s) => s.taxonomies?.edition?.includes("2025"))).toBe(true);
     expect(seed.content.speakers.find((s) => s.id === "mrs-bolaji-alabi")!.data.photo).toBeUndefined();
     expect(seed.content.speakers.find((s) => s.id === "temi-dalley")!.data.photo).toBeDefined();
   });
